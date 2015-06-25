@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
+
+  <configSections>
+      <sectionGroup name="system.web">
+      <section name="ImageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
+    
+      <section name="PDFService" type="eGistics.Output.PDF.Provider.PDFServiceSection, eGistics.Output" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+      <section name="SaveAuditLogService" type="eGistics.AuditLog.Provider.SaveAuditLogServiceSection, eGistics.AuditLog" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    </sectionGroup>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="eGistics.Archive.Cloud.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
+    </sectionGroup>
+    <section name="UrlSection" type="eGistics.Archive.Cloud.UrlSection, eGistics.Archive.Cloud"/>
+  </configSections>
+  <applicationSettings>
+    <eGistics.Archive.Cloud.Properties.Settings>
+      <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
+        <value><%= @storage_proxy %></value>
+      </setting>
+    </eGistics.Archive.Cloud.Properties.Settings>
+  </applicationSettings>
+  <UrlSection>
+    <Urls>
+      <add name="URL1" url="<%= @storage_proxy %>"/>
+      <add name="URL2" url="<%= @storage_proxy %>"/>
+      <add name="URL3" url="<%= @storage_proxy %>"/>
+    </Urls>
+  </UrlSection>
+  <appSettings>
+    <clear />
+    <add key="DEMOLBX_ConnectionString" value="<%= @test_DEMOLBX_archive_db %>"/>
+    <add key="DEMOLBX_ArchivePath" value="C:\Temp"/>    
+    <add key="DEMOLBX_SearchStoredProc" value="spDemoWebServiceSearch"/>
+    <add key="DEMOLBX_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
+    <add key="DEMOLBX_Orientation" value="Portrait"/>
+    <add key="DEMOLBX_IPAddressList" value=""/>
+    <add key="DEMOLBX_LogFileName" value="DEMO_WebService.log"/>
+    <add key="DEMOLBX_TokenSecurity" value="" />
+    <add key="DEMOLBX_MaxImages" value="50" />
+    <add key="DEMOLBX_AppID" value="fdc_direct"/>
+    <add key="DEMOLBX_SharedSecret" value="xOOM5usTV4R/FxiTVB1j0pZjpww="/>
+	
+    <add key="ADV3499WACHLBX_ConnectionString" value="<%= @test_ADV3499WACHLBX_archive_db %>"/>
+    <add key="ADV3499WACHLBX_ArchivePath" value="C:\Temp"/>    
+    <add key="ADV3499WACHLBX_SearchStoredProc" value="spAdvantaWebServiceSearch"/>
+    <add key="ADV3499WACHLBX_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
+    <add key="ADV3499WACHLBX_Orientation" value="Portrait"/>
+    <add key="ADV3499WACHLBX_IPAddressList" value="12.40.127.126,12.40.127.102,10.10.5.254,10.100.19.10"/>
+    <add key="ADV3499WACHLBX_LogFileName" value="ADV_WebService.log"/>
+    <add key="ADV3499WACHLBX_TokenSecurity" value="" />
+    <add key="ADV3499WACHLBX_MaxImages" value="50" />
+    <add key="ADV3499WACHLBX_AppID" value="fdc_wells2"/>
+    <add key="ADV3499WACHLBX_SharedSecret" value="ef6Tqq/muKke2oVikFk0+fSBH1s="/>
+
+
+    <add key="UBS0001LBX_ConnectionString" value="<%= @test_UBS0001LBX_archive_db %>"/>
+    <add key="UBS0001LBX_ArchivePath" value="C:\Temp"/>    
+    <add key="UBS0001LBX_SearchStoredProc" value="spUBSWebServiceSearch"/>
+    <add key="UBS0001LBX_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
+    <add key="UBS0001LBX_Orientation" value="Portrait"/>
+    <add key="UBS0001LBX_IPAddressList" value=""/>
+    <add key="UBS0001LBX_LogFileName" value="USB_WebService.log"/>
+    <add key="UBS0001LBX_TokenSecurity" value="" />
+    <add key="UBS0001LBX_MaxImages" value="50" />
+    <add key="UBS0001LBX_AppID" value="fdc_direct"/>
+    <add key="UBS0001LBX_SharedSecret" value="xOOM5usTV4R/FxiTVB1j0pZjpww="/>
+	
+
+
+    <add key="HONDAADC04285673_ConnectionString" value="<%= @test_HONDAADC04285673_archive_db %>"/>
+    <add key="HONDAADC04285673_ArchivePath" value="C:\Temp"/>    
+    <add key="HONDAADC04285673_SearchStoredProc" value="spWebServiceSearchForADC"/>
+    <add key="HONDAADC04285673_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
+    <add key="HONDAADC04285673_Orientation" value="Portrait"/>
+    <add key="HONDAADC04285673_IPAddressList" value=""/>
+    <add key="HONDAADC04285673_LogFileName" value="ADC_WebService.log"/>
+    <add key="HONDAADC04285673_TokenSecurity" value="" />
+    <add key="HONDAADC04285673_MaxImages" value="50" />	
+    <add key="HONDAADC04285673_AppID" value="fdc_wells2"/>
+    <add key="HONDAADC04285673_SharedSecret" value="ef6Tqq/muKke2oVikFk0+fSBH1s="/>
+    
+    <add key="InternalHelper_ConnectionString" value="<%= @test_InternalHelper_archive_db %>"/>
+    <add key="InternalHelper_ArchivePath" value="C:\Temp"/>
+    <add key="InternalHelper_SearchStoredProc" value="spDemoWebServiceSearch"/>
+    <add key="InternalHelper_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
+    <add key="InternalHelper_Orientation" value="Portrait"/>
+    <add key="InternalHelper_IPAddressList" value="127.0.0.1,10.100.19.10,10.100.40.108,10.100.41.2"/>
+    <add key="InternalHelper_LogFileName" value="Demo_WebService.log"/>
+    <add key="InternalHelper_TokenSecurity" value=""/>
+    <add key="InternalHelper_AppID" value="egBetaTest"/>
+    <add key="InternalHelper_SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64="/>
+    <add key="InternalHelper_MaxImages" value="50"/>
+    <add key="InternalHelper_AdminConnectionString" value="<%= @test_InternalHelper_admin_db %>"/>
+    
+    <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
+
+
+    <add key="LogPath" value="L:\WWW\PRD\FDC\WSREM-W1\"/>
+    <add key="LogLevel" value="4"/>
+    <add key="CommandTimeOut" value="60"/>
+
+  </appSettings>
+  <connectionStrings/>
+
+  <system.web>
+    <identity impersonate="false" />
+
+    <!-- 
+            Set compilation debug="true" to insert debugging 
+            symbols into the compiled page. Because this 
+            affects performance, set this value to true only 
+            during development.
+        -->
+    <compilation debug="true" targetFramework="4.5"/>
+    <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+        -->
+    <authentication mode="Windows" />
+    <!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+
+        <customErrors mode="Off" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm" />
+            <error statusCode="404" redirect="FileNotFound.htm" />
+        </customErrors>
+        -->
+
+    <ImageArchiveService defaultProvider="ATTSynaptic">
+    <providers>
+        <add name="ATTSynaptic" LegacyProviderName="FDCSingleMultipleIPS_Production" TimeOut="30000" type="eGistics.Archive.Cloud.ATTSynaptic, eGistics.Archive.Cloud"/>
+        <add name="FDCIPSImageArchiveProvider_Test" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://test.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCIPSImageArchiveProvider_Production" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://www.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Test" LegacyProviderName="FDCIPSImageArchiveProvider_Test" SeekCatFile="False" type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Production" LegacyProviderName="FDCIPSImageArchiveProvider_Production" SeekCatFile="False" type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+    </providers>
+  </ImageArchiveService>
+
+  <PDFService defaultProvider="iTextSharpPDFProvider">
+    <providers>
+        <add name="iTextSharpPDFProvider" type="eGistics.Output.PDF.iTextSharp.iTextSharpPDFProvider"/>
+        <add name="PDFNetPDFProvider" type="eGistics.PDFNet.PDFNetProvider, eGistics.PDFNet"/>
+    </providers>
+  </PDFService>
+    <SaveAuditLogService defaultProvider="SqlSaveAuditLogProvider">
+      <providers>
+        <add name="MSMQSaveAuditLogProvider" type="eGistics.AuditLog.Provider.MSMQSaveAuditLogProvider" QueuePath=".\AuditLog"/>
+        <add name="SqlSaveAuditLogProvider" type="eGistics.AuditLog.Provider.SqlSaveAuditLogProvider"/>
+      </providers>
+    </SaveAuditLogService>
+    <pages/>
+  </system.web>
+</configuration>

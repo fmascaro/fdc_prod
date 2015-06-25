@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <configSections>
+	<section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"  requirePermission="false"/>	
+  </configSections>
+  
+<log4net>
+  <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+    <file value="L:\WWW\PRD\FDC\WSVAL-E1\ValidationEngine.log" />
+    <appendToFile value="true" />
+    <maximumFileSize value="3MB"/>
+    <maxSizeRollBackups value="100"/>
+    <rollingStyle value="Composite"/>
+    <datePattern value="yyyyMMdd"/>
+    <staticLogFileName value="true"/>
+    <filter type="log4net.Filter.LevelRangeFilter">
+      <acceptOnMatch value="true" />
+      <levelMin value="DEBUG" />
+      <levelMax value="FATAL" />
+    </filter>
+    <layout type="log4net.Layout.PatternLayout">
+      <header value="HOUR    &#9;LEVEL&#9;HOST    &#9;Application&#9;Thread&#9;Class&#9;Method&#9;NDC&#9;TrackId1&#9;TrackId2&#9;Message&#13;&#10;" />
+      <footer value="&#13;&#10;&#13;&#10;&#13;&#10;" />
+      <conversionPattern value="%date{HH:mm:ss}&#9;%-5level&#9;%property{log4net:HostName}&#9;ValEngine&#9;%thread&#9;%property{Class}&#9;%property{Method}&#9;%property{NDC}&#9;%property{TrackId1}&#9;%property{TrackId2}&#9;%message %newline" />
+    </layout>
+    <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+  </appender>
+
+  <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
+  <root>
+    <level value="ALL" />
+    <appender-ref ref="RollingFileAppender" />
+  </root>
+</log4net>
+  
+  <connectionStrings> 
+    <add name="eGistics.ValidationEngine.Properties.Settings.BaseRemit_AdminConnectionString" connectionString="<%= @test_admin_db %>" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <appSettings>
+    <add key="IO_DataSets_Directory" value="L:\WWW\PRD\FDC\WSVAL-E1" /><!--Leave blank to turn off-->
+	<add key="XsdSchema" value="~/Help/Documentation/validationRules.xsd" /><!--Leave blank to turn off-->
+	<add key="CacheToken" value="2013Feb26_1120" /><!--Change to force a cache refresh-->
+	
+	<!--SAML SSO Configuration-->
+    <add key="samlPayload_IsEncrypted" value="true"/>
+    <add key="samlPayload_IsSigned" value="true"/>
+    <add key="samlPayload_SigningX509SerialNumber" value="a2 e3 45 4f 1a 74 16 91 49 51 80 71 84 ec d1 03"/>
+  </appSettings>
+  <system.web>
+  
+    <authentication mode="Forms">
+      <forms name=".VALIDATIONENGINE" loginUrl="sso_login.ashx" protection="All" path="/" timeout="30" defaultUrl="~/CDMUI2/Configurator.aspx" />
+    </authentication>
+    <authorization>
+      <deny users ="?" />
+      <allow users = "*" />
+    </authorization>
+  
+    <compilation debug="true" targetFramework="4.0" />
+    <httpRuntime requestValidationMode="2.0" executionTimeout="3600"/>
+    <pages validateRequest="false">
+      
+    </pages>
+	<customErrors mode="Off"/>
+  </system.web>
+  
+    <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="ValidationEngineProxySoap" />
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://10.100.32.2/validationenginefdc/validationengineproxy.asmx"
+        binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap"
+        contract="WebServiceReference.ValidationEngineProxySoap" name="ValidationEngineProxySoap" />
+    </client>
+  </system.serviceModel>
+
+  
+  <location path="ValidationEngineProxy.asmx">
+   <system.web>
+    <authorization>
+      <allow users="*"/>
+    </authorization>
+   </system.web>
+  </location>
+</configuration>
