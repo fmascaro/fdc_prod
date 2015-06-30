@@ -266,4 +266,14 @@
 
 	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_AuditLog3g;Trusted_Connection=True
 	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_AuditLog3g;Trusted_Connection=True
+
+*@test_admin_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=TEST_RTC_Admin3G;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=TEST_RTC_Admin3G;Trusted_Connection=True
+
+*@test_auditlog_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=TEST_RTC_AuditLog3G;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=TEST_RTC_AuditLog3G;Trusted_Connection=True
 	
