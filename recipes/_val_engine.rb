@@ -165,7 +165,7 @@ template "#{app_root}/web.config" do
   source "#{node[:egistics][:fdc_val_engine][:web_config]}.erb"
 	action :create
 	variables({
-		:test_admin_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=TEST_RTC_Admin3G;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=TEST_RTC_Admin3G;Trusted_Connection=True'
+		:test_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36'
 		})
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
 end
