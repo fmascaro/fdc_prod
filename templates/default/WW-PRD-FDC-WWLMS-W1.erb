@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=301880
+  -->
+<configuration>
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="eGistics.Archive.Cloud.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+    <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <section name="imageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
+    <section name="pdfService" type="eGistics.PDF.Provider.PDFServiceSection, eGistics.PDF" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
+    <section name="saveAuditLogService" type="eGistics.AuditLog.Provider.SaveAuditLogServiceSection, eGistics.AuditLog" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
+    <section name="validationService" type="eGistics.Security.Validation.ValidationServiceSection, eGistics.Security" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
+    <section name="loginProviderService" type="eGistics.Security.LoginProvider.LoginProviderServiceSection, eGistics.Security" allowDefinition="MachineToApplication" restartOnExternalChanges="true" />
+    <section name="webHooksService" type="eGistics.Remittance.Custom.WebHooksServiceSection, eGistics.Remittance.Custom" allowDefinition="MachineToApplication" restartOnExternalChanges="true" />
+    <sectionGroup name="telerik.web.ui">
+      <section name="radCompression" type="Telerik.Web.UI.RadCompressionConfigurationSection, Telerik.Web.UI, PublicKeyToken=121fae78165ba3d4" allowDefinition="MachineToApplication" requirePermission="false" />
+    </sectionGroup>
+    <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
+    
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+      <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+</configSections>
+
+  <log4net>
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="L:\WWW\PRD\FDC\WWLMS-W1\LMS.log" />
+      <appendToFile value="true" />
+      <maximumFileSize value="3MB" />
+      <maxSizeRollBackups value="100" />
+      <rollingStyle value="Composite" />
+      <datePattern value="yyyyMMdd" />
+      <staticLogFileName value="true" />
+      <filter type="log4net.Filter.LevelRangeFilter">
+        <acceptOnMatch value="true" />
+        <levelMin value="DEBUG" />
+        <levelMax value="FATAL" />
+      </filter>
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="--- HEADER ---&#xA;DATE                    &gt;Application&gt;Thread&gt;Class&gt;Method&gt;Message&#xA;" />
+        <footer value="--- FOOTER ---&#xA;&#xA;&#xA;" />
+        <conversionPattern value="%date %-5level &gt;ACS Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline" />
+      </layout>
+    </appender>
+    <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingFileAppender" />
+    </root>
+  </log4net>  
+
+  <telerik.web.ui>
+    <radCompression enablePostbackCompression="true" />
+  </telerik.web.ui> 
+  <dataConfiguration defaultDatabase="Admin" />
+  <connectionStrings>
+    <clear />
+    <add name="Admin" connectionString="<%= @admin_db %>" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="<%= @auditlog_db %>" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="SmtpServer" value="mail.egisticsinc.com" />
+    <add key="defaultEmailFrom" value="notifications@egisticsinc.com" />
+    <add key="defaultDestination" value="https://www.remitcoimagearchive.com/web/samlsso.ashx" />
+    <add key="PasswordValidationExpression" value=".*" />
+    <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
+    <add key="NumberOfMonthsPasswordCanBeReused" value="30" />
+    <add key="NumberOfTimesPasswordCanBeReused" value="5" />
+    <add key="NumberOfDaysBeforePasswordCanBeChanged" value="30" />
+    <add key="PasswordRepeatCharactersInvalid" value="true" />
+    <add key="SAMLSigningSerialNumber" value="a2 e3 45 4f 1a 74 16 91 49 51 80 71 84 ec d1 03" />
+    <!--<add key="SAMLEncryptionSerialNumber" value="a2 e3 45 4f 1a 74 16 91 49 51 80 71 84 ec d1 03" />-->
+  </appSettings>
+  <system.web>
+    <authentication mode="Windows" />
+    <compilation debug="false" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+  </system.web>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" culture="neutral" publicKeyToken="30ad4fe6b2a6aeed" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-5.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Telerik.Web.UI" publicKeyToken="121fae78165ba3d4" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2014.2.724.45" newVersion="2014.2.724.45" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-5.2.0.0" newVersion="4.0.0.1" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <loginProviderService defaultProvider="UrlLoginProvider">
+    <providers>
+      <add name="UrlLoginProvider" DefaultLogo="" HomePage="" type="eGistics.Security.LoginProvider.UrlLoginProvider, eGistics.Security" />
+      <!--<add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://www\.egisticsinc\.com/[.]*" />-->
+      <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://localhost:51842/[.]*" />
+      <add type="eGistics.Security.LoginProvider.FidelitySsoToken, eGistics.Security" name="FidelitySsoToken" HomePage="http://www.egisticsinc.com" LogFolder="L:\WWW\PRD\FDC\WWLMS-W1" />
+    </providers>
+  </loginProviderService>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+
+
+
+
+</configuration>
