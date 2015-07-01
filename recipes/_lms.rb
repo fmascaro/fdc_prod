@@ -3,22 +3,22 @@
 #Recipe variables
 zip_path = win_friendly_path(
              ::File.join(
-               node[:egistics][:fdc_lta_cdm][:artifact_path],
-               node[:egistics][:fdc_lta_cdm][:artifact_filename]
+               node[:egistics][:fdc_lms][:artifact_path],
+               node[:egistics][:fdc_lms][:artifact_filename]
               )
             )
 
 web_root = win_friendly_path(
              ::File.join(
-               node[:egistics][:fdc_lta_cdm][:docroot],
-               node[:egistics][:fdc_lta_cdm][:web_directory]
+               node[:egistics][:fdc_lms][:docroot],
+               node[:egistics][:fdc_lms][:web_directory]
               )
             )
 
 app_root = win_friendly_path(
             ::File.join(
-               node[:egistics][:fdc_lta_cdm][:docroot],
-               node[:egistics][:fdc_lta_cdm][:app_directory]
+               node[:egistics][:fdc_lms][:docroot],
+               node[:egistics][:fdc_lms][:app_directory]
               )
             )
 
@@ -26,15 +26,15 @@ redirect_file = win_friendly_path(
 			::File.join(web_root, 'default.htm')
 			)
 
-site_name = node[:egistics][:fdc_lta_cdm][:site_name]
-app_name = node[:egistics][:fdc_lta_cdm][:app_name]
+site_name = node[:egistics][:fdc_lms][:site_name]
+app_name = node[:egistics][:fdc_lms][:app_name]
 server_name = node.name
 minutes = (server_name[11..12].to_i * 3).to_s
 minutes = "0" + minutes if minutes.length < 2
 
 #Config variables
 config = {
-	:baseapp => (node[:egistics][:fdc_lta_cdm][:baseapp] ? true : false),
+	:baseapp => (node[:egistics][:fdc_lms][:baseapp] ? true : false),
 	:zipfile => {
 	:artifact_source => zip_path
 	},
@@ -44,18 +44,18 @@ config = {
 	:docroot => web_root
 	},
 	:pool => {
-	:name => node[:egistics][:fdc_lta_cdm][:app_pool],
-	:private_mem => 1000000,
-	:recycle_at_time => node[:egistics][:fdc_lta_cdm][:recycle_pool] ? ("01:" + minutes + ":00") : nil,
-	:identity => node[:egistics][:fdc_lta_cdm][:pool_identity]
+	:name => node[:egistics][:fdc_lms][:app_pool],
+	:private_mem => 600000,
+	:recycle_at_time => node[:egistics][:fdc_lms][:recycle_pool] ? ("01:" + minutes + ":00") : nil,
+	:identity => node[:egistics][:fdc_lms][:pool_identity]
 	},
 	:app => {
 	:physical_path => app_root,
-	:app_pool => node[:egistics][:fdc_lta_cdm][:app_pool],
-	:web_config_source => node[:egistics][:fdc_lta_cdm][:config_filepath]
+	:app_pool => node[:egistics][:fdc_lms][:app_pool],
+	:web_config_source => node[:egistics][:fdc_lms][:config_filepath]
 	},
 	:log => {
-	:path => node[:egistics][:fdc_lta_cdm][:log_path],
+	:path => node[:egistics][:fdc_lms][:log_path],
 	:max_size => "3MB"
 	}
 }
@@ -75,23 +75,23 @@ end
 
 #Step 3. Create application pool for web site
 
-iis_pool node[:egistics][:fdc_lta_cdm][:site_pool] do
+iis_pool node[:egistics][:fdc_lms][:site_pool] do
 	runtime_version '4.0'
 	pipeline_mode :Integrated
 	idle_timeout '00:00:00'
 	recycle_after_time '00:00:00'
-	pool_username node[:egistics][:fdc_lta_cdm][:pool_identity]
+	pool_username node[:egistics][:fdc_lms][:pool_identity]
 	action [:add, :config]
-	notifies :run, "execute[config_#{node[:egistics][:fdc_lta_cdm][:site_pool]}]", :immediately
+	notifies :run, "execute[config_#{node[:egistics][:fdc_lms][:site_pool]}]", :immediately
 end
 
 #Step 4. Create web site and configure default documents
 
 iis_site site_name do
 	site_id 7
-	application_pool node[:egistics][:fdc_lta_cdm][:site_pool]
+	application_pool node[:egistics][:fdc_lms][:site_pool]
 	path web_root
-	bindings node[:egistics][:fdc_lta_cdm][:binding]
+	bindings node[:egistics][:fdc_lms][:binding]
 	action [:add, :start]
 	notifies :run, 'powershell_script[set_sslcert]', :delayed
 end
@@ -103,8 +103,8 @@ end
 #Step 5. Create applicatoin pool for application
 
 iis_pool config[:pool][:name] do
-	runtime_version node[:egistics][:fdc_lta_cdm][:runtime_v4] ? '4.0' : '2.0'
-	pipeline_mode node[:egistics][:fdc_lta_cdm][:pipline_mode]
+	runtime_version node[:egistics][:fdc_lms][:runtime_v4] ? '4.0' : '2.0'
+	pipeline_mode node[:egistics][:fdc_lms][:pipline_mode]
 	idle_timeout '00:00:00'
 	recycle_after_time '00:00:00'
 	private_mem config[:pool][:private_mem] if config[:pool][:private_mem]
@@ -142,7 +142,7 @@ template redirect_file do
 	source 'default.htm.erb'
 	cookbook 'egistics_storageproxy'
 	variables({
-			:url => node[:egistics][:fdc_lta_cdm][:redirect_url]
+			:url => node[:egistics][:fdc_lms][:redirect_url]
 			})
 end
 
@@ -158,20 +158,19 @@ windows_zipfile app_root do
 	action :unzip
 	overwrite true
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
-	not_if { ::File.exists?("#{app_root}/web.config") || node[:egistics][:fdc_lta_cdm][:baseapp] }
+	not_if { ::File.exists?("#{app_root}/web.config") || node[:egistics][:fdc_lms][:baseapp] }
 end
 
 template "#{app_root}/web.config" do
-  source "#{node[:egistics][:fdc_lta_cdm][:web_config]}.erb"
+  source "#{node[:egistics][:fdc_lms][:web_config]}.erb"
 	action :create
 	variables({
+		:admin_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=rtc_Admin3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_Admin3g;Trusted_Connection=True',
+		:auditlog_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=rtc_AuditLog3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_AuditLog3g;Trusted_Connection=True',
+		:config_admin_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_Admin3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_Admin3g;Trusted_Connection=True',
+		:config_auditlog_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_AuditLog3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_AuditLog3g;Trusted_Connection=True',
 		:test_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
-		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
-		:CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '41 0f 62 13 00 00 00 00 00 c8' : '41 0f 62 13 00 00 00 00 00 c8',
-		:test_CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '12 90 89' : '12 90 89',
-		:CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '41 0f 62 13 00 00 00 00 00 c8' : '41 0f 62 13 00 00 00 00 00 c8',
-		:test_CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '12 90 89' : '12 90 89',
-		:EGI_Signature_Cert => node[:ash_db_role] ? '12 90 89' : '12 90 89'
+		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		})
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
 end
@@ -187,8 +186,8 @@ powershell_script "set_sslcert" do
 	ignore_failure true
 end
 
-execute "config_#{node[:egistics][:fdc_lta_cdm][:site_pool]}" do
-	command "#{node[:iis][:home]}\\appcmd.exe set apppool \"#{node[:egistics][:fdc_lta_cdm][:site_pool]}\" /autoStart:true /startMode:AlwaysRunning"
+execute "config_#{node[:egistics][:fdc_lms][:site_pool]}" do
+	command "#{node[:iis][:home]}\\appcmd.exe set apppool \"#{node[:egistics][:fdc_lms][:site_pool]}\" /autoStart:true /startMode:AlwaysRunning"
 	action :nothing
 end
 
