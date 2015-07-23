@@ -167,6 +167,8 @@ template "#{app_root}/web.config" do
 	variables({
 		:test_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
+		:DR_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
+		:DR_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '41 0f 62 13 00 00 00 00 00 c8' : '41 0f 62 13 00 00 00 00 00 c8',
 		:test_CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '12 90 89' : '12 90 89',
 		:CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '41 0f 62 13 00 00 00 00 00 c8' : '41 0f 62 13 00 00 00 00 00 c8',
