@@ -167,6 +167,8 @@ template "#{app_root}/web.config" do
 	variables({
 		:test_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
+		:DR_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
+		:DR_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:storage_proxy => node[:ash_db_role] ? 'https://ap-esl-spx-01.egistics.local/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.egistics.local/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
 		})
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
