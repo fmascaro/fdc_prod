@@ -122,8 +122,8 @@
 
 *@storage_proxy*
 
-	Dallas Value: https://dp-esl-spx-01.egistics.local/PRD-ESL-WSSPX-01/synapticWebService.asmx
-	Ashburn Value: https://ap-esl-spx-01.egistics.local/PRD-ESL-WSSPX-01/synapticWebService.asmx
+	Dallas Value: https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
+	Ashburn Value: https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
 
 *@config_admin_db*
 
@@ -186,8 +186,8 @@
 
 *@storage_proxy*
 
-	Dallas Value: https://dp-esl-spx-01.egistics.local/PRD-ESL-WSSPX-01/synapticWebService.asmx
-	Ashburn Value: https://ap-esl-spx-01.egistics.local/PRD-ESL-WSSPX-01/synapticWebService.asmx
+	Dallas Value: https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
+	Ashburn Value: https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
 
 *@config_ADV3499WACHLBX_archive_db*
 

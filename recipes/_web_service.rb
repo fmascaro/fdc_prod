@@ -182,7 +182,7 @@ template "#{app_root}/web.config" do
 		:DR_InternalHelper_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:DR_InternalHelper_archive_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_EmdeonDemo;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_EmdeonDemo;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:DR_DEMOLBX_archive_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_EmdeonDemo;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_EmdeonDemo;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
-		:storage_proxy => node[:ash_db_role] ? 'https://ap-esl-spx-01.egistics.local/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.egistics.local/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
+		:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
 		})
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
 end
