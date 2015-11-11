@@ -165,6 +165,21 @@
           VerifyExpiry="false"
           UseThisLoginProviderInCaseOfNullReferrer="true"
       />
+      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
+          name="tisSamlToken" 
+           UserIdPrefix="" 
+           ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6" 
+           HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
+           ErrorValidationPage="" 
+           DecryptMessage="false" 
+           OrganizationAndRolesManagedOneGisticsSide="true" 
+           Issuer="tisSAML"
+           OrganizationCode="eGistics" 
+           AllowedRoleCodes="*"  
+           FindOnlyValidCertificates="false" 
+           VerifyExpiry="false"
+           UseThisLoginProviderInCaseOfNullReferrer="true"
+    />
    </providers>
   </loginProviderService>
   <dataConfiguration defaultDatabase="AdminConn"/>
