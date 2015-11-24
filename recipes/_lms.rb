@@ -172,7 +172,8 @@ template "#{app_root}/web.config" do
 		:config_admin_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_Admin3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_Admin3g;Trusted_Connection=True',
 		:config_auditlog_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_AuditLog3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Config_rtc_AuditLog3g;Trusted_Connection=True',
 		:test_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
-		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36'
+		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
+		:EGI_Signature_Cert => '00 c1 13 c3 d5 66 f3 0f e6' 
 		})
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
 end

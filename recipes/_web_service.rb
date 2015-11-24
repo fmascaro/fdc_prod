@@ -165,6 +165,7 @@ template "#{app_root}/web.config" do
   source "#{node[:egistics][:fdc_web_service][:web_config]}.erb"
 	action :create
 	variables({
+		:DEMOLBX_archive_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_EmdeonDemo;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_EmdeonDemo;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:ADV3499WACHLBX_archive_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=AdvantaBank;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=AdvantaBank;Trusted_Connection=True',
 		:UBS0001LBX_archive_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=UBS;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=UBS;Trusted_Connection=True',
 		:HONDAADC04285673_archive_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Honda;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Honda;Trusted_Connection=True',
