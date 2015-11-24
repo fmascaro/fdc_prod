@@ -165,15 +165,17 @@ template "#{app_root}/web.config" do
   source "#{node[:egistics][:fdc_lta_cdm][:web_config]}.erb"
 	action :create
 	variables({
+		:admin_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=rtc_Admin3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_Admin3g;Trusted_Connection=True',
+		:auditlog_db => node[:ash_db_role] ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=rtc_AuditLog3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_AuditLog3g;Trusted_Connection=True',
 		:test_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:test_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:DR_admin_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
 		:DR_auditlog_db => node[:ash_db_role] ? 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36' : 'SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36',
-		:CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '41 0f 62 13 00 00 00 00 00 c8' : '41 0f 62 13 00 00 00 00 00 c8',
-		:test_CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '12 90 89' : '12 90 89',
-		:CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '41 0f 62 13 00 00 00 00 00 c8' : '41 0f 62 13 00 00 00 00 00 c8',
-		:test_CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '12 90 89' : '12 90 89',
-		:EGI_Signature_Cert => node[:ash_db_role] ? '12 90 89' : '12 90 89'
+		:CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '00 c1 13 c3 d5 66 f3 0f e6' : '00 c1 13 c3 d5 66 f3 0f e6',
+		:test_CitiToken_EgiBUS_ClientX509SerialNumber => node[:ash_db_role] ? '00 c1 13 c3 d5 66 f3 0f e6' : '00 c1 13 c3 d5 66 f3 0f e6',
+		:CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '00 c1 13 c3 d5 66 f3 0f e6' : '00 c1 13 c3 d5 66 f3 0f e6',
+		:test_CitiToken_EGI_ClientX509SerialNumber => node[:ash_db_role] ? '00 c1 13 c3 d5 66 f3 0f e6' : '00 c1 13 c3 d5 66 f3 0f e6',
+		:EGI_Signature_Cert => node[:ash_db_role] ? '00 c1 13 c3 d5 66 f3 0f e6' : '00 c1 13 c3 d5 66 f3 0f e6'
 		})
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
 end

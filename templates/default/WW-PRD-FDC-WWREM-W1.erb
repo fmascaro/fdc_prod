@@ -168,7 +168,7 @@
       <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
           name="tisSamlToken" 
            UserIdPrefix="" 
-           ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6" 
+           ClientX509SerialNumber="<%= @EGI_Signature_Cert %>" 
            HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
            ErrorValidationPage="" 
            DecryptMessage="false" 
@@ -184,10 +184,10 @@
   </loginProviderService>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="<%= @DR_admin_db %>" providerName="System.Data.SqlClient" />
-    <add name="AuditConn" connectionString="<%= @DR_auditlog_db %>" providerName="System.Data.SqlClient" />
-    <add name="AdminConn_dev" connectionString="<%= @DR_admin_db %>" providerName="System.Data.SqlClient" />
-    <add name="AuditConn_dev" connectionString="<%= @DR_auditlog_db %>" providerName="System.Data.SqlClient" />
+    <add name="AdminConn" connectionString="<%= @admin_db %>" providerName="System.Data.SqlClient" />
+    <add name="AuditConn" connectionString="<%= @auditlog_db %>" providerName="System.Data.SqlClient" />
+    <add name="AdminConn_dev" connectionString="<%= @admin_db %>" providerName="System.Data.SqlClient" />
+    <add name="AuditConn_dev" connectionString="<%= @auditlog_db %>" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="eGistics.Data.DatabaseWrapper.GlobalCommandTimeout" value="120"/>
