@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-    Note: As an alternative to hand editing this file you can use the 
+<!--
+    Note: As an alternative to hand editing this file you can use the
     web admin tool to configure settings for your application. Use
     the Website->Asp.Net Configuration option in Visual Studio.
-    A full list of settings and comments can be found in 
-    machine.config.comments usually located in  
-    \Windows\Microsoft.Net\Framework\v2.x\Config  
+    A full list of settings and comments can be found in
+    machine.config.comments usually located in
+    \Windows\Microsoft.Net\Framework\v2.x\Config
 -->
 <configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
   <configSections>
@@ -20,7 +20,7 @@
       <section name="eGistics.FDC.Remitco.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
     </sectionGroup>
     <section name="loginProviderService" type="eGistics.Security.LoginProvider.LoginProviderServiceSection, eGistics.Security" allowDefinition="MachineToApplication" restartOnExternalChanges="true"/>
-    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"  requirePermission="false"/>  
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"  requirePermission="false"/>
   </configSections>
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
@@ -57,7 +57,7 @@
          AutoInsertNewUser="true"
          HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/CloseSession.html"
          HTTP_REFERER="[http|https]://gw\.amerhonda\.com/[.]*"
-         LogFile="L:\WWW\PRD\FDC\WWREM-W1\DebugSSO.Log" 
+         LogFile="L:\WWW\PRD\FDC\WWREM-W1\DebugSSO.Log"
          AlwaysLog="true"
          SessionTimeoutPage="/Honda.html"
         Logo="~/Images/HondaLogo.GIF"
@@ -81,12 +81,12 @@
          HomePage="~/SessionTimeoutPage.html"
          SessionTimeoutPage="SessionTimeoutPage.html"
          ErrorRedirectPage="~/SsoTokenError.htm" />
-      <add name="CitiToken-BUS" 
+      <add name="CitiToken-BUS"
         OrganizationCode="CITIBANK"
         AllowedRoleCodes="LTA|CITILTA|CDMUser|RPT|CITIEX|EXSUPER|AUDIT|CDMVIEW"
         UserIdPrefix="B:"
         ClientX509SerialNumber="1c d4 5e a0 5c 49 a6 81 49 f8 26 a5 4f b7 91 ba"
-        LogFolder="L:\WWW\PRD\FDC\WWREM-W1\citi-bus" 
+        LogFolder="L:\WWW\PRD\FDC\WWREM-W1\citi-bus"
         HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
           SessionTimeOutPage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="cbolredirect.html"
@@ -98,7 +98,7 @@
         AllowedRoleCodes="LTA|CITILTA|CDMUser|RPT|CITIEX|EXSUPER|AUDIT|CDMVIEW"
         UserIdPrefix="D:"
         ClientX509SerialNumber="61 76 8f c5 5c ae c8 ec 38 ad 87 a6 07 8b 55 cc"
-        LogFolder="L:\WWW\PRD\FDC\WWREM-W1\citi-dir" 
+        LogFolder="L:\WWW\PRD\FDC\WWREM-W1\citi-dir"
         HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
               SessionTimeOutPage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="http://www.egisticsinc.com"
@@ -114,7 +114,7 @@
         AllowedRoleCodes="*"
         UserIdPrefix="eB:"
         ClientX509SerialNumber="<%= @EGI_Signature_Cert %>"
-        LogFolder="L:\WWW\PRD\FDC\WWREM-W1\citi-egiBus" 
+        LogFolder="L:\WWW\PRD\FDC\WWREM-W1\citi-egiBus"
         HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
           SessionTimeOutPage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="http://www.egisticsinc.com"
@@ -137,18 +137,18 @@
         QueryStringParameterName="eDirect"
         type="eGistics.FDC.Login.CitiBank.DirectToken, eGistics.FDC.Login"
       />
-      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" 
-        name="SamlSsoTokenForUB" 
-        UserIdPrefix="" 
-        ClientX509SerialNumber="69 78 8f 57 00 01 00 00 09 07" 
-        HomePage="Default.aspx" ErrorValidationPage="" 
-        DecryptMessage="true" 
-        OrganizationAndRolesManagedOneGisticsSide="true" 
-        Issuer="ub_lbd_idp" 
-        OrganizationCode="UBDIRECT" 
-        AllowedRoleCodes="*" 
-        FindOnlyValidCertificates="false" 
-        VerifyExpiry="false" 
+      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
+        name="SamlSsoTokenForUB"
+        UserIdPrefix=""
+        ClientX509SerialNumber="69 78 8f 57 00 01 00 00 09 07"
+        HomePage="Default.aspx" ErrorValidationPage=""
+        DecryptMessage="true"
+        OrganizationAndRolesManagedOneGisticsSide="true"
+        Issuer="ub_lbd_idp"
+        OrganizationCode="UBDIRECT"
+        AllowedRoleCodes="*"
+        FindOnlyValidCertificates="false"
+        VerifyExpiry="false"
         UseThisLoginProviderInCaseOfNullReferrer="true"
       />
       <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
@@ -166,17 +166,17 @@
           UseThisLoginProviderInCaseOfNullReferrer="true"
       />
       <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
-          name="tisSamlToken" 
-           UserIdPrefix="" 
-           ClientX509SerialNumber="<%= @EGI_Signature_Cert %>" 
+          name="tisSamlToken"
+           UserIdPrefix=""
+           ClientX509SerialNumber="<%= @EGI_Signature_Cert %>"
            HomePage="https://www.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
-           ErrorValidationPage="" 
-           DecryptMessage="false" 
-           OrganizationAndRolesManagedOneGisticsSide="true" 
+           ErrorValidationPage=""
+           DecryptMessage="false"
+           OrganizationAndRolesManagedOneGisticsSide="true"
            Issuer="tisSAML"
-           OrganizationCode="eGistics" 
-           AllowedRoleCodes="*"  
-           FindOnlyValidCertificates="false" 
+           OrganizationCode="eGistics"
+           AllowedRoleCodes="*"
+           FindOnlyValidCertificates="false"
            VerifyExpiry="false"
            UseThisLoginProviderInCaseOfNullReferrer="true"
     />
@@ -211,7 +211,7 @@
       <add url="~/PNC" mappedUrl="~/Login.aspx?client=pnc"/>
       <add url="~/Remitco" mappedUrl="~/Login.aspx?client=fdc"/>
       <add url="~/wachovia" mappedUrl="~/Login.aspx?client=wachovia"/>
-      <add url="~/Wausau" mappedUrl="~/Login.aspx?client=wausau"/>  
+      <add url="~/Wausau" mappedUrl="~/Login.aspx?client=wausau"/>
       <add url="~/WellsFargo" mappedUrl="~/Login.aspx?client=wellsfargo"/>
       <add url="~/Archive/" mappedUrl="~/Login.aspx?client=archive"/>
       <add url="~/capitalone/" mappedUrl="~/Login.aspx?client=capitalone"/>
@@ -219,7 +219,7 @@
       <add url="~/PNC/" mappedUrl="~/Login.aspx?client=pnc"/>
       <add url="~/Remitco/" mappedUrl="~/Login.aspx?client=fdc"/>
       <add url="~/wachovia/" mappedUrl="~/Login.aspx?client=wachovia"/>
-      <add url="~/Wausau/" mappedUrl="~/Login.aspx?client=wausau"/>     
+      <add url="~/Wausau/" mappedUrl="~/Login.aspx?client=wausau"/>
       <add url="~/WellsFargo/" mappedUrl="~/Login.aspx?client=wellsfargo"/>
 
       <add url="~/" mappedUrl="~/Default.aspx"/>
@@ -231,10 +231,10 @@
       <tagMapping>
       </tagMapping>
     </pages>
-    <!-- 
-            Set compilation debug="true" to insert debugging 
-            symbols into the compiled page. Because this 
-            affects performance, set this value to true only 
+    <!--
+            Set compilation debug="true" to insert debugging
+            symbols into the compiled page. Because this
+            affects performance, set this value to true only
             during development.
         -->
     <compilation debug="true" defaultLanguage="c#" targetFramework="4.5">
@@ -266,7 +266,7 @@
     <httpHandlers>
       <remove verb="*" path="*.asmx"/>
       <add verb="*" path="*.asmx" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
-      <add verb="*" path="Admin*.pdf" type="eGistics.Web.SpecialFileHttpHandler, eGistics.Web" />      
+      <add verb="*" path="Admin*.pdf" type="eGistics.Web.SpecialFileHttpHandler, eGistics.Web" />
       <add verb="*" path="*_AppService.axd" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
       <add verb="GET,HEAD" path="ScriptResource.axd" type="System.Web.Handlers.ScriptResourceHandler, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" validate="false"/>
     </httpHandlers>
@@ -275,9 +275,9 @@
       <add name="ScriptModule" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
     </httpModules>
     <!--
-            The <authentication> section enables configuration 
-            of the security authentication mode used by 
-            ASP.NET to identify an incoming user. 
+            The <authentication> section enables configuration
+            of the security authentication mode used by
+            ASP.NET to identify an incoming user.
         -->
     <authentication mode="Forms">
       <forms loginUrl="Login.aspx" defaultUrl="~/Default.aspx" protection="Encryption" name="eGisticsAuthorizationTicket" timeout="20" path="/" requireSSL="true"/>
@@ -287,10 +287,10 @@
       <!-- DO NOT CHANGE THIS-->
     </authorization>
     <!--
-            The <customErrors> section enables configuration 
-            of what to do if/when an unhandled error occurs 
-            during the execution of a request. Specifically, 
-            it enables developers to configure html error pages 
+            The <customErrors> section enables configuration
+            of what to do if/when an unhandled error occurs
+            during the execution of a request. Specifically,
+            it enables developers to configure html error pages
             to be displayed in place of a error stack trace.
     -->
     <!-- <customErrors mode="On" defaultRedirect="~/Login.aspx">
@@ -468,13 +468,13 @@
     </system.web>
   </location>
 
-  <location path="js/jQuery"> 
-    <system.web> 
-      <authorization> 
-        <allow users="*"/> 
-      </authorization> 
-    </system.web> 
-  </location> 
+  <location path="js/jQuery">
+    <system.web>
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
   <location path="login.aspx/SetTimeZone">
     <system.web>
       <authorization>
@@ -516,7 +516,21 @@
         <allow users="*"/>
       </authorization>
     </system.web>
-  </location>   
+  </location>
+  <location path="connectiontest.html">
+    <system.web>
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
+  <location path="hc.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
 
   <system.serviceModel>
     <bindings>
@@ -534,5 +548,5 @@
       binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap"
       contract="eGistics.Validation.ValidationEngineProxySoap" name="ValidationEngineProxySoap"  />
     </client>
-  </system.serviceModel>  
+  </system.serviceModel>
 </configuration>
