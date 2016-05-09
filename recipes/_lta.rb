@@ -180,6 +180,19 @@ template "#{app_root}/web.config" do
 	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
 end
 
+#Copy Assets from Golden Repository
+powershell_script "CopyImages" do
+  guard_interpreter :powershell_script
+  code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\PRD\\FDC\\WWREM-W1\\images #{app_root}\\Images /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
+  exit $LASTEXITCODE"
+end
+
+powershell_script "CopyManuals" do
+  guard_interpreter :powershell_script
+  code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\PRD\\FDC\\WWREM-W1\\manuals #{app_root}\\Content\\Manuals /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
+  exit $LASTEXITCODE"
+end
+
 #Support resources to assign ssl cert to web site, and additional configs for application pools and application
 
 powershell_script "set_sslcert" do
