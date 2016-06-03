@@ -2,16 +2,22 @@ env = nil
 case node.chef_environment
   when "production"
     env = "prd"
+    domain = "EGISTICS"
   when "uat"
     env = "uat"
+    domain = "EGISTICS"
   when "development"
     env = "dev"
+    domain = "EGDEV"
   when "staging"
     env = "prd"
+    domain = "EGISTICS"
   when "test"
     env = "tst"
+    domain = "EGISTICS"
   else
     env = "prd"
+    domain = "EGISTICS"
 end
 svc_db_item = data_bag_item('esl',"#{env}_fdc_services")
 
@@ -57,17 +63,17 @@ services.each do |service|
 		folders.each do |dir|
 			if dir.include?('WORKING') || dir.include?('EXCEPTION') || dir.include?('BACKUP') || dir.include?('SOCHOLD') || dir.include?('FTP') || dir.include?('STAGED') || dir.include?('3GFILEDELETION')
 				directory dir do
-					rights :full_control, "EGISTICS\\#{svc_db_item[service]['ServiceAccount']}"
-					rights :full_control, "EGISTICS\\SOC 1"
-					rights :full_control, "EGISTICS\\SS 1"
-					rights :full_control, "EGISTICS\\Domain Admins"
+					rights :full_control, "#{domain}\\#{svc_db_item[service]['ServiceAccount']}"
+					rights :full_control, "#{domain}\\SOC 1"
+					rights :full_control, "#{domain}\\SS 1"
+					rights :full_control, "#{domain}\\Domain Admins"
 					recursive true
 					inherits true
 				end unless dir.empty?
 			else
 				directory dir do
-					rights :full_control, "EGISTICS\\#{svc_db_item[service]['ServiceAccount']}"
-					rights :full_control, "EGISTICS\\Domain Admins"
+					rights :full_control, "#{domain}\\#{svc_db_item[service]['ServiceAccount']}"
+					rights :full_control, "#{domain}\\Domain Admins"
 					recursive true
 				end unless dir.empty?
 			end
@@ -124,7 +130,7 @@ services.each do |service|
 			end
 
 			topimagesystems_service svc_db_item[service]['ServiceName'] do
-				run_as "EGISTICS\\#{svc_db_item[service]['ServiceAccount']}"
+				run_as "#{domain}\\#{svc_db_item[service]['ServiceAccount']}"
 				action :config
 			end unless svc_db_item[service]['exename'].empty?
 
@@ -138,7 +144,7 @@ services.each do |service|
 				description svc_db_item[service]['ServiceDescription']
 				path "#{svc_db_item[service]['app_directory']}/#{svc_db_item[service]['exename']}"
 				startup_type :demand
-				run_as "EGISTICS\\#{svc_db_item[service]['ServiceAccount']}"
+				run_as "#{domain}\\#{svc_db_item[service]['ServiceAccount']}"
 				action :create
 			end unless svc_db_item[service]['exename'].empty?
 
