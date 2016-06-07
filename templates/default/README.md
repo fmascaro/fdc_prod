@@ -348,3 +348,21 @@
 	Ashburn Value: SERVER=FDC-TST-AG1.egistics.local;DATABASE=TEST_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36
 
 ---	
+
+FDC MS CDMWrapper (WS-PRD-FDC-WSCDM-E1)
+
+*@admin_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	
+*@archive_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_MorganStanley;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_MorganStanley;Trusted_Connection=True
+	
+*@audit_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+

@@ -13,7 +13,7 @@
     <add key="EnableSSL" value="1" />
     <add key="LogPath" value="L:\WWW\PRD\FDC\WSMFW-W2\FundsWrapper.log" />
     <add key="LogExceptionsOnly" value="false" />
-    <add key="EndPointAddress" value="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc"/>
+    <add key="EndPointAddress" value="https://rdcwebservices.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc"/>
     <add key="UseBindingConfig" value="false"/>
   </appSettings>
 
@@ -49,7 +49,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_FundsWcfServiceInterface" contract="FundsWebServiceWS.IFundsWebServiceShim" name="BasicHttpBinding_FundsWcfServiceInterface" />
+      <endpoint address="https://rdcwebservices.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_FundsWcfServiceInterface" contract="FundsWebServiceWS.IFundsWebServiceShim" name="BasicHttpBinding_FundsWcfServiceInterface" />
     </client>
   </system.serviceModel>
   <log4net>
