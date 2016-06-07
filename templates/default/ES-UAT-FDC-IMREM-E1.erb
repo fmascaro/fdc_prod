@@ -19,15 +19,15 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-UAT-IRM-IMREM-01" type="GEN Remit Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"/>
+      <add name="ES-UAT-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"/>
     </Context>
   </ContextInfo>
 
   <appSettings>
     <!--  /****Moved to GlobalConfig  ****/   -->
     <!--<add key="pdfNetLicenseString" value="eGistics, Inc.:CPU:1::W:AMC(20120103):4965BCCE260DF3EF1CDDBBB2D5E92ECE4B5A394DDF6E297B7AF0FA"/>-->
-    <add key="ImportManagerStatusFile" value="E:\EG\UAT\IRM\IMREM-01\ImportStatus.txt"/>
-    <add key="MainLogPath" value="L:\EG\UAT\IRM\IMREM-01\MainLogs\"/>
+    <add key="ImportManagerStatusFile" value="E:\TIS\UAT\FDC\IMREM-E1\ImportStatus.txt"/>
+    <add key="MainLogPath" value="L:\TIS\UAT\FDC\IMREM-E1\MainLogs\"/>
     <add key="MainLogLevel" value="Warning"/>
 
     <!-- 0 means unlimited -->
@@ -103,6 +103,12 @@
            triggerFileExtensions="trigger"
            path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CDM\"
       />
+      
+     <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
+       path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CORRO\"
+           providerName="MorganStanleyCorroImportProvider"
+           triggerFileExtensions="trigger"           
+      />
     </providers>
   </incomingFolders>
 
@@ -170,6 +176,27 @@
            cleanUpProvider="GenericCleanupProvider"
            compressionFileExtension="zip"
       />
+      
+     <add name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+          fileConfigurationNameAndPath="E:\TIS\UAT\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+          moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
+          currentLoggingDebugLevel="Verbose"
+          emailFrom="noreply@eGisticsInc.com"
+          emailTo="noreply@eGisticsInc.com"
+          smtpIP=""
+          smtpPort="25"
+          ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CORRO\"
+          mainWorkingPath="E:\TIS\UAT\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+          logPath="L:\TIS\UAT\FDC\IMREM-E1\Logs\MorganStanley\CORRO\"
+          backupPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
+          exceptionsPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
+          triggerLess="False"
+          useCompressionProvider="True"
+          compressionProvider="MorganStanleyCorroZipCompressionProvider"
+          itemHandler="MorganStanleyCorroItemProvider"
+          cleanUpProvider="GenericCleanupProvider"
+          compressionFileExtension="zip"
+      />
     </providers>
   </fileHandlers>
 
@@ -201,7 +228,7 @@
       />
 
       <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,SubSiteID,BundleID,BatchType2,BatchMode,Other1,Other2,Other3,Other4,Other5,Other6,Other7,RollupCode,Other9,Other10,Other11,Other12,ArcInd,CDMTransID,Other13,Other14,Other15,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -284,7 +311,7 @@
 
       <add name="MorganStanleyReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="SiteID,SubSiteID,BatchNum,ProcessDate,ReportName,Image_File_Name"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            callPostProcessURLColumnName=""
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -334,7 +361,7 @@
       />
 
       <add name="MorganStanleyCDMBaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNumber,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name,Annotation"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -383,10 +410,59 @@
            responseFileDelimiter="|"
    />
 
+    <add name="MorganStanleyCorroZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+      fileConfigurationNameAndPath="E:\TIS\UAT\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+      mainWorkingPath="E:\TIS\UAT\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+      />    
 
-
-
-
+      <add name="MorganStanleyCorroItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
+           indexColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
+           responseFileProvider="MorganStanleyCorroResponseFileProvider"
+           disconnectedDatabaseProvider="False"
+           databaseProvider="MorganStanleyCorroDatabaseProvider"
+           archiveProvider="SynapticArchiveProviderStacked"
+           adminDBProvider="MorganStanleyCorroAdminDBProvider"
+           imageFileNameField="Image_File_Name"
+           reportNumberColumnName="Numeric10"
+           rowsWithNoImageHandling="NoImage"
+           objectIDSaveFileExtension="objs"
+           indexFileExtension="a"
+           indexFileDelimiter="|"
+           hasImages="True"
+           useSynapticInfoFromAdminDB="True"
+        />
+      <add name="MorganStanleyCorroAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider,        BaseLTAAdminDBProvider"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
+           getClientInfoSP="spGetClientInfoCorro"
+           getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
+           clientConnectionStringInDatabase="True" 
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ItemData.SiteID;@SubSiteID(INT)=ItemData.SubSiteID;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Corro"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
+           delLoadTableElementSP="None" 
+           delLoadTableElementSPParameters="None" 
+           organizationIDColumnName="ID" 
+           useTransaction="False"
+        />
+       <add name="MorganStanleyCorroDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
+           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
+           connectionString="None" 
+           storedProcedureAdd="spImportCorrespondenceGenerationItem"
+       storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"            
+           storedProcedureDel="None"
+           storedProcedureUpd="None"
+           useTransaction="True"
+        />
+      <add name="MorganStanleyCorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CORRO\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+      />
 
       <add
         name="BaseRemittanceItemProviderGeneric"
