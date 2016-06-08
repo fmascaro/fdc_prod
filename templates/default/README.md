@@ -351,18 +351,62 @@
 
 FDC MS CDMWrapper (WS-PRD-FDC-WSCDM-E1)
 
-*@admin_db*
+*@test_admin_db*
 
-	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
-	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
 	
-*@archive_db*
+*@test_archive_db*
 
-	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_MorganStanley;Trusted_Connection=True
-	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_MorganStanley;Trusted_Connection=True
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_MorganStanley;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_MorganStanley;Trusted_Connection=True
 	
-*@audit_db*
+*@test_audit_db*
 
-	Dallas Value:  SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
-	Ashburn Value: SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	
+@storage_proxy
+
+    Dallas Value: https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
+    Ashburn Value: https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
+	
+---
+
+FDC Remit Core Website (WW-PRD-FDC-WWREM-W2)
+
+*@test_admin_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	
+
+*@test_audit_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	
+@storage_proxy
+
+   Dallas Value: https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
+   Ashburn Value: https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-01/synapticWebService.asmx
+
+---
+
+FDC LMS Website  PRD (WW-PRD-FDC-WWLMS-W2)
+
+*@test_admin_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True
+	
+
+*@test_audit_db*
+
+	Dallas Value:  SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+	Ashburn Value: SERVER=AP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;Trusted_Connection=True
+
+*@EGI_Signature_Cert*
+
+    Value:
 
