@@ -8,7 +8,7 @@
   <dataConfiguration defaultDatabase="AdminConn"/>
   <ContextInfo>
     <Context>
-      <add name="CDMSweepProcess" type="Description" connstring="SERVER=GEN-REM-AG1;DATABASE=BaseRemit_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+      <add name="CDMSweepProcess" type="Description" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
     </Context>
   </ContextInfo>
 <!--
@@ -21,15 +21,15 @@
   </appSettings>
 -->
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=GEN-REM-AG1;DATABASE=BaseRemit_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-    <add name="AuditConn" connectionString="SERVER=GEN-REM-AG1;DATABASE=BaseRemit_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
+    <add name="AuditConn" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/>
   </startup>
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
-      <file value="L:\TIS\PRD\IRM\EXCDM-E1\CDMSweepEvent.log"/>
+      <file value="L:\TIS\UAT\FDC\EXCDM-E1\CDMSweepEvent.log"/>
       <appendToFile value="true"/>
       <maximumFileSize value="3MB"/>
       <maxSizeRollBackups value="100"/>
