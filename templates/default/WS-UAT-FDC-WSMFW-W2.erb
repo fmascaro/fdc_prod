@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <configSections>
+    <section name="microsoft.web.services3" type="Microsoft.Web.Services3.Configuration.WebServicesConfiguration, Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+  </configSections>
+
+  <appSettings>
+    <add key="UsePolicy" value="true" />
+    <!--SSL-->
+    <!--<add key="CertificateName" value="CertificateName"/>-->
+    <add key="CertificateSerialNo" value="0179ad305015cf2fb3f04b856b4776b8" />
+    <add key="EnableSSL" value="1" />
+    <add key="LogPath" value="L:\WWW\UAT\FDC\WSMFW-W2\FundsWrapper.log" />
+    <add key="LogExceptionsOnly" value="false" />
+    <add key="EndPointAddress" value="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc"/>
+    <add key="UseBindingConfig" value="false"/>
+  </appSettings>
+
+  <system.net>
+    <settings>
+      <servicePointManager expect100Continue="false"/>
+    </settings>
+  </system.net>
+
+  <system.web>
+    <compilation debug="true" defaultLanguage="c#">
+    </compilation>
+    <authentication mode="Forms" />
+    <customErrors mode="Off" />
+	<trace enabled="true" localOnly="false" requestLimit="1000" traceMode="SortByTime" writeToDiagnosticsTrace="true"/>
+   <webServices>
+      <soapServerProtocolFactory type="Microsoft.Web.Services3.WseProtocolFactory, Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+   </webServices>
+  </system.web>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding maxReceivedMessageSize="2147483647" name="BasicHttpBinding_FundsWcfServiceInterface">
+          <security mode="Transport">
+            <transport clientCredentialType="Certificate" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_FundsWcfServiceInterface" contract="FundsWebServiceWS.IFundsWebServiceShim" name="BasicHttpBinding_FundsWcfServiceInterface" />
+    </client>
+  </system.serviceModel>
+  <log4net>
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="L:\WWW\UAT\FDC\WSMFW-W2\FundsWrapper.log" />
+      <appendToFile value="true" />
+      <maximumFileSize value="3MB" />
+      <maxSizeRollBackups value="100" />
+      <rollingStyle value="Composite" />
+      <datePattern value="yyyyMMdd" />
+      <staticLogFileName value="true" />
+      <filter type="log4net.Filter.LevelRangeFilter">
+        <acceptOnMatch value="true" />
+        <levelMin value="DEBUG" />
+        <levelMax value="FATAL" />
+      </filter>
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="HOUR    &#x9;LEVEL&#x9;HOST    &#x9;Application&#x9;Thread&#x9;Class&#x9;Method&#x9;NDC&#x9;TrackId1&#x9;TrackId2&#x9;Message&#xD;&#xA;" />
+        <footer value="&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+        <conversionPattern value="%date{HH:mm:ss}&#x9;%-5level&#x9;%property{log4net:HostName}&#x9;FundsWrapper&#x9;%thread&#x9;%property{Class}&#x9;%property{Method}&#x9;%property{NDC}&#x9;%property{TrackId1}&#x9;%property{TrackId2}&#x9;%message %newline" />
+      </layout>
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+    </appender>
+
+    <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingFileAppender" />
+    </root>
+  </log4net>
+
+
+  <!-- Enable tracing only when debugging WSE is needed. -->
+  <microsoft.web.services3>
+	  <diagnostics>
+		  <trace enabled="true" input="L:\WWW\UAT\IRM\WSMFW-W2\UAT_InputTrace.webinfo" output="L:\WWW\UAT\IRM\WSMFW-W2\UAT_OutputTrace.webinfo" />
+		  <detailedErrors enabled="true" />
+	  </diagnostics>
+  </microsoft.web.services3>
+
+
+</configuration>
