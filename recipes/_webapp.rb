@@ -25,7 +25,7 @@ web_db_item = data_bag_item('web',"#{env}_fdc")
 webapps = node.assigned_webapps
 
 webapps.each do |webapp|
-    if webapp.downcase.include?('fdc')
+    if webapp.downcase.include?('FDC')
         #Recipe variables
         zip_path = win_friendly_path(
                      ::File.join(
