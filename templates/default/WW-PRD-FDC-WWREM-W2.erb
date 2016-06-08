@@ -55,8 +55,8 @@
   <dataConfiguration defaultDatabase="Admin" />
   <connectionStrings>
     <clear />
-    <add name="Admin" connectionString="SERVER=DP-FDC_SQL-01;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
-    <add name="AuditLog" connectionString="SERVER=DP-FDC_SQL-01;DATABASE=FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="<%= @test_admin_db %>" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="<%= @test_audit_log %>" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <clear />
