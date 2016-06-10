@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig"/>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="eGistics.Import.Manager.Base.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="eGistics.Import.Manager.CleanupProviders.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="eGistics.Import.Manager.StartupCleanerProviders.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="eGistics.Import.Manager.SynapticArchiveProviders.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+
+    <section name="startupCleaners" type="eGistics.Import.Manager.StartCleanerHandlers.StartupCleanerSection, StartupCleanerHandler" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    <section name="incomingFolders" type="eGistics.Import.Manager.IncomingFolderHandlers.IncomingFolderSection, IncomingFolderHandler" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    <section name="fileHandlers" type="eGistics.Import.Manager.Base.FileHandlerProviderSection, BaseProvider" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
+    <section name="subProviders" type="eGistics.Import.Manager.Base.SubHandlerProviderSection, BaseProvider" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    <section name="StrongAuth.CryptoSection" type="StrongAuth.StrongKeyCryptoEngine.CryptoSection, StrongAuth.StrongKeyCryptoEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ac236b7e59e7bec0"/>
+  </configSections>
+
+
+  <ContextInfo>
+    <Context>
+      <add name="ES-PRD-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"/>
+    </Context>
+  </ContextInfo>
+
+  <appSettings>
+    <!--  /****Moved to GlobalConfig  ****/   -->
+    <!--<add key="pdfNetLicenseString" value="eGistics, Inc.:CPU:1::W:AMC(20120103):4965BCCE260DF3EF1CDDBBB2D5E92ECE4B5A394DDF6E297B7AF0FA"/>-->
+    <add key="ImportManagerStatusFile" value="E:\TIS\PRD\FDC\IMREM-E1\ImportStatus.txt"/>
+    <add key="MainLogPath" value="L:\TIS\PRD\FDC\IMREM-E1\MainLogs\"/>
+    <add key="MainLogLevel" value="Warning"/>
+
+    <!-- 0 means unlimited -->
+    <add key="MaxRunningThreads" value="5"/>
+
+    <!-- This schedule will affect MaxRunningThreads every hour
+         The configuration is read:
+          - from 00:00 hours to 04:59 hours maxRunningThreads = 5
+          - from 05:00 hours to 09:59 hours maxRunningThreads = 5
+          - from 10:00 hours to 19:59 hours maxRunningThreads = 5
+          - from 20:00 hours to 23:59 hours maxRunningThreads = 5
+    
+    <add key="MaxRunningThreadsByHour" value="0-4=5,5-9=5,10-19=5,20-23=5"/>
+    -->
+    <!-- SleepInterval in minutes could be decimal. For example 0.5 for 30 seconds-->
+    <add key="SleepInterval" value="0.001"/>
+
+    <add key="emailFrom" value="customerimportstatus@topimagesystems.com"/>
+    <add key="emailTo" value=""/>
+    <add key="smtpIP" value="10.100.10.46"/>
+    <add key="smtpPort" value="25"/>
+    <!--  /****Moved to GlobalConfig  ****/   -->
+    <!--<add key="ImportManagerName" value=""/>-->
+  </appSettings>
+
+  <applicationSettings>
+    <eGistics.Import.Manager.Base.Properties.Settings>
+      <setting name="BaseProvider_SynapticWebService_SynapticWebService" serializeAs="String">
+        <value><%= @storage_proxy %></value>
+      </setting>
+      <setting name="BaseProvider_SynapticWebService_Net4_SynapticWebService" serializeAs="String">
+        <value><%= @storage_proxy %></value>
+      </setting>
+    </eGistics.Import.Manager.Base.Properties.Settings>
+  </applicationSettings>
+
+  <startupCleaners>
+    <providers>
+      <add name="StartupCleanerProvider" type="eGistics.Import.Manager.StartupCleanerProviders.StartupCleanerProvider, StartupCleanerProvider"
+           unableToDeleteObjectIDsFiles="E:\TIS\PRD\FDC\IMREM-E1\UnableToDelete\"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\"
+           ftpPath="E:\TIS\PRD\FDC\IMREM-E1\FTP\"
+           objectIDSaveFileExtension="objs"
+           emailFrom="customerimportstatus@topimagesystems.com"
+           emailTo=""
+           smtpIP="10.100.10.46"
+           smtpPort="25"
+           overrideSynapticWebServiceWebConfigSettings="True"
+           subtenantID="6a5c3d578baf402da8283b3d6522e150"
+           sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
+           applicationID="egBetaTest"
+           baseURI="32.65.211.48|32.65.211.49"
+      />
+    </providers>
+  </startupCleaners>
+
+  <incomingFolders>
+    <providers>
+      <add name="MorganStanleyLTA" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
+           providerName="MorganStanleyLTAImportProvider"
+           triggerFileExtensions="trigger"
+           path="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\LTA\"
+      />
+
+      <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"     
+           providerName="MorganStanleyReportImportProvider"
+           triggerFileExtensions="trigger"       
+           path="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\Reports\"       
+      />
+
+      <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
+           providerName="MorganStanleyCDMImportProvider"
+           triggerFileExtensions="trigger"
+           path="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\CDM\"
+      />
+	  <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
+		   path="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\CORRO\"
+           providerName="MorganStanleyCorroImportProvider"
+           triggerFileExtensions="trigger"           
+      />
+    </providers>
+  </incomingFolders>
+
+  <fileHandlers>
+    <providers>
+      <add name="MorganStanleyLTAImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           smtpIP="10.100.10.46"
+           smtpPort="25"
+           emailFrom="noreply@eGisticsInc.com"
+           emailTo="noreply@eGisticsInc.com"
+           currentLoggingDebugLevel="Verbose"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+           logPath="L:\TIS\PRD\FDC\IMREM-E1\Logs\MorganStanley\LTA\"
+           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
+           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
+           ftpPath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\LTA\"
+           useCompressionProvider="True"
+           triggerLess="False"
+           moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
+           compressionProvider="MorganStanleyLTAZipCompressionProvider"
+           itemHandler="MorganStanleyLTAItemProvider"
+           cleanUpProvider="GenericCleanupProvider"
+           compressionFileExtension="zip"
+      />
+
+      <add name="MorganStanleyReportImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
+           currentLoggingDebugLevel="Verbose"
+           emailFrom="noreply@eGisticsInc.com"
+           emailTo="noreply@eGisticsInc.com"
+           smtpIP=""
+           smtpPort="25"
+           ftpPath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\Reports\"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\Reports\"
+           logPath="L:\TIS\PRD\FDC\IMREM-E1\Logs\MorganStanley\Reports\"
+           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
+           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
+           triggerLess="False"
+           useCompressionProvider="True"
+           compressionProvider="MorganStanleyReportZipCompressionProvider"
+           itemHandler="MorganStanleyReportItemProvider"
+           cleanUpProvider="GenericCleanupProvider"
+           compressionFileExtension="zip"
+      />
+
+      <add name="MorganStanleyCDMImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           smtpIP="10.100.10.46"
+           smtpPort="25"
+           emailFrom="noreply@eGisticsInc.com"
+           emailTo="noreply@eGisticsInc.com"
+           currentLoggingDebugLevel="Verbose"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+           logPath="L:\TIS\PRD\FDC\IMREM-E1\Logs\MorganStanley\CDM\"
+           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
+           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
+           ftpPath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\CDM\"
+           useCompressionProvider="True"
+           triggerLess="False"
+           moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
+           compressionProvider="MorganStanleyCDMZipCompressionProvider"
+           itemHandler="MorganStanleyCDMItemProvider"
+           cleanUpProvider="GenericCleanupProvider"
+           compressionFileExtension="zip"
+      />
+	  <add name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+           	fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+			moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
+           	currentLoggingDebugLevel="Verbose"
+           	emailFrom="noreply@eGisticsInc.com"
+           	emailTo="noreply@eGisticsInc.com"
+           	smtpIP=""
+           	smtpPort="25"
+			ftpPath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\CORRO\"
+			mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+			logPath="L:\TIS\PRD\FDC\IMREM-E1\Logs\MorganStanley\CORRO\"
+			backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
+			exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
+           	triggerLess="False"
+           	useCompressionProvider="True"
+           	compressionProvider="MorganStanleyCorroZipCompressionProvider"
+           	itemHandler="MorganStanleyCorroItemProvider"
+           	cleanUpProvider="GenericCleanupProvider"
+           	compressionFileExtension="zip"
+      />
+    </providers>
+  </fileHandlers>
+
+  <subProviders>
+    <providers> 
+      <add name="MorganStanleyLTAZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+      />
+
+      <add name="MorganStanleyLTAItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+           indexColumnMapping="BatchNum(INT),SequenceNum(INT),ProcessDate(SMALLDATETIME),SystemDate(SMALLDATETIME),AccountNum(VARCHAR),Amount(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),CheckNumPC(VARCHAR),CheckNumBUS(VARCHAR),RejectFlag(TINYINT),ItemType(VARCHAR),TranNumber(INT),BatchType(VARCHAR),MSCode(VARCHAR),SiteID(INT),SubSiteID(INT),BundleID(VARCHAR),BatchType2(TINYINT),BatchMode(TINYINT),Other1(VARCHAR),Other2(VARCHAR),Other3(VARCHAR),Other4(VARCHAR),Other5(VARCHAR),Other6(VARCHAR),Other7(VARCHAR),RollupCode(VARCHAR),Other9(VARCHAR),Other10(VARCHAR),Other11(VARCHAR),Other12(VARCHAR),ArcInd(VARCHAR),CDMTransID(BIGINT),Other13(VARCHAR),Other14(VARCHAR),Other15(VARCHAR),Image_File_Name(NOTYPE)"
+           adminDBProvider="MorganStanleyLTABaseLTAAdminDBProvider"
+           databaseProvider="MorganStanleyLTADatabaseProvider"
+           archiveProvider="SynapticArchiveProviderStacked"
+           responseFileProvider="MorganStanleyLTAResponseFileProvider"     
+           imageFileNameField="Image_File_Name"
+           rowsWithNoImageHandling="NoImage"
+           objectIDSaveFileExtension="objs"
+           indexFileExtension="A"
+           indexFileDelimiter="|"
+           hasImages="True"
+           transGrouping="TranNumber"
+           sequenceNumber="SequenceNum"
+           itemTypeColumn="ItemType"
+           numberOfImageFiles="1"
+           minLengthSmallOrLargePage = "2000" 
+           minHeightSmallOrLargePage = "900"         
+      />
+
+      <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,SubSiteID,BundleID,BatchType2,BatchMode,Other1,Other2,Other3,Other4,Other5,Other6,Other7,RollupCode,Other9,Other10,Other11,Other12,ArcInd,CDMTransID,Other13,Other14,Other15,Image_File_Name"
+           getClientInfoSP="spGetClientInfoSynapticMorganStanley"
+           getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
+           clientConnectionStringInDatabase="True" 
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@BatchNum(INT)=ItemData.BatchNum;@FileName(VarChar)=LoadTableFileName;@OrganizationID(INT)=ClientData.ID;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=LTA"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
+           delLoadTableElementSP="None" 
+           delLoadTableElementSPParameters="None" 
+           organizationIDColumnName="ID" 
+           useTransaction="False"
+      />
+
+      <add name="MorganStanleyLTADatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+           connectionString="None"
+           addTransElementReturnParameter="@TRANSID(BIGINT)"
+           transIndexColumnMapping="@BatchNum(INT),@SequenceNum(INT),@ProcessDate(SMALLDATETIME),@SystemDate(SMALLDATETIME),@AccountNum(VARCHAR),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@RejectFlag(TINYINT),@ItemType(VARCHAR),@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BundleID(VARCHAR),@BatchType2(TINYINT),@BatchMode(TINYINT),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@RollupCode(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@ArcInd(VARCHAR),@CDMTransID(BIGINT),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),Image_File_Name(NOTYPE),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           checkIndexColumnMapping="@BatchNum(INT),@SequenceNum(INT),@ProcessDate(SMALLDATETIME),@SystemDate(SMALLDATETIME),@AccountNum(VARCHAR),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@RejectFlag(TINYINT),@ItemType(VARCHAR),@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BundleID(VARCHAR),@BatchType2(TINYINT),@BatchMode(TINYINT),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@RollupCode(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@ArcInd(VARCHAR),@CDMTransID(BIGINT),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),Image_File_Name(NOTYPE),@TransID(BIGINT)"
+           stubIndexColumnMapping="@BatchNum(INT),@SequenceNum(INT),@ProcessDate(SMALLDATETIME),@SystemDate(SMALLDATETIME),@AccountNum(VARCHAR),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@RejectFlag(TINYINT),@ItemType(VARCHAR),@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BundleID(VARCHAR),@BatchType2(TINYINT),@BatchMode(TINYINT),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@RollupCode(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@ArcInd(VARCHAR),@CDMTransID(BIGINT),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),Image_File_Name(NOTYPE),@TransID(BIGINT)"
+           storedProcedureTransAdd="spImportTransactionSynapticMorganStanley"
+           storedProcedureAddTransParameters="@ProcessDate(SMALLDATETIME),@BatchNum(INT),@TranNumber(INT),@BatchType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchMode(TINYINT),@CDMTransID(BIGINT),@Other10(VARCHAR),@ObjectID(VARCHAR),@OrgID(INT),@LoadTableID(BIGINT)"
+           storedProcedureTransDel="None"
+           storedProcedureTransUpd="None"
+           storedProcedureCheckAdd="spImportCheckSynapticMorganStanley"
+           storedProcedureAddCheckParameters="@SequenceNum(INT),@ItemType(VARCHAR),@Amount(NUMERIC),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@CheckRTNum(VARCHAR),@MSCode(VARCHAR),@RollupCode(VARCHAR),@BatchNum(INT),@BatchType(VARCHAR),@ArcInd(VARCHAR),@Other5(VARCHAR),@TRANSID(BIGINT)"
+           storedProcedureCheckDel="None"
+           storedProcedureCheckUpd="None"
+           storedProcedureStubAdd="spImportStubSynapticMorganStanley"
+           storedProcedureAddStubParameters="@SequenceNum(INT),@ItemType(VARCHAR),@AccountNum(VARCHAR),@Amount(NUMERIC),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@MSCode(VARCHAR),@RollupCode(VARCHAR),@BatchNum(INT),@BatchType(VARCHAR),@Other7(VARCHAR),@TRANSID(BIGINT)"
+           storedProcedureStubDel="None"
+           storedProcedureStubUpd="None"
+           useTransaction="True"
+           spOnBeforeProcessingFile=""
+           spOnBeforeProcessingRow=""
+           spOnAfterProcessingRow=""
+           spOnAfterProcessingFile=""
+  />
+
+      <add name="MorganStanleyLTAResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\LTA\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+   /> 
+
+      <add name="MorganStanleyReportZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\Reports\"
+      />   
+
+      <add name="MorganStanleyReportItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
+           indexColumnMapping="SiteID(INT),SubSiteID(VARCHAR),BatchNum(INT),ProcessDate(VARCHAR),ReportName(CHAR),Image_File_Name"
+           responseFileProvider="MorganStanleyReportResponseFileProvider"
+           disconnectedDatabaseProvider="False"
+           databaseProvider="MorganStanleyReportDatabaseProvider"
+           archiveProvider="SynapticArchiveProviderStacked"
+           adminDBProvider="MorganStanleyReportAdminDBProvider"
+           imageFileNameField="Image_File_Name"
+           reportNumberColumnName="Numeric10"
+           rowsWithNoImageHandling="NoImage"
+           objectIDSaveFileExtension="objs"
+           indexFileExtension="idx"
+           indexFileDelimiter="|"
+           hasImages="True"
+           useSynapticInfoFromAdminDB="True"
+      />
+
+      <add name="MorganStanleyReportDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
+           indexColumnMapping="@SiteID(INT),@SubSiteID(VARCHAR),@BatchNum(INT),@ProcessDate(VARCHAR),@ReportName(CHAR),@Image_File_Name,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
+           connectionString="None" 
+           storedProcedureAdd="spImportReportSynapticMorganStanley"
+           storedProcedureAddParameters="@ReportName(CHAR),@ProcessDate(VARCHAR),@SiteID(INT),@SubSiteID(VARCHAR),@ObjectID(VARCHAR),@LoadTableID(BIGINT),@OrgID(INT)" 
+           storedProcedureDel="None"
+           storedProcedureUpd="None"
+           useTransaction="True"
+      />
+
+      <add name="MorganStanleyReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+           lineDataColumnMapping="SiteID,SubSiteID,BatchNum,ProcessDate,ReportName,Image_File_Name"
+           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           callPostProcessURLColumnName=""
+           getClientInfoSP="spGetClientInfoSynapticMorganStanley"
+           getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
+           clientConnectionStringInDatabase="True"
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ItemData.SiteID;@subsiteid(INT)=ItemData.SubSiteID;@ProcDate(INT)=ItemData.ProcessDate;@BatchNum(INT)=ItemData.BatchNum;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Report"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
+           delLoadTableElementSP="None" 
+           delLoadTableElementSPParameters="None" 
+           organizationIDColumnName="ID" 
+           useTransaction="False"
+      />
+
+      <add name="MorganStanleyReportResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\Reports\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+   />  
+
+      <add name="MorganStanleyCDMZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+      />
+
+      <add name="MorganStanleyCDMItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+           indexColumnMapping="ItemType(VARCHAR),SiteID(INT),SubSiteID(INT),BatchID(INT),TranNumber(INT),SequenceNumber(INT),RejectFlag(TINYINT),BatchType(INT),SecApproval(VARCHAR),Amount1(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),Amount4(NUMERIC),Amount5(NUMERIC),Amount6(NUMERIC),Amount7(NUMERIC),Amount8(NUMERIC),Amount9(NUMERIC),Amount10(NUMERIC),Other1(VARCHAR),Other2(VARCHAR),Other3(VARCHAR),Other4(VARCHAR),Other5(VARCHAR),Other6(VARCHAR),Other7(VARCHAR),Other8(VARCHAR),Other9(VARCHAR),Other10(VARCHAR),BatchNum(INT),eGisticsTransID(BIGINT),OriginalSequenceNum(INT),Image_File_Name(NOTYPE),Annotation(VARCHAR)"
+           adminDBProvider="MorganStanleyCDMBaseLTAAdminDBProvider"
+           databaseProvider="MorganStanleyCDMDatabaseProvider"
+           archiveProvider="SynapticArchiveProviderStacked"
+           responseFileProvider="MorganStanleyCDMResponseFileProvider"     
+           imageFileNameField="Image_File_Name"
+           rowsWithNoImageHandling="NoImage"
+           objectIDSaveFileExtension="objs"
+           indexFileExtension="CDM"
+           indexFileDelimiter="|"
+           hasImages="True"
+           transGrouping="TranNumber"
+           sequenceNumber="SequenceNumber"
+           itemTypeColumn="ItemType"
+           numberOfImageFiles="1"
+           minLengthSmallOrLargePage = "2000" 
+           minHeightSmallOrLargePage = "900"         
+      />
+
+      <add name="MorganStanleyCDMBaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNumber,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name,Annotation"
+           getClientInfoSP="spGetClientInfoSynapticMorganStanley"
+           getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
+           clientConnectionStringInDatabase="True" 
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@BatchNum(INT)=ItemData.BatchID;@FileName(VarChar)=LoadTableFileName;@OrganizationID(INT)=ClientData.ID;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=CDM"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
+           delLoadTableElementSP="None" 
+           delLoadTableElementSPParameters="None" 
+           organizationIDColumnName="ID" 
+           useTransaction="False"
+      />
+
+      <add name="MorganStanleyCDMDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+           connectionString="None"
+           addTransElementReturnParameter="@CDMTRANSID(BIGINT)"
+           transIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNumber(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@Annotation(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           checkIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNumber(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@Annotation(VARCHAR),@CDMTRANSID(BIGINT)"
+           stubIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNumber(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@Annotation(VARCHAR),@CDMTRANSID(BIGINT)"
+           storedProcedureTransAdd="spCDMImportTransactionSynapticMorganStanley"
+           storedProcedureAddTransParameters="@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNumber(INT),@BatchType(INT),@SecApproval(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@RejectFlag(TINYINT),@Other10(VARCHAR),@ObjectID(VARCHAR),@OrgID(INT),@LoadTableID(BIGINT)"
+           storedProcedureTransDel="None"
+           storedProcedureTransUpd="None"
+           storedProcedureCheckAdd="spCDMImportCheckSynapticMorganStanley"
+           storedProcedureAddCheckParameters="@SequenceNumber(INT),@Other2(VARCHAR),@Other3(VARCHAR),@Amount1(NUMERIC),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),@Other1(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@BatchType(INT),@Annotation(VARCHAR),@CDMTRANSID(BIGINT)"
+           storedProcedureCheckDel="None"
+           storedProcedureCheckUpd="None"
+           storedProcedureStubAdd="spCDMImportStubSynapticMorganStanley"
+           storedProcedureAddStubParameters="@SequenceNumber(INT),@ItemType(VARCHAR),@Other1(VARCHAR),@Amount1(NUMERIC),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),@BatchType(INT),@Annotation(VARCHAR),@CDMTRANSID(BIGINT)"
+           storedProcedureStubDel="None"
+           storedProcedureStubUpd="None"
+           useTransaction="True"
+           spOnBeforeProcessingFile=""
+           spOnBeforeProcessingRow=""
+           spOnAfterProcessingRow=""
+           spOnAfterProcessingFile=""
+  />
+
+      <add name="MorganStanleyCDMResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+			lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+			responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\CDM\"
+			responseFileExtension="rsp"
+			responseFileDelimiter="|"
+	  />
+      
+	  <add name="MorganStanleyCorroZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+			fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+			mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+      />	  
+	  
+
+      <add name="MorganStanleyCorroItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
+           indexColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
+           responseFileProvider="MorganStanleyCorroResponseFileProvider"
+           disconnectedDatabaseProvider="False"
+           databaseProvider="MorganStanleyCorroDatabaseProvider"
+           archiveProvider="SynapticArchiveProviderStacked"
+           adminDBProvider="MorganStanleyCorroAdminDBProvider"
+           imageFileNameField="Image_File_Name"
+           reportNumberColumnName="Numeric10"
+           rowsWithNoImageHandling="NoImage"
+           objectIDSaveFileExtension="objs"
+           indexFileExtension="a"
+           indexFileDelimiter="|"
+           hasImages="True"
+           useSynapticInfoFromAdminDB="True"
+        />
+	  
+	  	<add name="MorganStanleyCorroAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, 				BaseLTAAdminDBProvider"
+           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
+           getClientInfoSP="spGetClientInfoCorro"
+           getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
+           clientConnectionStringInDatabase="True" 
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ItemData.SiteID;@SubSiteID(INT)=ItemData.SubSiteID;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Corro"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
+           delLoadTableElementSP="None" 
+           delLoadTableElementSPParameters="None" 
+           organizationIDColumnName="ID" 
+           useTransaction="False"
+        />
+	  
+	     <add name="MorganStanleyCorroDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
+           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
+           connectionString="None" 
+           storedProcedureAdd="spImportCorrespondenceGenerationItem"
+		   storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"            
+           storedProcedureDel="None"
+           storedProcedureUpd="None"
+           useTransaction="True"
+        />
+	  
+	  	<add name="MorganStanleyCorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-MGN-FTX-01\CORRO\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+	    />
+
+      <add
+        name="BaseRemittanceItemProviderGeneric"
+        type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+        indexColumnMapping="Field1(VARCHAR),Field2(VARCHAR),Field3(VARCHAR),Field4(VARCHAR),Field5(VARCHAR),Field6(VARCHAR),Field7(VARCHAR),Field8(VARCHAR),Field9(VARCHAR),Field10(VARCHAR),Field11(VARCHAR),Field12(VARCHAR),Field13(VARCHAR),Field14(VARCHAR),Field15(VARCHAR),Field16(VARCHAR),Field17(VARCHAR),Field18(VARCHAR),Field19(VARCHAR),Field20(VARCHAR),Field21(VARCHAR),Field22(VARCHAR),Field23(VARCHAR),Field24(VARCHAR),Field25(VARCHAR),Field26(VARCHAR),Field27(VARCHAR),Field28(VARCHAR),Field29(VARCHAR),Field30(VARCHAR),Field31(VARCHAR),Field32(VARCHAR),Field33(VARCHAR),Field34(VARCHAR),Field35(VARCHAR),Field36(VARCHAR),Field37(VARCHAR),Field38(VARCHAR),Field39(VARCHAR),Field40(VARCHAR),Field41(VARCHAR),Field42(VARCHAR),Field43(VARCHAR),Field44(VARCHAR),Field45(VARCHAR),Field46(VARCHAR),Field47(VARCHAR),Field48(VARCHAR),Field49(VARCHAR),Field50(VARCHAR),Field51(VARCHAR),Field52(VARCHAR),Field53(VARCHAR),Field54(VARCHAR),Field55(VARCHAR),Field56(VARCHAR),Field57(VARCHAR),Field58(VARCHAR),Field59(VARCHAR),Field60(VARCHAR),Field61(VARCHAR),Field62(VARCHAR),Field63(VARCHAR),Field64(VARCHAR),Field65(VARCHAR),Field66(VARCHAR),Field67(VARCHAR)"
+        responseFileProvider="BaseRemittanceResponseFileProviderGeneric"
+        databaseProvider="BaseRemittanceDatabaseProviderGeneric"
+        archiveProvider="SynapticArchiveProviderStacked"
+        adminDBProvider="BaseRemittanceAdminDBProviderGeneric"
+        tiffMergeType = "eGistics.Utilities.LibTiffMerger.TiffMerger, TiffUtilLibrary2010"
+        imageFileNameField="Field10"
+        rowsWithNoImageHandling="NoImage"
+        objectIDSaveFileExtension="objs"
+        indexFileExtension="txt"
+        indexFileDelimiter="|"
+        hasImages="True"
+        transGrouping="Field57"
+        sequenceNumber="Field59"
+        itemTypeColumn="Field43"
+        numberOfImageFiles="1"
+        minLengthSmallOrLargePage="2000"
+        minHeightSmallOrLargePage="900" />
+      <add
+        name="BaseRemittanceResponseFileProviderGeneric"
+        type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+        lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
+        responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-UB-FTX-01\OUT\LTA\"
+        responseFileExtension="rsp"
+        responseFileDelimiter="|"
+        responseFilePrefix="" />
+
+      <add
+        name="BaseRemittanceDatabaseProviderGeneric"
+        type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+        connectionString="None"
+        addTransElementReturnParameter="@TRANSID(BIGINT)"
+        transIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+        checkIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        stubIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        storedProcedureTransAdd="spImportTransGeneric"
+        storedProcedureAddTransParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),,@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+        storedProcedureTransDel="None"
+        storedProcedureTransUpd="None"
+        storedProcedureCheckAdd="spImportCheckGeneric"
+        storedProcedureAddCheckParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        storedProcedureCheckDel="None"
+        storedProcedureCheckUpd="None"
+        storedProcedureStubAdd="spImportStubGeneric"
+        storedProcedureAddStubParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        storedProcedureStubDel="None"
+        storedProcedureStubUpd="None"
+        useTransaction="True"
+        spOnBeforeProcessingFile=""
+        spOnBeforeProcessingRow=""
+        spOnAfterProcessingRow=""
+        spOnAfterProcessingFile="" />
+      <add
+        name="BaseRemittanceItemProviderUBCDM"
+        type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+        indexColumnMapping="Field1(VARCHAR),Field2(VARCHAR),Field3(VARCHAR),Field4(VARCHAR),Field5(VARCHAR),Field6(VARCHAR),Field7(VARCHAR),Field8(VARCHAR),Field9(VARCHAR),Field10(VARCHAR),Field11(VARCHAR),Field12(VARCHAR),Field13(VARCHAR),Field14(VARCHAR),Field15(VARCHAR),Field16(VARCHAR),Field17(VARCHAR),Field18(VARCHAR),Field19(VARCHAR),Field20(VARCHAR),Field21(VARCHAR),Field22(VARCHAR),Field23(VARCHAR),Field24(VARCHAR),Field25(VARCHAR),Field26(VARCHAR),Field27(VARCHAR),Field28(VARCHAR),Field29(VARCHAR),Field30(VARCHAR),Field31(VARCHAR),Field32(VARCHAR),Field33(VARCHAR),Field34(VARCHAR),Field35(VARCHAR),Field36(VARCHAR),Field37(VARCHAR),Field38(VARCHAR),Field39(VARCHAR),Field40(VARCHAR),Field41(VARCHAR),Field42(VARCHAR),Field43(VARCHAR),Field44(VARCHAR),Field45(VARCHAR),Field46(VARCHAR),Field47(VARCHAR),Field48(VARCHAR),Field49(VARCHAR),Field50(VARCHAR),Field51(VARCHAR),Field52(VARCHAR),Field53(VARCHAR),Field54(VARCHAR),Field55(VARCHAR),Field56(VARCHAR),Field57(VARCHAR),Field58(VARCHAR),Field59(VARCHAR),Field60(VARCHAR),Field61(VARCHAR),Field62(VARCHAR),Field63(VARCHAR),Field64(VARCHAR),Field65(VARCHAR),Field66(VARCHAR),Field67(VARCHAR)"
+        responseFileProvider="BaseRemittanceResponseFileProviderUBCDM"
+        databaseProvider="BaseRemittanceDatabaseProviderUBCDM"
+        archiveProvider="SynapticArchiveProviderStacked"
+        adminDBProvider="BaseRemittanceAdminDBProviderUBCDM"
+        tiffMergeType = "eGistics.Utilities.LibTiffMerger.TiffMerger, TiffUtilLibrary2010"
+        imageFileNameField="Field10"
+        rowsWithNoImageHandling="NoImage"
+        objectIDSaveFileExtension="objs"
+        indexFileExtension="txt"
+        indexFileDelimiter="|"
+        hasImages="True"
+        transGrouping="Field57"
+        sequenceNumber="Field59"
+        itemTypeColumn="Field43"
+        numberOfImageFiles="1"
+        minLengthSmallOrLargePage="2000"
+        minHeightSmallOrLargePage="900" />
+      <add
+        name="BaseRemittanceResponseFileProviderUBCDM"
+        type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+        lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
+        responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-UB-FTX-01\OUT\CDM\"
+        responseFileExtension="rsp"
+        responseFileDelimiter="|"
+        responseFilePrefix="" />
+
+      <add
+        name="BaseRemittanceDatabaseProviderUBCDM"
+        type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+        connectionString="None"
+        addTransElementReturnParameter="@TRANSID(BIGINT)"
+        transIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+        checkIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        stubIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        storedProcedureTransAdd="spCDMImportTransUB"
+        storedProcedureAddTransParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),,@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+        storedProcedureTransDel="None"
+        storedProcedureTransUpd="None"
+        storedProcedureCheckAdd="spCDMImportCheckUB"
+        storedProcedureAddCheckParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        storedProcedureCheckDel="None"
+        storedProcedureCheckUpd="None"
+        storedProcedureStubAdd="spCDMImportStubUB"
+        storedProcedureAddStubParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@Field52(VARCHAR),@Field53(VARCHAR),@Field54(VARCHAR),@Field55(VARCHAR),@Field56(VARCHAR),@Field57(VARCHAR),@Field58(VARCHAR),@Field59(VARCHAR),@Field60(VARCHAR),@Field61(VARCHAR),@Field62(VARCHAR),@Field63(VARCHAR),@Field64(VARCHAR),@Field65(VARCHAR),@Field66(VARCHAR),@Field67(VARCHAR),@TranID(BIGINT)"
+        storedProcedureStubDel="None"
+        storedProcedureStubUpd="None"
+        useTransaction="True"
+        spOnBeforeProcessingFile=""
+        spOnBeforeProcessingRow=""
+        spOnAfterProcessingRow=""
+        spOnAfterProcessingFile="" />
+
+      <add
+        name="BaseRemittanceAdminDBProviderGeneric"
+        type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+        lineDataColumnMapping="Field1,Field2,Field3,Field4,Field5,Field6,Field7,Field8,Field9,Field10,Field11,Field12,Field13,Field14,Field15,Field16,Field17,Field18,Field19,Field20,Field21,Field22,Field23,Field24,Field25,Field26,Field27,Field28,Field29,Field30,Field31,Field32,Field33,Field34,Field35,Field36,Field37,Field38,Field39,Field40,Field41,Field42,Field43,Field44,Field45,Field46,Field47,Field48,Field49,Field50,Field51,Field52,Field53,Field54,Field55,Field56,Field57,Field58,Field59,Field60,Field61,Field62,Field63,Field64,Field65,Field66,Field67"
+        connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+        getClientInfoSP="spGetClientInfoBBT"
+        getClientInfoParameters="@SiteID(VARCHAR)=Field1;@ClientID(VARCHAR)=Field2"
+        clientConnectionStringInDatabase="True"
+        clientConnectionStringColumnName="SqlClientConnectionString"
+        addLoadTableElementSP="spAddLoadElementGeneric"
+        addLoadTableElementSPParameters="@SiteID(VARCHAR)=ItemData.Field1;@SubSiteID(VARCHAR)=ItemData.Field2;@ProcDate(VARCHAR)=ItemData.Field3;@BatchNum(VARCHAR)=ItemData.Field6;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=LTA"
+        addLoadTableElementOutParameter="@NEWID(BIGINT)"
+        updLoadTableElementSP="spUpdateLoadElementGeneric"
+        updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad;@JPegCount(INT)=JPegCount;@LargePagesCount(INT)=LargePagesCount;@SmallPagesCount(INT)=SmallPagesCount;@Overage(INT)=Overage"
+        delLoadTableElementSP="None"
+        delLoadTableElementSPParameters="None"
+        organizationIDColumnName="ID"
+        useTransaction="False" />
+
+      <add
+        name="BaseRemittanceAdminDBProviderUBCDM"
+        type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+        lineDataColumnMapping="Field1,Field2,Field3,Field4,Field5,Field6,Field7,Field8,Field9,Field10,Field11,Field12,Field13,Field14,Field15,Field16,Field17,Field18,Field19,Field20,Field21,Field22,Field23,Field24,Field25,Field26,Field27,Field28,Field29,Field30,Field31,Field32,Field33,Field34,Field35,Field36,Field37,Field38,Field39,Field40,Field41,Field42,Field43,Field44,Field45,Field46,Field47,Field48,Field49,Field50,Field51,Field52,Field53,Field54,Field55,Field56,Field57,Field58,Field59,Field60,Field61,Field62,Field63,Field64,Field65,Field66,Field67"
+        connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+        getClientInfoSP="spGetClientInfoBBT"
+        getClientInfoParameters="@SiteID(VARCHAR)=Field1;@ClientID(VARCHAR)=Field2"
+        clientConnectionStringInDatabase="True"
+        clientConnectionStringColumnName="SqlClientConnectionString"
+        addLoadTableElementSP="spAddLoadElementGeneric"
+        addLoadTableElementSPParameters="@SiteID(VARCHAR)=ItemData.Field1;@SubSiteID(VARCHAR)=ItemData.Field2;@ProcDate(VARCHAR)=ItemData.Field3;@BatchNum(VARCHAR)=ItemData.Field6;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=CDM"
+        addLoadTableElementOutParameter="@NEWID(BIGINT)"
+        updLoadTableElementSP="spUpdateLoadElementGeneric"
+        updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad;@JPegCount(INT)=JPegCount;@LargePagesCount(INT)=LargePagesCount;@SmallPagesCount(INT)=SmallPagesCount;@Overage(INT)=Overage"
+        delLoadTableElementSP="None"
+        delLoadTableElementSPParameters="None"
+        organizationIDColumnName="ID"
+        useTransaction="False" />
+
+      <add
+        name="BaseRemittanceItemProviderGeneric_CDM"
+        type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+        indexColumnMapping="Field1(VARCHAR),Field2(VARCHAR),Field3(VARCHAR),Field4(VARCHAR),Field5(VARCHAR),Field6(VARCHAR),Field7(VARCHAR),Field8(VARCHAR),Field9(VARCHAR),Field10(VARCHAR),Field11(VARCHAR),Field12(VARCHAR),Field13(VARCHAR),Field14(VARCHAR),Field15(VARCHAR),Field16(VARCHAR),Field17(VARCHAR),Field18(VARCHAR),Field19(VARCHAR),Field20(VARCHAR),Field21(VARCHAR),Field22(VARCHAR),Field23(VARCHAR),Field24(VARCHAR),Field25(VARCHAR),Field26(VARCHAR),Field27(VARCHAR),Field28(VARCHAR),Field29(VARCHAR),Field30(VARCHAR),Field31(VARCHAR),Field32(VARCHAR),Field33(VARCHAR),Field34(VARCHAR),Field35(VARCHAR),Field36(VARCHAR),Field37(VARCHAR),Field38(VARCHAR),Field39(VARCHAR),Field40(VARCHAR),Field41(VARCHAR),Field42(VARCHAR),Field43(VARCHAR),Field44(VARCHAR),Field45(VARCHAR),Field46(VARCHAR),Field47(VARCHAR),Field48(VARCHAR),Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR)"
+        responseFileProvider="BaseRemittanceResponseFileProviderGeneric_CDM"
+        databaseProvider="BaseRemittanceDatabaseProviderGeneric_CDM"
+        archiveProvider="SynapticArchiveProvider"
+        adminDBProvider="BaseRemittanceAdminDBProviderGeneric_CDM"
+        imageFileNameField="Field35"
+        rowsWithNoImageHandling="NoImage"
+        objectIDSaveFileExtension="objs"
+        indexFileExtension="txt"
+        indexFileDelimiter="|"
+        hasImages="True"
+        transGrouping="Field7"
+        sequenceNumber="Field8"
+        itemTypeColumn="Field37"
+        numberOfImageFiles="1"
+        minLengthSmallOrLargePage="2000"
+        minHeightSmallOrLargePage="900" />
+      <add
+        name="BaseRemittanceResponseFileProviderGeneric_CDM"
+        type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+        lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#DateTimeLoaded"
+        responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-UB-FTX-01\OUT\CDM\"
+        responseFileExtension="rsp"
+        responseFileDelimiter="|"
+        responseFilePrefix="R_" />
+      <add
+        name="BaseRemittanceDatabaseProviderGeneric_CDM"
+        type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+        connectionString="None"
+        addTransElementReturnParameter="@TRANSID(BIGINT)"
+        transIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+        checkIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),@Field50(VARCHAR),@Field51(VARCHAR),@TranID(BIGINT)"
+        stubIndexColumnMapping="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),,@Field50(VARCHAR),@Field51(VARCHAR),@TranID(BIGINT)"
+        storedProcedureTransAdd="spCDMImportTransSynaptic"
+        storedProcedureAddTransParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),,@Field50(VARCHAR),@Field51(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+        storedProcedureTransDel="None"
+        storedProcedureTransUpd="None"
+        storedProcedureCheckAdd="spCDMImportCheckSynaptic"
+        storedProcedureAddCheckParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),,@Field50(VARCHAR),@Field51(VARCHAR),@TranID(BIGINT)"
+        storedProcedureCheckDel="None"
+        storedProcedureCheckUpd="None"
+        storedProcedureStubAdd="spCDMImportStubSynaptic"
+        storedProcedureAddStubParameters="@Field1(VARCHAR),@Field2(VARCHAR),@Field3(VARCHAR),@Field4(VARCHAR),@Field5(VARCHAR),@Field6(VARCHAR),@Field7(VARCHAR),@Field8(VARCHAR),@Field9(VARCHAR),@Field10(VARCHAR),@Field11(VARCHAR),@Field12(VARCHAR),@Field13(VARCHAR),@Field14(VARCHAR),@Field15(VARCHAR),@Field16(VARCHAR),@Field17(VARCHAR),@Field18(VARCHAR),@Field19(VARCHAR),@Field20(VARCHAR),@Field21(VARCHAR),@Field22(VARCHAR),@Field23(VARCHAR),@Field24(VARCHAR),@Field25(VARCHAR),@Field26(VARCHAR),@Field27(VARCHAR),@Field28(VARCHAR),@Field29(VARCHAR),@Field30(VARCHAR),@Field31(VARCHAR),@Field32(VARCHAR),@Field33(VARCHAR),@Field34(VARCHAR),@Field35(VARCHAR),@Field36(VARCHAR),@Field37(VARCHAR),@Field38(VARCHAR),@Field39(VARCHAR),@Field40(VARCHAR),@Field41(VARCHAR),@Field42(VARCHAR),@Field43(VARCHAR),@Field44(VARCHAR),@Field45(VARCHAR),@Field46(VARCHAR),@Field47(VARCHAR),@Field48(VARCHAR),@Field49(VARCHAR),,@Field50(VARCHAR),@Field51(VARCHAR),@TranID(BIGINT)"
+        storedProcedureStubDel="None"
+        storedProcedureStubUpd="None"
+        useTransaction="True"
+        spOnBeforeProcessingFile=""
+        spOnBeforeProcessingRow=""
+        spOnAfterProcessingRow=""
+        spOnAfterProcessingFile="" />
+      <add
+        name="BaseRemittanceAdminDBProviderGeneric_CDM"
+        type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+        lineDataColumnMapping="Field1,Field2,Field3,Field4,Field5,Field6,Field7,Field8,Field9,Field10,Field11,Field12,Field13,Field14,Field15,Field16,Field17,Field18,Field19,Field20,Field21,Field22,Field23,Field24,Field25,Field26,Field27,Field28,Field29,Field30,Field31,Field32,Field33,Field34,Field35,Field36,Field37,Field38,Field39,Field40,Field41,Field42,Field43,Field44,Field45,Field46,Field47,Field48,Field49,Field50,Field51"
+        connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+        getClientInfoSP="spGetClientInfoGeneric"
+        getClientInfoParameters="@SiteID(VARCHAR)=Field4;@ClientID(VARCHAR)=Field5"
+        clientConnectionStringInDatabase="True"
+        clientConnectionStringColumnName="SqlClientConnectionString"
+        addLoadTableElementSP="spAddLoadElementGeneric"
+        addLoadTableElementSPParameters="@SiteID(VARCHAR)=ItemData.Field4;@SubSiteID(VARCHAR)=ItemData.Field5;@ProcDate(VARCHAR)=ItemData.Field38;@BatchNum(VARCHAR)=ItemData.Field32;@BatchID(VARCHAR)=ItemData.Field6;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=CDM"
+        addLoadTableElementOutParameter="@NEWID(BIGINT)"
+        updLoadTableElementSP="spUpdateLoadElementGeneric"
+        updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad;@JPegCount(INT)=JPegCount;@LargePagesCount(INT)=LargePagesCount;@SmallPagesCount(INT)=SmallPagesCount;@Overage(INT)=Overage"
+        delLoadTableElementSP="None"
+        delLoadTableElementSPParameters="None"
+        organizationIDColumnName="ID"
+        useTransaction="False" />
+
+      <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\FirstBank\"
+      />
+
+      <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+           lineDataColumnMapping="Site,subsiteid,ProcessDate,ItemType,BatchNum,TranNum,SeqNum,Amount,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,AccountNum,CheckRT,CheckNum,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Exception1,Exception2,Exception3,Exception4,Exception5,Exception6,Exception7,Exception8,Exception9,Exception10,Image_File_Name"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           getClientInfoSP="spGetClientInfoGeneric"
+           getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
+           clientConnectionStringInDatabase="True" 
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@subsiteid(INT)=ClientData.subsiteid;@ProcDate(INT)=ItemData.ProcessDate;@BatchNum(INT)=ItemData.BatchNum;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Daily"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
+           delLoadTableElementSP="None" 
+           delLoadTableElementSPParameters="None" 
+           organizationIDColumnName="ID" 
+           useTransaction="False"
+      />
+
+      <add name="SynapticArchiveProviderStacked" type="eGistics.Import.Manager.SynapticArchiveProviders.StackerSynapticArchiveProvider, SynapticArchiveProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           overrideSynapticWebServiceWebConfigSettings="True"
+           subtenantID="6a5c3d578baf402da8283b3d6522e150"
+           sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
+           applicationID="egBetaTest"
+           baseURI="32.65.211.48|32.65.211.49"
+           stackerMegaBytesSizeThreshold="2"
+           storageProxyListWebService="<%= @storage_proxy %>"
+           storageProxyListWCFService=""    
+      />
+
+      <add name="SynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\app.config"
+           overrideSynapticWebServiceWebConfigSettings="True" 
+           subtenantID="6a5c3d578baf402da8283b3d6522e150"
+           sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
+           applicationID="egBetaTest"
+           baseURI="32.65.211.48|32.65.211.49"
+      />
+      
+      <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\app.config"
+           unableToDeleteObjectIDsFiles="E:\TIS\PRD\FDC\IMREM-E1\UnableToDelete\"
+           overrideSynapticWebServiceWebConfigSettings="True"
+           objectIDSaveFileExtension="objs"
+           subtenantID="6a5c3d578baf402da8283b3d6522e150"
+           sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
+           applicationID="egBetaTest"
+           baseURI="32.65.211.48|32.65.211.49"
+      />
+      
+      <add name="BaseRemittanceItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+         indexColumnMapping="Site(VARCHAR),ClientID(VARCHAR),ProcessDate(INT),ItemType(VARCHAR),BatchNum(VARCHAR),TranNum(INT),SeqNum(INT),Amount(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),Amount4(NUMERIC),Amount5(NUMERIC),Amount6(NUMERIC),Amount7(NUMERIC),Amount8(NUMERIC),Amount9(NUMERIC),AccountNum(VARCHAR),CheckRT(VARCHAR),CheckNum(VARCHAR),Other1(VARCHAR),Other2(VARCHAR),Other3(VARCHAR),Other4(VARCHAR),Other5(VARCHAR),Other6(VARCHAR),Other7(VARCHAR),Other8(VARCHAR),Other9(VARCHAR),Exception1(VARCHAR),Exception2(VARCHAR),Exception3(VARCHAR),Exception4(VARCHAR),Exception5(VARCHAR),Exception6(VARCHAR),Exception7(VARCHAR),Exception8(VARCHAR),Exception9(VARCHAR),Exception10(VARCHAR),Image_File_Name"
+         responseFileProvider="BaseRemittanceResponseFileProvider" 
+         databaseProvider="BaseRemittanceDatabaseProvider"
+         archiveProvider="SynapticArchiveProvider"
+         adminDBProvider="BaseLTAAdminDBProvider"
+         imageFileNameField="Image_File_Name"
+         rowsWithNoImageHandling="NoImage"
+         objectIDSaveFileExtension="objs"
+         indexFileExtension="DAT"
+         indexFileDelimiter="|"
+         hasImages="True"
+         transGrouping="TranNum"
+         sequenceNumber="SeqNum"
+         itemTypeColumn="ItemType"
+         numberOfImageFiles="1"
+         minLengthSmallOrLargePage = "2000" 
+         minHeightSmallOrLargePage = "900"                
+         />
+
+      <add name="BaseRemittanceResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="E:\TIS\PRD\FDC\IMREM-E1\FTP\FirstBank"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+    />
+
+    <add name="BaseRemittanceDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+         connectionString="None"
+         addTransElementReturnParameter="@NEWID(BIGINT)"
+         transIndexColumnMapping="@SiteID(VARCHAR),@ClientID(VARCHAR),@ProcessDate(INT),,@BatchNum(INT),@TranNum(INT),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,@OrganizationID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+         checkIndexColumnMapping=",,,@ItemType(VARCHAR),,,@SeqNum(INT),@Amount(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@AccountNum(VARCHAR),@CheckRT(VARCHAR),@CheckNum(VARCHAR),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Exception1(VARCHAR),@Exception2(VARCHAR),@Exception3(VARCHAR),@Exception4(VARCHAR),@Exception5(VARCHAR),@Exception6(VARCHAR),@Exception7(VARCHAR),@Exception8(VARCHAR),@Exception9(VARCHAR),@Exception10(VARCHAR),,@TranID(BIGINT)"
+         stubIndexColumnMapping=",,,@ItemType(VARCHAR),,,@SeqNum(INT),@Amount(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@AccountNum(VARCHAR),,,@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Exception1(VARCHAR),@Exception2(VARCHAR),@Exception3(VARCHAR),@Exception4(VARCHAR),@Exception5(VARCHAR),@Exception6(VARCHAR),@Exception7(VARCHAR),@Exception8(VARCHAR),@Exception9(VARCHAR),@Exception10(VARCHAR),,@TranID(BIGINT)"
+         storedProcedureTransAdd="spImportTransactionGenericLTA"
+         storedProcedureAddTransParameters="@ProcessDate(INT),@BatchNum(INT),@TranNum(INT),@SiteID(VARCHAR),@ClientID(VARCHAR),@ObjectID(VARCHAR),@OrganizationID(INT),@LoadTableID(BIGINT)"
+         storedProcedureTransDel="None"
+         storedProcedureTransUpd="None"
+         storedProcedureCheckAdd="spImportCheckGenericLTA"
+         storedProcedureAddCheckParameters="@SeqNum(INT),@ItemType(VARCHAR),@Amount(NUMERIC),@AccountNum(VARCHAR),@CheckNum(VARCHAR),@CheckRT(VARCHAR),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Exception1(VARCHAR),@Exception2(VARCHAR),@Exception3(VARCHAR),@Exception4(VARCHAR),@Exception5(VARCHAR),@Exception6(VARCHAR),@Exception7(VARCHAR),@Exception8(VARCHAR),@Exception9(VARCHAR),@Exception10(VARCHAR),@TranID(BIGINT)"
+         storedProcedureCheckDel="None"
+         storedProcedureCheckUpd="None"
+         storedProcedureStubAdd="spImportStubGenericLTA"
+         storedProcedureAddStubParameters="@SeqNum(INT),@ItemType(VARCHAR),@AccountNum(VARCHAR),@Amount(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Exception1(VARCHAR),@Exception2(VARCHAR),@Exception3(VARCHAR),@Exception4(VARCHAR),@Exception5(VARCHAR),@Exception6(VARCHAR),@Exception7(VARCHAR),@Exception8(VARCHAR),@Exception9(VARCHAR),@Exception10(VARCHAR),@TranID(BIGINT)"
+         storedProcedureStubDel="None"
+         storedProcedureStubUpd="None"
+         useTransaction="True"
+         spOnBeforeProcessingFile=""
+         spOnBeforeProcessingRow=""
+         spOnAfterProcessingRow=""
+         spOnAfterProcessingFile=""
+      />
+      <add name="SingleSynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
+           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           overrideSynapticWebServiceWebConfigSettings="True"
+           subtenantID="6a5c3d578baf402da8283b3d6522e150"
+           sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
+           applicationID="egBetaTest"
+           baseURI="32.65.211.48|32.65.211.49"
+      />
+    </providers>
+  </subProviders>
+
+ <%= @strongauthblock %>
+
+  <system.serviceModel>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="WSHttpBinding_IEventCollection">
+          <security mode="Transport"> 
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+      </wsHttpBinding>
+      <netTcpBinding>
+        <binding name="NetTcpBinding_IStorageProxyReadingServices" closeTimeout="00:01:00"
+                 openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 transactionFlow="false" transferMode="Streamed" transactionProtocol="OleTransactions"
+                 hostNameComparisonMode="StrongWildcard" listenBacklog="10"
+                 maxBufferPoolSize="524288" maxBufferSize="65536" maxConnections="10"
+                 maxReceivedMessageSize="65536">
+          <readerQuotas maxDepth="32" maxStringContentLength="2147483647" maxArrayLength="2147483647"
+                        maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647"/>
+          <reliableSession ordered="true" inactivityTimeout="00:10:00" enabled="false" />
+          <security mode="Transport">
+            <transport clientCredentialType="Windows" protectionLevel="EncryptAndSign" />
+            <message clientCredentialType="Windows" />
+          </security>
+        </binding>
+        <binding name="NetTcpBinding_IStorageProxyWritingServices" closeTimeout="00:01:00"
+                 openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 transactionFlow="false" transferMode="Streamed" transactionProtocol="OleTransactions"
+                 hostNameComparisonMode="StrongWildcard" listenBacklog="10"
+                 maxBufferPoolSize="524288" maxBufferSize="65536" maxConnections="10"
+                 maxReceivedMessageSize="65536">
+          <readerQuotas maxDepth="32" maxStringContentLength="2147483647" maxArrayLength="2147483647"
+                        maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647"/>
+          <reliableSession ordered="true" inactivityTimeout="00:10:00" enabled="false" />
+          <security mode="Transport">
+            <transport clientCredentialType="Windows" protectionLevel="EncryptAndSign" />
+            <message clientCredentialType="Windows" />
+          </security>
+        </binding>
+      </netTcpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://DP-IRM-WSESL.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc" binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection" contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
+        <identity>
+          <dns value="localhost"/>
+        </identity>
+      </endpoint>
+      <endpoint address="net.tcp://localhost:1444/StorageProxyReadingServices"
+                binding="netTcpBinding" bindingConfiguration="NetTcpBinding_IStorageProxyReadingServices"
+                contract="StorageProxy.Reading.IStorageProxyReadingServices"
+                name="NetTcpBinding_IStorageProxyReadingServices">
+        <identity>
+          <dns value="localhost" />
+        </identity>
+      </endpoint>
+      <endpoint address="net.tcp://localhost:1445/StorageProxyWritingServices"
+                binding="netTcpBinding" bindingConfiguration="NetTcpBinding_IStorageProxyWritingServices"
+                contract="StorageProxy.Writing.IStorageProxyWritingServices"
+                name="NetTcpBinding_IStorageProxyWritingServices">
+        <identity>
+          <dns value="localhost" />
+        </identity>
+      </endpoint>
+    </client>
+  </system.serviceModel>
+
+  <startup useLegacyV2RuntimeActivationPolicy="true">
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+
+  <system.web>
+    <httpRuntime executionTimeout="20" maxRequestLength="102400"
+      minFreeThreads="352" minLocalRequestFreeThreads="304" />
+  </system.web> 
+  <system.net>
+    <defaultProxy>
+      <proxy autoDetect="False"/>
+    </defaultProxy>
+    <settings>
+      <servicePointManager expect100Continue="false" />
+    </settings>
+    <connectionManagement>
+      <add address="*" maxconnection="48"/>
+    </connectionManagement>
+  </system.net>
+
+</configuration>
