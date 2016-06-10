@@ -16,9 +16,9 @@
   </appSettings>
   <dataConfiguration defaultDatabase="Admin"/>
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-    <add name="AuditLog" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-    <add name="Warehouse" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_warehouse;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="AuditLog" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="Warehouse" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_warehouse;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <log4net>
     <root>
@@ -64,7 +64,7 @@
           <dns value="localhost" />
         </identity>
       </endpoint>
-      <endpoint address="https://CFG-IRM-WSESL.tisa.io/Dashboard/DashboardWcf.svc"
+      <endpoint address="https://du-fdc-wse-01.tisa.io/Dashboard/DashboardWcf.svc"
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IDashboardWcfService"
         contract="DashboardService.IDashboardWcfService" name="WSHttpBinding_IDashboardWcfService">
         <identity>
