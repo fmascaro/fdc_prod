@@ -89,23 +89,23 @@
       <add name="MorganStanleyLTA" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyLTAImportProvider"
            triggerFileExtensions="trigger"
-           path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\LTA\"
+           path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\LTA\"
       />
 
       <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"     
            providerName="MorganStanleyReportImportProvider"
            triggerFileExtensions="trigger"       
-           path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\Reports\"       
+           path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\Reports\"       
       />
 
       <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyCDMImportProvider"
            triggerFileExtensions="trigger"
-           path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CDM\"
+           path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\CDM\"
       />
       
      <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
-       path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CORRO\"
+       path="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\CORRO\"
            providerName="MorganStanleyCorroImportProvider"
            triggerFileExtensions="trigger"           
       />
@@ -125,7 +125,7 @@
            logPath="L:\TIS\UAT\FDC\IMREM-E1\Logs\MorganStanley\LTA\"
            backupPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
            exceptionsPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
-           ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\LTA\"
+           ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\LTA\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -143,7 +143,7 @@
            emailTo="noreply@eGisticsInc.com"
            smtpIP=""
            smtpPort="25"
-           ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\Reports\"
+           ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\Reports\"
            mainWorkingPath="E:\TIS\UAT\FDC\IMREM-E1\Working\MorganStanley\Reports\"
            logPath="L:\TIS\UAT\FDC\IMREM-E1\Logs\MorganStanley\Reports\"
            backupPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
@@ -167,7 +167,7 @@
            logPath="L:\TIS\UAT\FDC\IMREM-E1\Logs\MorganStanley\CDM\"
            backupPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
            exceptionsPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
-           ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CDM\"
+           ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\CDM\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -185,7 +185,7 @@
           emailTo="noreply@eGisticsInc.com"
           smtpIP=""
           smtpPort="25"
-          ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CORRO\"
+          ftpPath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\CORRO\"
           mainWorkingPath="E:\TIS\UAT\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
           logPath="L:\TIS\UAT\FDC\IMREM-E1\Logs\MorganStanley\CORRO\"
           backupPath="\\DP-ESL-EFB-01\UAT\UAT-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
@@ -272,7 +272,7 @@
 
       <add name="MorganStanleyLTAResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\LTA\"
+           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\LTA\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    /> 
@@ -330,7 +330,7 @@
 
       <add name="MorganStanleyReportResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\Reports\"
+           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\Reports\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    />  
@@ -405,7 +405,7 @@
 
       <add name="MorganStanleyCDMResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CDM\"
+           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\CDM\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    />
@@ -459,7 +459,7 @@
         />
       <add name="MorganStanleyCorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-01\CORRO\"
+           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\UAT\UAT-MGN-FTX-02\CORRO\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
