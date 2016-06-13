@@ -24,8 +24,8 @@
   </ContextInfo>
 
   <connectionStrings>
-    <add name="Admin" connectionString="<%= @test_admin_db %>" providerName="System.Data.SqlClient" />
-    <add name="Audit" connectionString="<%= @test_audit_db %>" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=DP-FDC_SQL-02;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
+    <add name="Audit" connectionString="SERVER=DP-FDC_SQL-02;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
@@ -39,14 +39,14 @@
     <add key="MaxThreads" value="1" />
     <add key="EndPointName" value="FundsWrapperServiceSoap"/>
     <add key="EndPointUrl" value="null"/>
-    <add key="SynapticURLList" value="https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E1/synapticwebservice.asmx|https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E2/synapticwebservice.asmx" />
+    <add key="SynapticURLList" value="<%= @storage_proxy %>|<%= @storage_proxy %>" />
     <add key="BaseURI" value="32.65.211.48|32.65.211.49|32.65.209.48" />
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150" />
     <add key="SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64=" />
     <add key="ApplicationID" value="egBetaTest" />
 
-    <add key="mgnxslpath" value="\\DP-ESL-EFS-01\Assets\CFG\FDC\MorganStanley\XSL"/>
-    <add key="mgnoutpath" value="\\Dp-esl-efs-01\ftp\CFG\PRD-FDC-FTX-ALL\LTA\20634"/>
+    <add key="mgnxslpath" value="<%= @efs %>\Assets\CFG\FDC\MorganStanley\XSL"/>
+    <add key="mgnoutpath" value="<%= @efs %>\ftp\CFG\PRD-FDC-FTX-ALL\LTA\20634"/>
 
   </appSettings>
 
@@ -113,7 +113,7 @@
     </root>
   </log4net>
 
-  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://dd-esl-sau-01.egistics.local:8181/strongkeyliteWAR/EncryptionService">
+  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://dp-egi-cry-01:8181/strongkeyliteWAR/EncryptionService">
     <Ping Password-Clear="Abcd1234!"/>
     <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="E:\temp"/>
     <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="E:\temp"/>
@@ -148,7 +148,7 @@
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
 
-      <endpoint address="https://msrcp.fdps.com/FundsWrapper/FundsWrapper.asmx"
+      <endpoint address="https://dp-fdc-wsw-01.tisa.io/fundswrapper/fundswrapper.asmx"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
           contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
 
