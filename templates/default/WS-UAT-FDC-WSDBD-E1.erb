@@ -87,7 +87,7 @@
     <directoryBrowse enabled="true"/>
   </system.webServer>
   <connectionStrings>
-    <add name="Warehouse" connectionString="SERVER=GEN-REM-AG1;DATABASE=BaseRemit_Warehouse;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="Warehouse" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Warehouse;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <!--<log4net>
     <root>
@@ -95,7 +95,7 @@
       <appender-ref ref="LogFileAppender"/>
     </root>
     <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
-      <param name="File" value="L:\WWW\PRD\IRM\WSDBD-E1\DashboardWcfSvclog-file.txt"/>
+      <param name="File" value="L:\WWW\UAT\FDC\WSDBD-E1\DashboardWcfSvclog-file.txt"/>
       <param name="AppendToFile" value="true"/>
       <rollingStyle value="Size"/>
       <maxSizeRollBackups value="10"/>

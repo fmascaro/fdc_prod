@@ -38,7 +38,7 @@
     <add key="pluginPath" value="E:\TIS\UAT\FDC\BGSCH-E1"/>
     <add key="MaxThreads" value="1" />
     <add key="EndPointName" value="FundsWrapperServiceSoap"/>
-    <add key="EndPointUrl" value="null"/>
+    <add key="EndPointUrl" value="https://du-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"/>
     <add key="SynapticURLList" value="https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E1/synapticwebservice.asmx|https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E2/synapticwebservice.asmx" />
     <add key="BaseURI" value="32.65.211.48|32.65.211.49|32.65.209.48" />
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150" />
@@ -148,7 +148,7 @@
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
 
-      <endpoint address="null"
+      <endpoint address="https://du-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
           contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
 
