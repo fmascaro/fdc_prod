@@ -21,9 +21,9 @@
     <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
 
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-  <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
-      <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
-</configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+  </configSections>
 
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
@@ -68,7 +68,7 @@
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
     <add key="SmtpServer" value="dp-egi-rly-01" />
     <add key="defaultEmailFrom" value="notifications@egisticsinc.com" />
-    <add key="defaultDestination" value="https://$url1$/web/samlsso.ashx" />
+    <add key="defaultDestination" value="https://$url1$/RemitCore/samlsso.ashx" />
     <add key="PasswordValidationExpression" value=".*" />
     <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
     <add key="NumberOfMonthsPasswordCanBeReused" value="30" />
@@ -79,8 +79,6 @@
     <!--<add key="SAMLEncryptionSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />-->
   </appSettings>
   <system.web> 
-  </system.web>
-   <system.web>
     <machineKey
       validationKey="9DC4E3B93B0FC770C998E158718EC62CB8C6C3FE7A1551DFC890C553BBA78F1672179AEE58E4B92ED43C38C3B5833000ED8D8137D95D6588F40BC43B19AB22BE"
       decryptionKey="825E4FB0F813C599DB679362E76D875787BA8ECB919F69CCC9749B1415260DFD"
@@ -138,9 +136,9 @@
   </entityFramework>
   <system.web.extensions>
    <scripting>
-	   <webServices>
-		   <jsonSerialization maxJsonLength="2147483644" />
-	   </webServices>
+     <webServices>
+       <jsonSerialization maxJsonLength="2147483644" />
+     </webServices>
    </scripting>
 </system.web.extensions>
 </configuration>
