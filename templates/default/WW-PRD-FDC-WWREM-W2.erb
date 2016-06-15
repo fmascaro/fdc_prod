@@ -55,10 +55,10 @@
   <dataConfiguration defaultDatabase="Admin" />
   <connectionStrings>
     <clear />
-    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-    <add name="AuditLog" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
-    <add name="baseremit_adminEntities" connectionString="metadata=res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.csdl|res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.ssdl|res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.msl;provider=System.Data.SqlClient;provider connection string=&quot;SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-    <add name="baseremit_archiveEntities" connectionString="metadata=res://*/Content.CorroGeneration.Models.Archive.CorroArchive.csdl|res://*/Content.CorroGeneration.Models.Archive.CorroArchive.ssdl|res://*/Content.CorroGeneration.Models.Archive.CorroArchive.msl;provider=System.Data.SqlClient;provider connection string=&quot;SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Archive;Trusted_Connection=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditLog" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="baseremit_adminEntities" connectionString="metadata=res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.csdl|res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.ssdl|res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.msl;provider=System.Data.SqlClient;provider connection string=&quot;SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True;encrypt=true;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="baseremit_archiveEntities" connectionString="metadata=res://*/Content.CorroGeneration.Models.Archive.CorroArchive.csdl|res://*/Content.CorroGeneration.Models.Archive.CorroArchive.ssdl|res://*/Content.CorroGeneration.Models.Archive.CorroArchive.msl;provider=System.Data.SqlClient;provider connection string=&quot;SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=Test_FDC_Archive;Trusted_Connection=True;encrypt=true;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
   <appSettings>
     <clear />
@@ -519,7 +519,7 @@
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
-        <bindingRedirect oldVersion="1.0.0.0-5.1.0.0" newVersion="5.1.0.0" />
+        <bindingRedirect oldVersion="1.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.WindowsAzure.Storage" publicKeyToken="31bf3856ad364e35" culture="neutral" />

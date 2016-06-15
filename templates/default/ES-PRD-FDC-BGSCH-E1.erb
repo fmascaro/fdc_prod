@@ -24,8 +24,8 @@
   </ContextInfo>
 
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
-    <add name="Audit" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Audit" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
@@ -144,12 +144,9 @@
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
 
-      <endpoint address="https://dp-fdc-wsw-01.tisa.io/fundswrapper/fundswrapper.asmx"
+      <endpoint address="https://dp-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
           contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
-
-	</client>
+    </client>
   </system.serviceModel>
-
-
 </configuration>

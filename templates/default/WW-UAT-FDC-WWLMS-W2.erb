@@ -27,7 +27,7 @@
 
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
-      <file value="L:\WWW\UAT\FDC\WWLMS-W1\LMS.log" />
+      <file value="L:\WWW\UAT\FDC\WWLMS-W2\LMS.log" />
       <appendToFile value="true" />
       <maximumFileSize value="3MB" />
       <maxSizeRollBackups value="100" />
@@ -114,10 +114,10 @@
         <assemblyIdentity name="Telerik.Web.UI" publicKeyToken="121fae78165ba3d4" culture="neutral" />
         <bindingRedirect oldVersion="0.0.0.0-2014.2.724.45" newVersion="2014.2.724.45" />
       </dependentAssembly>
-     <dependentAssembly>
+      <dependentAssembly>
         <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
         <bindingRedirect oldVersion="1.0.0.0-5.2.0.0" newVersion="4.0.0.1" />
-      </dependentAssembly> 
+      </dependentAssembly>
     </assemblyBinding>
   </runtime>
   <loginProviderService defaultProvider="UrlLoginProvider">
@@ -125,7 +125,7 @@
       <add name="UrlLoginProvider" DefaultLogo="" HomePage="" type="eGistics.Security.LoginProvider.UrlLoginProvider, eGistics.Security" />
       <!--<add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://www\.egisticsinc\.com/[.]*" />-->
       <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://localhost:51842/[.]*" />
-      <add type="eGistics.Security.LoginProvider.FidelitySsoToken, eGistics.Security" name="FidelitySsoToken" HomePage="http://www.egisticsinc.com" LogFolder="L:\WWW\UAT\FDC\WWLMS-W1" />
+      <add type="eGistics.Security.LoginProvider.FidelitySsoToken, eGistics.Security" name="FidelitySsoToken" HomePage="http://www.egisticsinc.com" LogFolder="L:\WWW\UAT\FDC\WWLMS-W2" />
     </providers>
   </loginProviderService>
   <entityFramework>
