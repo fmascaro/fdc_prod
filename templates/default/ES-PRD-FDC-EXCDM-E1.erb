@@ -21,8 +21,8 @@
   </appSettings>
 -->
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/>

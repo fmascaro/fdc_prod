@@ -184,8 +184,8 @@
   </loginProviderService>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="<%= @admin_db %>" providerName="System.Data.SqlClient" />
-    <add name="AuditConn" connectionString="<%= @auditlog_db %>" providerName="System.Data.SqlClient" />
+    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
     <add name="AdminConn_dev" connectionString="<%= @admin_db %>" providerName="System.Data.SqlClient" />
     <add name="AuditConn_dev" connectionString="<%= @auditlog_db %>" providerName="System.Data.SqlClient" />
   </connectionStrings>

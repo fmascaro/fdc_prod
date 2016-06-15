@@ -4,9 +4,9 @@
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
   <connectionStrings>
-    <add name="Admin" connectionString="<%= @admin_db %>"  providerName="System.Data.SqlClient" />
-    <add name="Archive" connectionString="<%= @archive_db %>" providerName="System.Data.SqlClient" />
-    <add name="AuditLog" connectionString="<%= @audit_db %>"  providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
+    <add name="Archive" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_MorganStanley;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="UsePolicy" value="true" />
