@@ -39,24 +39,23 @@
     </diagnostics>
     <bindings>
       <wsHttpBinding>
-        <binding name="WSHttpBinding_IEventCollection">
-		</binding>
+        <binding name="WSHttpBinding_IEventCollection" />
         <binding name="WSHttpBinding_IDashboardWcfService">
-		<security mode="Transport">
-			<transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
-		</security>
-		</binding>
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
       </wsHttpBinding>
     </bindings>
-    <client>
+    <!-- <client>
       <endpoint address="https://DP-IRM-WSESL.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc"
-        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
-        contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
+                binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+                contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
         <identity>
           <dns value="localhost" />
         </identity>
       </endpoint>
-    </client>
+    </client> -->
     <services>
       <service name="Dashboard.WcfService.DashboardWcfService.DashboardWcfService">
         <!-- <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" /> -->
