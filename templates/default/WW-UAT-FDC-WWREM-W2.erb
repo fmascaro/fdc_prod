@@ -39,7 +39,7 @@
       <layout type="log4net.Layout.PatternLayout">
         <header value="--- HEADER ---&#xA;DATE                    &gt;Application&gt;Thread&gt;Class&gt;Method&gt;Message&#xA;"/>
         <footer value="--- FOOTER ---&#xA;&#xA;&#xA;"/>
-        <conversionPattern value="%date %-5level &gt;FDC Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline"/>
+        <conversionPattern value="%date %-5level &gt;FDC Core Website&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline"/>
       </layout>
     </appender>
     <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
@@ -71,7 +71,7 @@
     <add key="UnsignedPage0" value="~/default1.aspx" />
     <add key="UnsignedPage1" value="~/default2.aspx" />
     <add key="eGistics.Data.DatabaseWrapper.GlobalCommandTimeout" value="120" />
-    <add key="PasswordValidationExpression" value=".*" />
+    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$"/>  
     <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
     <add key="NumberOfMinutesBeforeDisplayingSessionAboutToTimeoutPopup" value="3" />
     <add key="PdfWebSite" value="" />
@@ -255,25 +255,22 @@
       <add name="RadCompression" type="Telerik.Web.UI.RadCompression" />
     </httpModules>
     <sessionState timeout="20" cookieless="false" />
-    <!--
-            The <authentication> section enables configuration
-            of the security authentication mode used by
-            ASP.NET to identify an incoming user.
-        -->
+    <!-- 
+         The <authentication> section enables configuration of the security authentication mode used by
+         ASP.NET to identify an incoming user.
+    -->
     <authentication mode="Forms">
       <forms loginUrl="Login.aspx" defaultUrl="~/Default.aspx" protection="Encryption" name=".eGisticsTicket" timeout="22" slidingExpiration="true" path="/" requireSSL="false" />
     </authentication>
     <authorization>
       <deny users="?" />
     </authorization>
-    <!--
-            The <customErrors> section enables configuration
-            of what to do if/when an unhandled error occurs
-            during the execution of a request. Specifically,
-            it enables developers to configure html error pages
+    <!-- 
+            The <customErrors> section enables configuration of what to do if/when an unhandled error occurs
+            during the execution of a request. Specifically, it enables developers to configure html error pages
             to be displayed in place of a error stack trace.
     -->
-    <customErrors mode="Off" defaultRedirect="~/Login.aspx">
+    <customErrors mode="On" defaultRedirect="~/Login.aspx">
       <!--<error statusCode="403" redirect="NoAccess.htm" />-->
       <error statusCode="404" redirect="~/PageNotFound.aspx" />
     </customErrors>
@@ -309,6 +306,11 @@
             <add value="login.aspx" />
         </files>
     </defaultDocument>
+  <httpProtocol>
+      <customHeaders>
+        <add name="X-UA-Compatible" value="IE=edge" />
+      </customHeaders>
+    </httpProtocol>
   </system.webServer>
   <system.serviceModel>
     <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
@@ -369,6 +371,13 @@
   </system.serviceModel>
 
   <!-- Allow unauthenticated users to access these areas-->
+  <location path="styles">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
   <location path="SamlSso.ashx">
     <system.web>
       <authorization>
