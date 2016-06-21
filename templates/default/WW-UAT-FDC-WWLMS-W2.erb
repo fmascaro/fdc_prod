@@ -42,7 +42,7 @@
       <layout type="log4net.Layout.PatternLayout">
         <header value="--- HEADER ---&#xA;DATE                    &gt;Application&gt;Thread&gt;Class&gt;Method&gt;Message&#xA;" />
         <footer value="--- FOOTER ---&#xA;&#xA;&#xA;" />
-        <conversionPattern value="%date %-5level &gt;FDC Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline" />
+        <conversionPattern value="%date %-5level &gt;FDC LMS Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline" />
       </layout>
     </appender>
     <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
@@ -69,14 +69,14 @@
     <add key="SmtpServer" value="dp-egi-rly-01" />
     <add key="defaultEmailFrom" value="notifications@egisticsinc.com" />
     <add key="defaultDestination" value="https://$url1$/RemitCore/samlsso.ashx" />
-    <add key="PasswordValidationExpression" value=".*" />
+    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$" />
     <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
     <add key="NumberOfMonthsPasswordCanBeReused" value="30" />
     <add key="NumberOfTimesPasswordCanBeReused" value="5" />
     <add key="NumberOfDaysBeforePasswordCanBeChanged" value="30" />
     <add key="PasswordRepeatCharactersInvalid" value="true" />
     <add key="SAMLSigningSerialNumber" value="<%= @EGI_Signature_Cert %>" />
-    <!--<add key="SAMLEncryptionSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />-->
+    <add key="OrganizationTreeSlidingExpirationInMinutes" value="1" />
   </appSettings>
   <system.web> 
     <machineKey
@@ -87,7 +87,17 @@
     <authentication mode="Windows" />
     <compilation debug="false" targetFramework="4.5" />
     <httpRuntime targetFramework="4.5" />
+    <customErrors mode="On" defaultRedirect="~/Home">
+      <error statusCode="404" redirect="~/PageNotFound.aspx" />
+    </customErrors>
   </system.web>
+  <system.webServer>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-UA-Compatible" value="IE=edge" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
       <dependentAssembly>
