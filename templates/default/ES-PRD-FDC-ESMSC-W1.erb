@@ -1,14 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <appSettings>
-    <add key="AuditConnectionString" value="<%= @auditlog_db %>"/>
-    <add key="QueueName" value=".\FDC3g"/>
+    <add key="ConnectionString" value="Data Source=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_Admin3g;Trusted_Connection=True;encrypt=true"/>
+    <add key="AuditConnectionString" value="Data Source=DP-FDC-SQL-01.egistics.local;DATABASE=RTC_AuditLog3g;Trusted_Connection=True;encrypt=true;Max Pool Size=300;Connect Timeout=30;;Network Library=DBMSSOCN;"/>
+    <add key="QueueName" value=".\Private$\FDC3g"/>
     <add key="SleepTime" value="5000"/>
-    <add key="QueueWaitTime" value="5000"/>
-    <add key="logFileName" value="L:\WWW\PRD\FDC\ESMSC-W1"/>
-    <add key="logLevel" value="6"/>
+    <add key="QueueWaitTime" value="3000"/>
+    <add key="logFileName" value="L:\TIS\PRD\FDC\ESMSC-W1"/>
+    <add key="logLevel" value="0"/>
   </appSettings>
-  <startup>
-    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.1"/>
-  </startup>
 </configuration>
