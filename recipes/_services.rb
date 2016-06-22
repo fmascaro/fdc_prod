@@ -100,8 +100,7 @@ services.each do |service|
 				:efs => node[:tags].include?("ashburn") ? '\\\\AP-ESL-EFS-01' : '\\\\DP-ESL-EFS-01',
 				:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx',
 				:strongauthblock => strongauth,
-				:env => env,
-				:auditlog_db => node[:tags].include?("ashburn") ? 'SERVER=AP-FDC-SQL-01.egistics.local;DATABASE=rtc_AuditLog3g;Trusted_Connection=True' : 'SERVER=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_AuditLog3g;Trusted_Connection=True'
+				:env => env
 				})
 			notifies :restart, "service[#{svc_db_item[service]['ServiceName']}]"
 		end unless svc_db_item[service]['config_filename'].empty?
