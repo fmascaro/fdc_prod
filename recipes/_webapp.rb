@@ -231,9 +231,25 @@ webapps.each do |webapp|
       	action :create
       	variables({
       		:strongauth => web_db_item[webapp]['strongauth'],
-          :env => env
+          :env => env,
+          :storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
       		})
       	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
+      end
+
+      #Copy Assets from Golden Repository
+      if web_db_item[webapp]['assets']
+          powershell_script "CopyImages" do
+          guard_interpreter :powershell_script
+          code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\#{env}\\FDC\\#{web_db_item[webapp]['app_directory']}\\images #{app_root}\\Images /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
+          exit $LASTEXITCODE"
+        end
+
+        powershell_script "CopyManuals" do
+          guard_interpreter :powershell_script
+          code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\#{env}\\FDC\\#{web_db_item[webapp]['app_directory']}\\manuals #{app_root}\\Content\\Manuals /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
+          exit $LASTEXITCODE"
+        end
       end
 
       #Support resources to assign ssl cert to web site, and additional configs for application pools and application
