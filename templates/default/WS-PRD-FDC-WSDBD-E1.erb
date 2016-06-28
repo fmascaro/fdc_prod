@@ -88,13 +88,13 @@
   <connectionStrings>
     <add name="Warehouse" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=test_FDC_Warehouse;Trusted_Connection=True"/>
   </connectionStrings>
-  <!--<log4net>
+  <log4net>
     <root>
       <level value="DEBUG"/>
       <appender-ref ref="LogFileAppender"/>
     </root>
     <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
-      <param name="File" value="L:\WWW\PRD\IRM\WSDBD-E1\DashboardWcfSvclog-file.txt"/>
+      <param name="File" value="L:\WWW\PRD\FDC\WSDBD-E1\DashboardWcfSvclog-file.txt"/>
       <param name="AppendToFile" value="true"/>
       <rollingStyle value="Size"/>
       <maxSizeRollBackups value="10"/>
@@ -104,5 +104,5 @@
         <param name="ConversionPattern" value="%date [%thread] %-5level %logger - %message%newline"/>
       </layout>
     </appender>
-  </log4net>-->
+  </log4net>
 </configuration>

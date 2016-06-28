@@ -22,7 +22,7 @@
     <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
   </configSections>
 
-    <log4net>
+  <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
       <file value="L:\WWW\PRD\FDC\WWREM-W2\FDCRemitWeb.log"/>
       <appendToFile value="true"/>
@@ -48,7 +48,6 @@
       <appender-ref ref="RollingFileAppender"/>
     </root>
   </log4net>
-
   <telerik.web.ui>
     <radCompression enablePostbackCompression="true" />
   </telerik.web.ui>
@@ -105,7 +104,6 @@
     <add key="DefaultMobileRejectCode" value="R023"/>
     <add key="PDFNetLicenseKey" value="eGistics Inc(egisticsinc.com):OEM:iRemit, CloudDocs::W:AMS(20150619):0C7780F11F27D4D0337F727060617F04D7501663DB4C6DC2B76230A06A4135F5C7" />
     <add key="IDXPath" value=""/>
-
   </appSettings>
   <applicationSettings>
     <eGistics.Archive.Cloud.Properties.Settings>
@@ -116,14 +114,14 @@
   </applicationSettings>
   <loginProviderService defaultProvider="">
     <providers>
-    <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
-      name="egSamlSSO" UserIdPrefix="" ClientX509SerialNumber="" HomePage="https://msrcp.fdps.com/RemitCore/CloseSession.html"
-      ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html" DecryptMessage="false" OrganizationAndRolesManagedOneGisticsSide="true" Issuer="TIS_SSO"
-      OrganizationCode="EGISTICS" AllowedRoleCodes="*"  FindOnlyValidCertificates="false" VerifyExpiry="false"
-      UseThisLoginProviderInCaseOfNullReferrer="true"
-    />
-    <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
-          name="tisSamlToken"
+      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
+        name="egSamlSSO" UserIdPrefix="" ClientX509SerialNumber="" HomePage="https://msrcp.fdps.com/RemitCore/CloseSession.html"
+        ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html" DecryptMessage="false" OrganizationAndRolesManagedOneGisticsSide="true" Issuer="TIS_SSO"
+        OrganizationCode="EGISTICS" AllowedRoleCodes="*"  FindOnlyValidCertificates="false" VerifyExpiry="false"
+        UseThisLoginProviderInCaseOfNullReferrer="true"
+      />
+      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
+           name="tisSamlToken"
            UserIdPrefix=""
            ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6"
            HomePage="https://msrcp.fdps.com/RemitLMS"
@@ -136,46 +134,45 @@
            FindOnlyValidCertificates="false"
            VerifyExpiry="false"
            UseThisLoginProviderInCaseOfNullReferrer="true"
-       supportschangepassword="Default"
-       />
+           supportschangepassword="Default"
+      />
 
-    <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
-      name="morganTisSamlToken"
-      SupportsChangePassword="Default"
-      UserIdPrefix=""
-      ClientX509SerialNumber=""
-      HomePage="http://localhost:49518/Home"
-      ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html"
-      DecryptMessage="false"
-      OrganizationAndRolesManagedOneGisticsSide="false"
-      Issuer="morganstanleytest.com"
-      OrganizationCode="MORGANSTANLEYROOT"
-      AllowedRoleCodes="*"
-      FindOnlyValidCertificates="false"
-      VerifyExpiry="false"
-      UseThisLoginProviderInCaseOfNullReferrer="true"
-      supportschangepassword="No"
-    />
+      <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
+           name="morganTisSamlToken"
+           SupportsChangePassword="Default"
+           UserIdPrefix=""
+           ClientX509SerialNumber=""
+           HomePage="http://localhost:49518/Home"
+           ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html"
+           DecryptMessage="false"
+           OrganizationAndRolesManagedOneGisticsSide="false"
+           Issuer="morganstanleytest.com"
+           OrganizationCode="MORGANSTANLEYROOT"
+           AllowedRoleCodes="*"
+           FindOnlyValidCertificates="false"
+           VerifyExpiry="false"
+           UseThisLoginProviderInCaseOfNullReferrer="true"
+           supportschangepassword="No"
+      />
 
-    <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
-      name="morganSamlToken"
-      SupportsChangePassword="Default"
-      UserIdPrefix=""
-      ClientX509SerialNumber="7d 00 6f 9d 0b 58 9a 95 7c 88 a8 5a e7 6a 70 3a"
-      HomePage="https://saml.ms.com/idp/startSSO.ping?PARTNER=https://msrcp.fdps.com"
-      ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html"
-      DecryptMessage="false"
-      OrganizationAndRolesManagedOneGisticsSide="false"
-      Issuer="morganstanley.com"
-      OrganizationCode="MORGANSTANLEYROOT"
-      AllowedRoleCodes="*"
-      FindOnlyValidCertificates="false"
-      VerifyExpiry="false"
-      UseThisLoginProviderInCaseOfNullReferrer="true"
-      supportschangepassword="No"
-    />
-
-     </providers>
+      <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
+        name="morganSamlToken"
+        SupportsChangePassword="Default"
+        UserIdPrefix=""
+        ClientX509SerialNumber="7d 00 6f 9d 0b 58 9a 95 7c 88 a8 5a e7 6a 70 3a"
+        HomePage="https://saml.ms.com/idp/startSSO.ping?PARTNER=https://msrcp.fdps.com"
+        ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html"
+        DecryptMessage="false"
+        OrganizationAndRolesManagedOneGisticsSide="false"
+        Issuer="morganstanley.com"
+        OrganizationCode="MORGANSTANLEYROOT"
+        AllowedRoleCodes="*"
+        FindOnlyValidCertificates="false"
+        VerifyExpiry="false"
+        UseThisLoginProviderInCaseOfNullReferrer="true"
+        supportschangepassword="No"
+      />
+    </providers>
   </loginProviderService>
   <webHooksService defaultProvider="default">
     <providers>
@@ -255,25 +252,22 @@
       <add name="RadCompression" type="Telerik.Web.UI.RadCompression" />
     </httpModules>
     <sessionState timeout="20" cookieless="false" />
-    <!--
-            The <authentication> section enables configuration
-            of the security authentication mode used by
-            ASP.NET to identify an incoming user.
-        -->
+    <!-- 
+         The <authentication> section enables configuration of the security authentication mode used by
+         ASP.NET to identify an incoming user.
+    -->
     <authentication mode="Forms">
       <forms loginUrl="Login.aspx" defaultUrl="~/Default.aspx" protection="Encryption" name=".eGisticsTicket" timeout="22" slidingExpiration="true" path="/" requireSSL="false" />
     </authentication>
     <authorization>
       <deny users="?" />
     </authorization>
-    <!--
-            The <customErrors> section enables configuration
-            of what to do if/when an unhandled error occurs
-            during the execution of a request. Specifically,
-            it enables developers to configure html error pages
+    <!-- 
+            The <customErrors> section enables configuration of what to do if/when an unhandled error occurs
+            during the execution of a request. Specifically, it enables developers to configure html error pages
             to be displayed in place of a error stack trace.
     -->
-    <customErrors mode="Off" defaultRedirect="~/Login.aspx">
+    <customErrors mode="On" defaultRedirect="~/Login.aspx">
       <!--<error statusCode="403" redirect="NoAccess.htm" />-->
       <error statusCode="404" redirect="~/PageNotFound.aspx" />
     </customErrors>
@@ -309,6 +303,11 @@
             <add value="login.aspx" />
         </files>
     </defaultDocument>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-UA-Compatible" value="IE=edge" />
+      </customHeaders>
+    </httpProtocol>
   </system.webServer>
   <system.serviceModel>
     <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
@@ -369,6 +368,13 @@
   </system.serviceModel>
 
   <!-- Allow unauthenticated users to access these areas-->
+  <location path="styles">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
   <location path="SamlSso.ashx">
     <system.web>
       <authorization>
