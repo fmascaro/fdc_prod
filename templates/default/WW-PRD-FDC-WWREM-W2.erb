@@ -70,7 +70,7 @@
     <add key="UnsignedPage0" value="~/default1.aspx" />
     <add key="UnsignedPage1" value="~/default2.aspx" />
     <add key="eGistics.Data.DatabaseWrapper.GlobalCommandTimeout" value="120" />
-    <add key="PasswordValidationExpression" value=".*" />
+    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$"/>  
     <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
     <add key="NumberOfMinutesBeforeDisplayingSessionAboutToTimeoutPopup" value="3" />
     <add key="PdfWebSite" value="" />
