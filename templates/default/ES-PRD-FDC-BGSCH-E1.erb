@@ -3,23 +3,23 @@
   <configSections>
     <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-	    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig" />
+        <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig" />
     <sectionGroup name="system.web">
       <section name="ImageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
       <section name="PDFService" type="eGistics.Output.PDF.Provider.PDFServiceSection, eGistics.Output" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
     </sectionGroup>
     <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
      <section name="eGistics.Archive.Cloud.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-	<section name="FDC.CorrespondenceGeneration.Plugin.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="iRemit.CorrespondenceGeneration.Plugin.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
     </sectionGroup>
     <section name="UrlSection" type="eGistics.Archive.Cloud.UrlSection, eGistics.Archive.Cloud" />
-	<section name="StrongAuth.CryptoSection" type="StrongAuth.StrongKeyCryptoEngine.CryptoSection, StrongAuth.StrongKeyCryptoEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ac236b7e59e7bec0"/>
+    <section name="StrongAuth.CryptoSection" type="StrongAuth.StrongKeyCryptoEngine.CryptoSection, StrongAuth.StrongKeyCryptoEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ac236b7e59e7bec0"/>
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
 
-    <ContextInfo>
+  <ContextInfo>
     <Context>
-      <add name="CorroGenPlugin" type="FDC Correspondence Generation Plugin dll" connstring="Data Source=DP-FDC-SQL-02.egistics.local;Initial Catalog=Test_FDC_Admin;Integrated Security=True;Encrypt=true" providerName="System.Data.SqlClient" />
+      <add name="CorroGenPlugin" type="iRemit Correspondence Generation Plugin dll" connstring="Data Source=DP-FDC-SQL-02.egistics.local;Initial Catalog=Test_FDC_Admin;Integrated Security=True;Encrypt=true" providerName="System.Data.SqlClient" />
     </Context>
   </ContextInfo>
 
@@ -50,23 +50,22 @@
 
   </appSettings>
 
-    <applicationSettings>
-     <eGistics.Archive.Cloud.Properties.Settings>
- <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
+  <applicationSettings>
+    <eGistics.Archive.Cloud.Properties.Settings>
+      <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
         <value><%= @storage_proxy %></value>
       </setting>
     </eGistics.Archive.Cloud.Properties.Settings>
-    <FDC.CorrespondenceGeneration.Plugin.Properties.Settings>
-      <setting name="FDC_CorrespondenceGeneration_Plugin_SynapticWebService_SynapticWebService" serializeAs="String">
+    <iRemit.CorrespondenceGeneration.Plugin.Properties.Settings>
+      <setting name="iRemit_CorrespondenceGeneration_Plugin_SynapticWebService_SynapticWebService" serializeAs="String">
         <value><%= @storage_proxy %></value>
       </setting>
-    </FDC.CorrespondenceGeneration.Plugin.Properties.Settings>
+    </iRemit.CorrespondenceGeneration.Plugin.Properties.Settings>
   </applicationSettings>
 
-    <UrlSection>
+  <UrlSection>
     <Urls>
       <add name="URL1" url="<%= @storage_proxy %>" />
-      <add name="URL2" url="<%= @storage_proxy %>" />
     </Urls>
   </UrlSection>
 
@@ -120,7 +119,7 @@
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
   </startup>
 
-<system.serviceModel>
+  <system.serviceModel>
     <bindings>
       <wsHttpBinding>
         <binding name="WSHttpBinding_IEventCollection" openTimeout="00:10:00" closeTimeout="00:10:00" sendTimeout="00:10:00" receiveTimeout="00:10:00" transactionFlow="false" maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647">
