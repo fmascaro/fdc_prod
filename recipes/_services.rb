@@ -104,7 +104,7 @@ services.each do |service|
 				:efs => node[:tags].include?("ashburn") ? '\\\\AP-ESL-EFS-01' : '\\\\DP-ESL-EFS-01',
 				:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx',
 				:strongauthblock => strongauth,
-				:site => site
+				:site => site,
 				:env => environment
 				})
 			notifies :restart, "service[#{svc_db_item[service]['ServiceName']}]"
