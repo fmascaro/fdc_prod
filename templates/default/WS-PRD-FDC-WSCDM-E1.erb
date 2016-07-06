@@ -4,15 +4,15 @@
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
-    <add name="Archive" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_MorganStanley;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
-    <add name="AuditLog" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
+    <add name="Archive" connectionString="SERVER=FDC-RMT-AG1;DATABASE=Test_FDC_MorganStanley;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="UsePolicy" value="true" />
     <add key="LogPath" value="L:\WWW\PRD\FDC\WSCDM-E1\CDMWrapper.log" />
     <add key="LogExceptionsOnly" value="false" />
-    <add key="EndPointAddress" value="https://DP-FDC-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" />
+    <add key="EndPointAddress" value="https://<%= @site %><%= @env %>-fdc-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" />
     <add key="UseBindingConfig" value="false" />
     <add key="EndPointName" value="FundsWrapperServiceSoap"/>
     <add key="NotifyUserGroupCaption" value="Access Funds Application"/>
@@ -88,7 +88,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://DP-FDC-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" 
+      <endpoint address="https://<%= @site %><%= @env %>-fdc-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" 
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
                 contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
     </client>
