@@ -18,7 +18,7 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-PRD-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+      <add name="ES-PRD-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
     </Context>
   </ContextInfo>
 
@@ -223,7 +223,7 @@
       />
 
       <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_admin;Trusted_Connection=True"
+           connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,SubSiteID,BundleID,BatchType2,BatchMode,Other1,Other2,Other3,Other4,Other5,Other6,Other7,RollupCode,Other9,Other10,Other11,Other12,ArcInd,CDMTransID,Other13,Other14,Other15,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -306,7 +306,7 @@
 
       <add name="MorganStanleyReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="SiteID,SubSiteID,BatchNum,ProcessDate,ReportName,Image_File_Name"
-           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_admin;Trusted_Connection=True"
+           connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
            callPostProcessURLColumnName=""
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -356,7 +356,7 @@
       />
 
       <add name="MorganStanleyCDMBaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_admin;Trusted_Connection=True"
+           connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNumber,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name,Annotation"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -428,7 +428,7 @@
       />
 
       <add name="MorganStanleyCorroAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider,        BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_admin;Trusted_Connection=True"
+           connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
            lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
            getClientInfoSP="spGetClientInfoCorro"
            getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
@@ -469,7 +469,7 @@
 
       <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Site,subsiteid,ProcessDate,ItemType,BatchNum,TranNum,SeqNum,Amount,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,AccountNum,CheckRT,CheckNum,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Exception1,Exception2,Exception3,Exception4,Exception5,Exception6,Exception7,Exception8,Exception9,Exception10,Image_File_Name"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
            getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
            clientConnectionStringInDatabase="True" 

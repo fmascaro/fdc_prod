@@ -19,13 +19,13 @@
 
   <ContextInfo>
     <Context>
-      <add name="CorroGenPlugin" type="iRemit Correspondence Generation Plugin dll" connstring="Data Source=DP-FDC-SQL-02.egistics.local;Initial Catalog=Test_FDC_Admin;Integrated Security=True;Encrypt=true" providerName="System.Data.SqlClient" />
+      <add name="CorroGenPlugin" type="iRemit Correspondence Generation Plugin dll" connstring="Data Source=FDC-ADM-AG2;Initial Catalog=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=True;Encrypt=true" providerName="System.Data.SqlClient" />
     </Context>
   </ContextInfo>
 
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
-    <add name="Audit" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Test_FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Audit" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
@@ -38,7 +38,7 @@
     <add key="pluginPath" value="E:\TIS\PRD\FDC\BGSCH-E1"/>
     <add key="MaxThreads" value="1" />
     <add key="EndPointName" value="FundsWrapperServiceSoap"/>
-    <add key="EndPointUrl" value="https://dp-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"/>
+    <add key="EndPointUrl" value="https://<%= @site %><%= @env %>-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"/>
     <add key="SynapticURLList" value="<%= @storage_proxy %>|<%= @storage_proxy %>" />
     <add key="BaseURI" value="32.65.211.48|32.65.211.49|32.65.209.48" />
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150" />
@@ -143,7 +143,7 @@
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
 
-      <endpoint address="https://dp-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
+      <endpoint address="https://<%= @site %><%= @env %>-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
           binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
           contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
     </client>
