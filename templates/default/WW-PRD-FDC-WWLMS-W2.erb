@@ -21,9 +21,9 @@
     <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
 
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-  <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
-      <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
-</configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+  </configSections>
 
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
@@ -42,7 +42,7 @@
       <layout type="log4net.Layout.PatternLayout">
         <header value="--- HEADER ---&#xA;DATE                    &gt;Application&gt;Thread&gt;Class&gt;Method&gt;Message&#xA;" />
         <footer value="--- FOOTER ---&#xA;&#xA;&#xA;" />
-        <conversionPattern value="%date %-5level &gt;FDC Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline" />
+        <conversionPattern value="%date %-5level &gt;FDC LMS Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline" />
       </layout>
     </appender>
     <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
@@ -58,8 +58,8 @@
   <dataConfiguration defaultDatabase="Admin" />
   <connectionStrings>
     <clear />
-    <add name="Admin" connectionString="<%= @test_admin_db %>" providerName="System.Data.SqlClient" />
-    <add name="AuditLog" connectionString="<%= @test_audit_db %>" providerName="System.Data.SqlClient" />  
+    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="3.0.0.0" />
@@ -68,27 +68,36 @@
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
     <add key="SmtpServer" value="dp-egi-rly-01" />
     <add key="defaultEmailFrom" value="notifications@egisticsinc.com" />
-    <add key="defaultDestination" value="https://$url1$/web/samlsso.ashx" />
-    <add key="PasswordValidationExpression" value=".*" />
+    <add key="defaultDestination" value="https://$url1$/RemitCore/samlsso.ashx" />
+    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$" />
     <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
     <add key="NumberOfMonthsPasswordCanBeReused" value="30" />
     <add key="NumberOfTimesPasswordCanBeReused" value="5" />
     <add key="NumberOfDaysBeforePasswordCanBeChanged" value="30" />
     <add key="PasswordRepeatCharactersInvalid" value="true" />
-    <add key="SAMLSigningSerialNumber" value="<%= @EGI_Signature_Cert %>" />
-    <!--<add key="SAMLEncryptionSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />-->
+    <add key="SAMLSigningSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />
+    <add key="OrganizationTreeSlidingExpirationInMinutes" value="1" />
   </appSettings>
   <system.web>
-   <system.web>
-    <machineKey
-      validationKey="9DC4E3B93B0FC770C998E158718EC62CB8C6C3FE7A1551DFC890C553BBA78F1672179AEE58E4B92ED43C38C3B5833000ED8D8137D95D6588F40BC43B19AB22BE"
-      decryptionKey="825E4FB0F813C599DB679362E76D875787BA8ECB919F69CCC9749B1415260DFD"
+     <machineKey
+      validationKey="25EC071DC052A91F269388AEE4DEAA5E096C51DA3DF4B20AA86FA752F42D19DDD2D33E361826259585A414E28901FA4175038139A230C46D2CA421CC05AACFC2"
+      decryptionKey="D5EAAC334E67FE2CF7357F214A6565BDD68162E5AB1AD06895F319C00EA3D0CA"
       validation="SHA1" decryption="AES"
     />
     <authentication mode="Windows" />
     <compilation debug="false" targetFramework="4.5" />
     <httpRuntime targetFramework="4.5" />
+    <customErrors mode="On" defaultRedirect="~/Home">
+      <error statusCode="404" redirect="~/PageNotFound.aspx" />
+    </customErrors>
   </system.web>
+  <system.webServer>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-UA-Compatible" value="IE=edge" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
       <dependentAssembly>
@@ -126,7 +135,6 @@
       <add name="UrlLoginProvider" DefaultLogo="" HomePage="" type="eGistics.Security.LoginProvider.UrlLoginProvider, eGistics.Security" />
       <!--<add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://www\.egisticsinc\.com/[.]*" />-->
       <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://localhost:51842/[.]*" />
-      <add type="eGistics.Security.LoginProvider.FidelitySsoToken, eGistics.Security" name="FidelitySsoToken" HomePage="http://www.egisticsinc.com" LogFolder="L:\WWW\PRD\FDC\WWLMS-W2" />
     </providers>
   </loginProviderService>
   <entityFramework>
@@ -137,9 +145,9 @@
   </entityFramework>
   <system.web.extensions>
    <scripting>
-	   <webServices>
-		   <jsonSerialization maxJsonLength="2147483644" />
-	   </webServices>
+     <webServices>
+       <jsonSerialization maxJsonLength="2147483644" />
+     </webServices>
    </scripting>
 </system.web.extensions>
 </configuration>

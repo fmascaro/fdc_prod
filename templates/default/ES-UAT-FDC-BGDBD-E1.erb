@@ -16,9 +16,9 @@
   </appSettings>
   <dataConfiguration defaultDatabase="Admin"/>
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-   <add name="AuditLog" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
-    <add name="Warehouse" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Warehouse;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
+    <add name="Admin" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditLog" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Auditlog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="Warehouse" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Warehouse;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <log4net>
     <root>
@@ -45,11 +45,11 @@
     <bindings>
       <wsHttpBinding>
         <binding name="WSHttpBinding_IEventCollection" />
-		<binding name="WSHttpBinding_IDashboardWcfService">
-		<security mode="Transport">
-			<transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
-		</security>
-		</binding>
+        <binding name="WSHttpBinding_IDashboardWcfService">
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
       </wsHttpBinding>
       <mexHttpBinding>
         <binding name="MexHttpBinding_IEventCollection" closeTimeout="00:10:00"

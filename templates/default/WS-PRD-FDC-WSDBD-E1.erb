@@ -39,24 +39,23 @@
     </diagnostics>
     <bindings>
       <wsHttpBinding>
-        <binding name="WSHttpBinding_IEventCollection">
-		</binding>
+        <binding name="WSHttpBinding_IEventCollection" />
         <binding name="WSHttpBinding_IDashboardWcfService">
-		<security mode="Transport">
-			<transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
-		</security>
-		</binding>
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
       </wsHttpBinding>
     </bindings>
-    <client>
+    <!-- <client>
       <endpoint address="https://DP-IRM-WSESL.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc"
-        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
-        contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
+                binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+                contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
         <identity>
           <dns value="localhost" />
         </identity>
       </endpoint>
-    </client>
+    </client> -->
     <services>
       <service name="Dashboard.WcfService.DashboardWcfService.DashboardWcfService">
         <!-- <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" /> -->
@@ -87,9 +86,9 @@
     <directoryBrowse enabled="true"/>
   </system.webServer>
   <connectionStrings>
-    <add name="Warehouse" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=test_FDC_Warehouse;Trusted_Connection=True"/>
+    <add name="Warehouse" connectionString="FDC-RMT-AG1;DATABASE=Test_FDC_Warehouse;MultiSubnetFailover=Yes;Trusted_Connection=True;Encrypt=true"/>
   </connectionStrings>
-  <!--<log4net>
+  <log4net>
     <root>
       <level value="DEBUG"/>
       <appender-ref ref="LogFileAppender"/>
@@ -105,5 +104,5 @@
         <param name="ConversionPattern" value="%date [%thread] %-5level %logger - %message%newline"/>
       </layout>
     </appender>
-  </log4net>-->
+  </log4net>
 </configuration>

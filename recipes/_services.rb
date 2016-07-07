@@ -92,6 +92,10 @@ services.each do |service|
 					 strongauth.gsub!('dp-egi-cry-01', 'ap-esl-sau-lb')
 			 end
 
+		#Split Site and Environment from node name
+		name = node.name
+		site, environment = name[0..1][0], name[0..1][1]
+
 		template "#{svc_db_item[service]['app_directory']}/#{svc_db_item[service]['config_filename']}" do
 			source "#{svc_db_item[service]['ServiceName']}.erb"
 			action :create
@@ -100,7 +104,8 @@ services.each do |service|
 				:efs => node[:tags].include?("ashburn") ? '\\\\AP-ESL-EFS-01' : '\\\\DP-ESL-EFS-01',
 				:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx',
 				:strongauthblock => strongauth,
-				:env => env
+				:site => site,
+				:env => environment
 				})
 			notifies :restart, "service[#{svc_db_item[service]['ServiceName']}]"
 		end unless svc_db_item[service]['config_filename'].empty?

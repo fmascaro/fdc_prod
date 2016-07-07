@@ -22,7 +22,7 @@
     <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
   </configSections>
 
-    <log4net>
+  <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
       <file value="L:\WWW\PRD\FDC\WWREM-W2\FDCRemitWeb.log"/>
       <appendToFile value="true"/>
@@ -48,15 +48,16 @@
       <appender-ref ref="RollingFileAppender"/>
     </root>
   </log4net>
-
   <telerik.web.ui>
     <radCompression enablePostbackCompression="true" />
   </telerik.web.ui>
   <dataConfiguration defaultDatabase="Admin" />
   <connectionStrings>
     <clear />
-    <add name="Admin" connectionString="<%= @test_admin_db %>" providerName="System.Data.SqlClient" />
-    <add name="AuditLog" connectionString="<%= @test_audit_log %>" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditLog" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="baseremit_adminEntities" connectionString="metadata=res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.csdl|res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.ssdl|res://*/Content.CorroGeneration.Models.Admin.CorroAdmin.msl;provider=System.Data.SqlClient;provider connection string=&quot;SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Trusted_Connection=True;encrypt=true;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="baseremit_archiveEntities" connectionString="metadata=res://*/Content.CorroGeneration.Models.Archive.CorroArchive.csdl|res://*/Content.CorroGeneration.Models.Archive.CorroArchive.ssdl|res://*/Content.CorroGeneration.Models.Archive.CorroArchive.msl;provider=System.Data.SqlClient;provider connection string=&quot;SERVER=FDC-RMT-AG1;DATABASE=Test_FDC_MorganStanley;MultiSubnetFailover=Yes;Trusted_Connection=True;encrypt=true;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
   <appSettings>
     <clear />
@@ -69,87 +70,111 @@
     <add key="UnsignedPage0" value="~/default1.aspx" />
     <add key="UnsignedPage1" value="~/default2.aspx" />
     <add key="eGistics.Data.DatabaseWrapper.GlobalCommandTimeout" value="120" />
-    <add key="PasswordValidationExpression" value="^(?=.{8,50})(?=.*[0-9\W])(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
-    <add key="PasswordValidationMessage" value="Password must be between 8 and 50 characters, contain at least one upper-case letter, one lower-case letter and one number and/or special character."/>
-    <add key="NumberOfMinutesBeforeDisplayingSessionAboutToTimeoutPopup" value="<%= @session_popup_delay_minutes %>" />
+    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$"/>  
+    <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
+    <add key="NumberOfMinutesBeforeDisplayingSessionAboutToTimeoutPopup" value="3" />
     <add key="PdfWebSite" value="" />
     <add key="PdfWebSite_SignerCertSerialNumber" value="" />
     <add key="PdfWebSite_RecipientCertSerialNumber" value="" />
     <add key="LTAImageShowTransactionDetail" value="true" />
     <add key="NumberOfMonthsPasswordCanBeReused" value="30" />
     <add key="NumberOfTimesPasswordCanBeReused" value="5" />
-    <add key="NumberOfDaysBeforePasswordCanBeChanged" value="1" />
     <add key="PasswordRepeatCharactersInvalid" value="true" />
     <add key="RESET_TIMEOUT" value="3" />
-    <add key="SERVICE_LIST" value="<%= @storage_proxy %>" />
+    <add key="SERVICE_LIST" value="<%= @storage_proxy %>|<%= @storage_proxy %>|<%= @storage_proxy %>" />
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150" />
-    <add key="SharedSecret" value="TjijlY1Yh6aV459ykU6VAXPbxsI="/>
-    <add key="ApplicationID" value="gp_FDC"/>
+    <add key="SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64=" />
+    <add key="ApplicationID" value="egBetaTest" />
+    <add key="Telerik.Web.UI.StyleSheetFolders" value="~/styles/" />
     <add key="Telerik.Skin" value="Default" />
-    <add key="Telerik.ScriptManager.TelerikCdn" value="Disabled"/>
-    <add key="Telerik.StyleSheetManager.TelerikCdn" value="Disabled"/>
-    <add key="Telerik.Web.UI.StyleSheetFolders" value="~/styles/"/>
-    <add key="aspnet:MaxHttpCollectionKeys" value="4000"/>
-    <add key="optimize" value="true"/>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="BaseUrl" value="/RemitCore/" />
+    <add key="SAML_XPath_Conditions" value="ns2:Conditions"/>
+    <add key="SAML_XPath_Conditions_Attributes_NotBefore" value="NotBefore"/>
+    <add key="SAML_XPath_Conditions_Attributes_NotOnOrAfter" value="NotOnOrAfter"/>
+    <add key="SAML_XPath_Signature" value="ds:Signature"/>
+    <add key="SAML_XPath_Attributes" value="saml:Attribute"/>
+    <add key="SAML_XPath_Attributes_RACFID" value="RACFID"/>
+    <add key="SAML_XPath_AttributeValue" value="saml:AttributeValue"/>
+    <add key="LogReceivedSAMLTokens" value="true"/>
+    <add key="RedirectURL" value="https://saml.ms.com/idp/startSSO.ping?PARTNER=https://msrcp.fdps.com" />
+    <add key="DefaultMobileRejectCode" value="R023"/>
+    <add key="PDFNetLicenseKey" value="eGistics Inc(egisticsinc.com):OEM:iRemit, CloudDocs::W:AMS(20150619):0C7780F11F27D4D0337F727060617F04D7501663DB4C6DC2B76230A06A4135F5C7" />
+    <add key="IDXPath" value=""/>
   </appSettings>
   <applicationSettings>
     <eGistics.Archive.Cloud.Properties.Settings>
       <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
-    <value><%= @storage_proxy %></value>
+        <value><%= @storage_proxy %></value>
       </setting>
     </eGistics.Archive.Cloud.Properties.Settings>
   </applicationSettings>
-  <loginProviderService defaultProvider="UrlLoginProvider">
+  <loginProviderService defaultProvider="">
     <providers>
-      <add name="UrlLoginProvider" DefaultLogo="" HomePage="" type="eGistics.Security.LoginProvider.UrlLoginProvider, eGistics.Security"/>
-      <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security"
-        name="SsoToken"
-        OrganizationCode="FIDELITY"
-        AllowedRoleCodes="AUDIT|LTA|RPT|CDMUser|EXSUPER|CDMREADONLY|EXPORTPDF|EXADC13|EXOTHER2|EXCODE3|EXCORRO4|EXSUSP5|EXRET6|EXOVER7"
-        UserIdPrefix="C:"
-        ClientX509SerialNumber="03 5a"
-        LogFolder="L:\WWW\PRD\FDC\WWREM-W2\SsoToken"
-        HomePage="https://www.fislbxcentral.com/CloseSession.html"
-        ErrorValidationPage=""
-        DecryptMessage="false"
-      />
-      <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security"
-        name="eGSsoToken"
-        OrganizationCode="FIDELITY"
-        AllowedRoleCodes="*"
-        UserIdPrefix="G:"
-        ClientX509SerialNumber="1c 44 0a 67 00 00 00 00 00 96"
-        LogFolder="L:\WWW\PRD\FDC\WWREM-W2\eGSsoToken"
-        HomePage="https://msrcp.fdps.com/RemitCore/CloseSession.html"
-        ErrorValidationPage=""
-        DecryptMessage="false"
-      />
-
-      <add
-        type="eGistics.Security.LoginProvider.FidelitySsoToken, eGistics.Security"
-        name="FidelitySsoToken"
-        HomePage="https://usgateway.rbs.com/usgateway/cb/retaillockbox.jsp"
-        LogFolder="L:\WWW\PRD\FDC\WWREM-W2\FIS3g-SSO"
-      />
-
       <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
-        name="tisSamlToken"
+        name="egSamlSSO" UserIdPrefix="" ClientX509SerialNumber="" HomePage="https://msrcp.fdps.com/RemitCore/CloseSession.html"
+        ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html" DecryptMessage="false" OrganizationAndRolesManagedOneGisticsSide="true" Issuer="TIS_SSO"
+        OrganizationCode="EGISTICS" AllowedRoleCodes="*"  FindOnlyValidCertificates="false" VerifyExpiry="false"
+        UseThisLoginProviderInCaseOfNullReferrer="true"
+      />
+      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
+           name="tisSamlToken"
+           UserIdPrefix=""
+           ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6"
+           HomePage="https://msrcp.fdps.com/RemitLMS"
+           ErrorValidationPage=""
+           DecryptMessage="false"
+           OrganizationAndRolesManagedOneGisticsSide="true"
+           Issuer="tisSAML"
+           OrganizationCode="eGistics"
+           AllowedRoleCodes="*"
+           FindOnlyValidCertificates="false"
+           VerifyExpiry="false"
+           UseThisLoginProviderInCaseOfNullReferrer="true"
+           supportschangepassword="Default"
+      />
+
+      <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
+           name="morganTisSamlToken"
+           SupportsChangePassword="Default"
+           UserIdPrefix=""
+           ClientX509SerialNumber=""
+           HomePage="http://localhost:49518/Home"
+           ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html"
+           DecryptMessage="false"
+           OrganizationAndRolesManagedOneGisticsSide="false"
+           Issuer="morganstanleytest.com"
+           OrganizationCode="MORGANSTANLEYROOT"
+           AllowedRoleCodes="*"
+           FindOnlyValidCertificates="false"
+           VerifyExpiry="false"
+           UseThisLoginProviderInCaseOfNullReferrer="true"
+           supportschangepassword="No"
+      />
+
+      <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
+        name="morganSamlToken"
+        SupportsChangePassword="Default"
         UserIdPrefix=""
-        ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6"
-        HomePage="https://msrcp.fdps.com/RemitCoreLMS"
-        ErrorValidationPage=""
+        ClientX509SerialNumber="7d 00 6f 9d 0b 58 9a 95 7c 88 a8 5a e7 6a 70 3a"
+        HomePage="https://saml.ms.com/idp/startSSO.ping?PARTNER=https://msrcp.fdps.com"
+        ErrorValidationPage="https://msrcp.fdps.com/RemitCore/ssoerror.html"
         DecryptMessage="false"
-        OrganizationAndRolesManagedOneGisticsSide="true"
-        Issuer="tisSAML"
-        OrganizationCode="eGistics"
+        OrganizationAndRolesManagedOneGisticsSide="false"
+        Issuer="morganstanley.com"
+        OrganizationCode="MORGANSTANLEYROOT"
         AllowedRoleCodes="*"
         FindOnlyValidCertificates="false"
         VerifyExpiry="false"
         UseThisLoginProviderInCaseOfNullReferrer="true"
+        supportschangepassword="No"
       />
     </providers>
   </loginProviderService>
-  <webHooksService defaultProvider="FIS">
+  <webHooksService defaultProvider="default">
     <providers>
       <add name="default" type="eGistics.Remittance.Custom.Default, eGistics.Remittance.Custom" />
       <add name="FIS" type="eGistics.Remittance.Custom.Fidelity, eGistics.Remittance.Custom" />
@@ -174,54 +199,41 @@
       <add name="SqlSaveAuditLogProvider" ConnectionStringName="AuditLog" type="eGistics.AuditLog.Provider.SqlSaveAuditLogProvider, eGistics.AuditLog" />
     </providers>
   </saveAuditLogService>
-  <validationService defaultProvider="FISCustomValidation">
-    <providers>
-      <add name="FISCustomValidation" type="eGistics.Security.Validation.FISCDMValidation, FISCustomValidation" />
-    </providers>
-  </validationService>
-  <system.web>
-    <machineKey decryptionKey="AutoGenerate,IsolateApps" decryption="3DES" />
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
 
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5" />
+      </system.Web>
+  -->
+  <system.web>
+    <machineKey
+      validationKey="97EB3D44BB9A92376BFE6262170090FE83386CBCE5F9A864268279F1C5099891CDD97EA6E81F2F9F4BB2A07C3896706626879F4B89A13FE865CA7C0D736FD101"
+      decryptionKey="E0F757894D416EA4BF044926C1C1F7C64715606707B088DA0FF68FCBD717A78C"
+      validation="SHA1" decryption="AES"
+    />
+    <compilation debug="false" targetFramework="4.5" />
+    <httpRuntime />
     <urlMappings enabled="true">
       <add url="~/example" mappedUrl="~/Login.aspx?client=example" />
       <!-- Some Users link to URL w/ a "/" at the end... -->
       <add url="~/example/" mappedUrl="~/Login.aspx?client=example" />
       <add url="~/" mappedUrl="~/Default.aspx" />
-      <add url="~/BBT" mappedUrl="~/Login.aspx?client=BBT" />
-      <add url="~/BBT/" mappedUrl="~/Login.aspx?client=BBT" />
-
-      <add url="~/Santander" mappedUrl="~/Login.aspx?client=Santander" />
-      <add url="~/Santander/" mappedUrl="~/Login.aspx?client=Santander" />
       <!--Also set this page to the default document in IIS-->
     </urlMappings>
     <identity impersonate="false" />
-    <pages theme="Default">
+    <pages theme="Default" controlRenderingCompatibilityVersion="4.0">
       <controls>
         <add tagPrefix="asp" namespace="System.Web.UI" assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
         <add assembly="eGistics.Web" namespace="eGistics.Web.Controls" tagPrefix="egi" />
         <add namespace="eGistics.Web.Controls" tagPrefix="egi" />
         <add tagPrefix="telerik" namespace="Telerik.Web.UI" assembly="Telerik.Web.UI" />
-        <add namespace="eGistics.Web.UI.WebControls" tagPrefix="egi" assembly="eGistics.Web.UI"/>
-        <add assembly="Leadtools.Web" namespace="Leadtools.Web.Controls" tagPrefix="ltwf"/>
       </controls>
       <tagMapping />
     </pages>
-    <!--
-      Set compilation debug="true" to insert debugging symbols into the compiled page. Because this
-      affects performance, set this value to true only during development.
-    -->
-    <compilation debug="true" strict="false" explicit="true" targetFramework="4.0">
-      <assemblies>
-        <add assembly="System.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
-        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
-        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
-        <add assembly="System.Speech, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
-        <add assembly="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
-      </assemblies>
-    </compilation>
     <httpHandlers>
       <remove verb="*" path="*.asmx" />
-      <add verb="*" path="*.leadgen" type="Leadtools.Web.Handlers.ImageGenerator, Leadtools.Web"/>
       <add verb="GET" type="eGistics.Web.HttpHandlers.egiScriptHandler" path="*/js/jquery/framework.js" validate="false" />
       <add verb="*" path="*.asmx" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
       <add verb="*" path="*_AppService.axd" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
@@ -239,25 +251,23 @@
       <add name="RadUploadModule" type="Telerik.Web.UI.RadUploadHttpModule" />
       <add name="RadCompression" type="Telerik.Web.UI.RadCompression" />
     </httpModules>
-    <sessionState timeout="<%= @session_timeout_minutes %>" cookieless="false" />
-    <!--
-        The <authentication> section enables configuration of the security authentication mode used by
-        ASP.NET to identify an incoming user.
+    <sessionState timeout="20" cookieless="false" />
+    <!-- 
+         The <authentication> section enables configuration of the security authentication mode used by
+         ASP.NET to identify an incoming user.
     -->
     <authentication mode="Forms">
-      <forms loginUrl="Login.aspx" defaultUrl="~/Default.aspx" protection="Encryption" name=".eGisticsTicket" timeout="<%= @ticket_timeout_minutes %>" slidingExpiration="true" path="/" requireSSL="false" />
+      <forms loginUrl="Login.aspx" defaultUrl="~/Default.aspx" protection="Encryption" name=".eGisticsTicket" timeout="22" slidingExpiration="true" path="/" requireSSL="false" />
     </authentication>
     <authorization>
       <deny users="?" />
     </authorization>
-    <!--
-            The <customErrors> section enables configuration
-            of what to do if/when an unhandled error occurs
-            during the execution of a request. Specifically,
-            it enables developers to configure html error pages
+    <!-- 
+            The <customErrors> section enables configuration of what to do if/when an unhandled error occurs
+            during the execution of a request. Specifically, it enables developers to configure html error pages
             to be displayed in place of a error stack trace.
     -->
-    <customErrors mode="Off" defaultRedirect="~/Login.aspx">
+    <customErrors mode="On" defaultRedirect="~/Login.aspx">
       <!--<error statusCode="403" redirect="NoAccess.htm" />-->
       <error statusCode="404" redirect="~/PageNotFound.aspx" />
     </customErrors>
@@ -268,22 +278,125 @@
     </browserCaps>
     <sessionPageState historySize="45" />
   </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules runAllManagedModulesForAllRequests="true">
+      <remove name="RadUploadModule" />
+      <add name="RadUploadModule" type="Telerik.Web.UI.RadUploadHttpModule" preCondition="integratedMode" />
+      <remove name="RadCompression" />
+      <add name="RadCompression" type="Telerik.Web.UI.RadCompression" preCondition="integratedMode" />
+    </modules>
+    <handlers>
+      <remove name="ChartImage_axd" />
+      <add name="ChartImage_axd" path="ChartImage.axd" type="Telerik.Web.UI.ChartHttpHandler" verb="*" preCondition="integratedMode" />
+      <remove name="Telerik_Web_UI_SpellCheckHandler_axd" />
+      <add name="Telerik_Web_UI_SpellCheckHandler_axd" path="Telerik.Web.UI.SpellCheckHandler.axd" type="Telerik.Web.UI.SpellCheckHandler" verb="*" preCondition="integratedMode" />
+      <remove name="Telerik_Web_UI_DialogHandler_aspx" />
+      <add name="Telerik_Web_UI_DialogHandler_aspx" path="Telerik.Web.UI.DialogHandler.aspx" type="Telerik.Web.UI.DialogHandler" verb="*" preCondition="integratedMode" />
+      <remove name="Telerik_RadUploadProgressHandler_ashx" />
+      <add name="Telerik_RadUploadProgressHandler_ashx" path="Telerik.RadUploadProgressHandler.ashx" type="Telerik.Web.UI.RadUploadProgressHandler" verb="*" preCondition="integratedMode" />
+      <remove name="Telerik_Web_UI_WebResource_axd" />
+      <add name="Telerik_Web_UI_WebResource_axd" path="Telerik.Web.UI.WebResource.axd" type="Telerik.Web.UI.WebResource" verb="*" preCondition="integratedMode" />
+    </handlers>
+    <defaultDocument>
+        <files>
+            <add value="login.aspx" />
+        </files>
+    </defaultDocument>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-UA-Compatible" value="IE=edge" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+  <system.serviceModel>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
+    <bindings>
+      <basicHttpBinding>
+        <binding name="ValidationEngineProxySoap" closeTimeout="00:01:00"
+          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+          allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+
+        <binding name="CDMWrapperSoap" closeTimeout="00:01:00"
+          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+          allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+      </basicHttpBinding>
+      <!-- <wsHttpsBinding>
+      </wsHttpsBinding> -->
+      <wsHttpBinding>
+        <binding name="WSHttpBinding_IDashboardWcfService">
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+        <binding name="WSHttpBinding_ISubscriptionManagement">
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+        <binding name="WSHttpBinding_IEventCollection">
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://<%= @site %><%= @env %>-fdc-WSE-01.tisa.io/Dashboard/DashboardWcf.svc" binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IDashboardWcfService" contract="Dashboard.IDashboardWcfService" name="WSHttpBinding_IDashboardWcfService">
+      </endpoint>
+      <!-- <endpoint address="https://du-irm-wse-01.tisa.io/ValidationEngine/ValidationEngineProxy.asmx" binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap" contract="Validation.ValidationEngineProxySoap" name="ValidationEngineProxySoap" />
+      <endpoint address="https://du-irm-wse-01.tisa.io/EventSubscription/eGistics.Notification.Subscription.SubscriptionManagement.svc"
+        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_ISubscriptionManagement"
+        contract="SubscriptionMgmt.ISubscriptionManagement" name="WSHttpBinding_ISubscriptionManagement" />
+      <endpoint address="https://du-irm-wse-01.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc"
+        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+        contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" /> -->
+      <endpoint address="https://<%= @site %><%= @env %>-fdc-WSE-01.tisa.io/CDMWrapper/CDMWrapper.asmx"
+        binding="basicHttpBinding" bindingConfiguration="CDMWrapperSoap"
+        contract="CDMWrapperSoap" name="CDMWrapperSoap" />
+    </client>
+  </system.serviceModel>
+
   <!-- Allow unauthenticated users to access these areas-->
-  <location path="listcache.aspx">
-    <system.web>
-      <authorization>
-        <allow users="*"/>
-      </authorization>
-    </system.web>
-  </location>
-  <location path="scripts">
+  <location path="styles">
     <system.web>
       <authorization>
         <allow users="*" />
       </authorization>
     </system.web>
   </location>
-  <location path="styles">
+  <location path="SamlSso.ashx">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="MorganSamlSso.ashx">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="SamlSsoTest.html">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="listcache.aspx">
     <system.web>
       <authorization>
         <allow users="*" />
@@ -297,7 +410,14 @@
       </authorization>
     </system.web>
   </location>
-  <location path="js">
+  <location path="js/jQuery">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="js/framework">
     <system.web>
       <authorization>
         <allow users="*" />
@@ -332,27 +452,6 @@
       </authorization>
     </system.web>
   </location>
-  <location path="Telerik.Web.UI.WebResource.axd">
-    <system.web>
-      <authorization>
-        <allow users="*"/>
-      </authorization>
-    </system.web>
-  </location>
-  <location path="JavaScriptRequired.aspx">
-    <system.web>
-      <authorization>
-        <allow users="*" />
-      </authorization>
-    </system.web>
-  </location>
-  <location path="IERequired.aspx">
-    <system.web>
-      <authorization>
-        <allow users="*"/>
-      </authorization>
-    </system.web>
-  </location>
   <location path="App_Themes">
     <system.web>
       <authorization>
@@ -367,69 +466,79 @@
       </authorization>
     </system.web>
   </location>
-  <system.webServer>
-    <validation validateIntegratedModeConfiguration="false"/>
-    <modules runAllManagedModulesForAllRequests="true">
-      <remove name="RadUploadModule"/>
-      <add name="RadUploadModule" type="Telerik.Web.UI.RadUploadHttpModule" preCondition="integratedMode"/>
-      <remove name="RadCompression"/>
-      <add name="RadCompression" type="Telerik.Web.UI.RadCompression" preCondition="integratedMode"/>
-    </modules>
-    <handlers>
-      <remove name="ChartImage_axd"/>
-      <add name="LeadTools Leadgen" path="*.leadgen" verb="*" modules="IsapiModule" scriptProcessor="C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" resourceType="Unspecified" preCondition="classicMode,runtimeVersionv4.0,bitness32" />
-      <add name="ChartImage_axd" path="ChartImage.axd" type="Telerik.Web.UI.ChartHttpHandler" verb="*" preCondition="integratedMode"/>
-      <remove name="Telerik_Web_UI_SpellCheckHandler_axd"/>
-      <add name="Telerik_Web_UI_SpellCheckHandler_axd" path="Telerik.Web.UI.SpellCheckHandler.axd" type="Telerik.Web.UI.SpellCheckHandler" verb="*" preCondition="integratedMode"/>
-      <remove name="Telerik_Web_UI_DialogHandler_aspx"/>
-      <add name="Telerik_Web_UI_DialogHandler_aspx" path="Telerik.Web.UI.DialogHandler.aspx" type="Telerik.Web.UI.DialogHandler" verb="*" preCondition="integratedMode"/>
-      <remove name="Telerik_RadUploadProgressHandler_ashx"/>
-      <add name="Telerik_RadUploadProgressHandler_ashx" path="Telerik.RadUploadProgressHandler.ashx" type="Telerik.Web.UI.RadUploadProgressHandler" verb="*" preCondition="integratedMode"/>
-      <remove name="Telerik_Web_UI_WebResource_axd"/>
-      <add name="Telerik_Web_UI_WebResource_axd" path="Telerik.Web.UI.WebResource.axd" type="Telerik.Web.UI.WebResource" verb="*" preCondition="integratedMode"/>
-    </handlers>
-  </system.webServer>
-  <system.serviceModel>
-    <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
-    <bindings>
-      <basicHttpBinding>
-        <binding name="ValidationEngineProxySoap" closeTimeout="00:01:00"
-          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
-          allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
-          maxReceivedMessageSize="2147483647" useDefaultWebProxy="true">
-          <security mode="Transport">
-            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
-          </security>
-        </binding>
-      </basicHttpBinding>
-    </bindings>
-    <!-- <client>
-      <endpoint address="https://DP-FDC-WSESL.tisa.io/ValidationEngine/ValidationEngineProxy.asmx"
-      binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap"
-      contract="eGistics.Validation.ValidationEngineProxySoap" name="ValidationEngineProxySoap"  />
-    </client> -->
-  </system.serviceModel>
-   <system.web.extensions>
-       <scripting>
-           <webServices>
-               <jsonSerialization maxJsonLength="2147483644"/>
-           </webServices>
-       </scripting>
-   </system.web.extensions>
+  <location path="Scripts">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="Telerik.Web.UI.WebResource.axd">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="styles/custom">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="SSOError.html">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <location path="MorganSSOTest.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral" />
         <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
       </dependentAssembly>
       <dependentAssembly>
-        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="1.1.0.0" />
+        <assemblyIdentity name="Telerik.Web.UI" publicKeyToken="121fae78165ba3d4" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2014.2.724.45" newVersion="2014.2.724.45" />
       </dependentAssembly>
       <dependentAssembly>
-        <assemblyIdentity name="Telerik.Web.UI" publicKeyToken="121fae78165ba3d4" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-2012.3.1205.40" newVersion="2012.3.1205.40" />
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
       </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.WindowsAzure.Storage" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.2.1.0" newVersion="4.2.1.0" />
+      </dependentAssembly>
+      <probing privatePath="bin;Lib;Lib\x64" />
     </assemblyBinding>
   </runtime>
+  <system.web.extensions>
+    <scripting>
+      <webServices>
+        <jsonSerialization maxJsonLength="2147483644" />
+      </webServices>
+    </scripting>
+  </system.web.extensions>
 </configuration>

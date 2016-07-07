@@ -12,17 +12,14 @@
     <add key="UsePolicy" value="true" />
     <add key="LogPath" value="L:\WWW\UAT\FDC\WSCDM-E1\CDMWrapper.log" />
     <add key="LogExceptionsOnly" value="false" />
-    <!--<add key="EndPointAddress" value="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc" />-->
-    <!--<add key="EndPointAddress" value="https://du-egi-web-01.egistics.local/FundsRouter/FundsWcfService.svc"/>-->
-	<add key="EndPointAddress" value="https://du-FDC-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx" />
+    <add key="EndPointAddress" value="https://DU-FDC-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" />
     <add key="UseBindingConfig" value="false" />
-	<add key="EndPointName" value="FundsWrapperServiceSoap"/>
+    <add key="EndPointName" value="FundsWrapperServiceSoap"/>
     <add key="NotifyUserGroupCaption" value="Access Funds Application"/>
     <add key="NotifyUserGroupCaption" value="https://msrc.ipsfirst.com/MorganStanley/content/Home.aspx"/>
     <!--SSL-->
     <!--<add key="CertificateName" value="CertificateName"/>-->
-    <!--<add key="CertificateSerialNo" value="0E920FF57AEFE67789BD435604BD4B23" />-->
-	<add key="CertificateSerialNo" value="0179ad305015cf2fb3f04b856b4776b8"/>
+    <add key="CertificateSerialNo" value="0179ad305015cf2fb3f04b856b4776b8"/>
     <add key="EnableSSL" value="1" />
     <add key="MobileRollupCode" value="MOB998" />
     <add key="GetChecksSP" value="spEGIRSelectCDMChecksByTransactionId" />
@@ -50,7 +47,7 @@
     <add key="ApplicationID" value="POP"/>
     <add key="WebServerIP" value="10.10.2.100"/>
     <add key="UserID" value="TFNBMX"/>
-	<add key="GetRejectLetterTemplateById" value="spEgiSelectCDMRejectLetterTemplateById"/> 
+    <add key="GetRejectLetterTemplateById" value="spEgiSelectCDMRejectLetterTemplateById"/> 
   </appSettings>
 
   <system.net>
@@ -62,53 +59,41 @@
   <system.web>
     <trace enabled="true" localOnly="false" requestLimit="1000" traceMode="SortByTime" writeToDiagnosticsTrace="true" />
 
-    <compilation debug="true" defaultLanguage="c#">
-    </compilation>
+    <compilation debug="true" defaultLanguage="c#" />
     <authentication mode="Forms" />
     <customErrors mode="Off" />
   </system.web>
 
   <startup>
-    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
   </startup>
 
   <system.serviceModel>
     <bindings>
       <basicHttpBinding>
         <binding name="BasicHttpBinding_FundsWrapperServiceSoap" closeTimeout="00:01:00"
-          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
-          allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
-          maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+                 openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+                 maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
           <security mode="Transport"> 
             <transport clientCredentialType="Certificate" />
           </security>
         </binding>
-
         <binding name="BasicHttpBindingNoCert_FundsWrapperServiceSoap" closeTimeout="00:01:00"
-          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
-          allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
-          maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
-          <security mode="Transport"> 
-          </security>
+                 openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+                 maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+          <security mode="Transport" /> 
         </binding>
-		
-	  </basicHttpBinding>
+      </basicHttpBinding>
     </bindings>
     <client>
-	<!--
-      <endpoint address="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc" 
-		binding="basicHttpBinding" 
-		bindingConfiguration="BasicHttpBinding_FundsWcfServiceInterface" contract="FundsWebServiceWS.FundsWcfServiceInterface" 
-		name="BasicHttpBinding_FundsWcfServiceInterface" />
-		-->
-
-      <endpoint address="https://du-irm-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx" 
-          binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
-          contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
+      <endpoint address="https://du-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx" 
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
+                contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
     </client>
   </system.serviceModel>
-    
-  
+
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
       <file value="L:\WWW\UAT\FDC\WSCDM-E1\CDMWrapperNew.log" />
@@ -137,12 +122,18 @@
       <appender-ref ref="RollingFileAppender" />
     </root>
   </log4net>
-    <system.webServer>
-        <defaultDocument>
-            <files>
-                <add value="CDMWrapper.asmx" />
-            </files>
-        </defaultDocument>
-    </system.webServer>
-
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="CDMWrapper.asmx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+  <system.web.extensions>
+   <scripting>
+     <webServices>
+       <jsonSerialization maxJsonLength="2147483644" />
+     </webServices>
+   </scripting>
+  </system.web.extensions>
 </configuration>

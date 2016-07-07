@@ -8,7 +8,7 @@
   <dataConfiguration defaultDatabase="AdminConn"/>
   <ContextInfo>
     <Context>
-      <add name="CDMSweepProcess" type="Description" connstring="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True"
+      <add name="CDMSweepProcess" type="Description" connstring="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" providerName="System.Data.SqlClient"/>
     </Context>
   </ContextInfo>
 <!--
@@ -21,8 +21,8 @@
   </appSettings>
 -->
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Admin;Trusted_Connection=True"/>
-    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-02.egistics.local;DATABASE=Test_FDC_Auditlog;Trusted_Connection=True"/>
+    <add name="AdminConn" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/>
@@ -59,4 +59,3 @@
     </root>
   </log4net>
 </configuration>
-
