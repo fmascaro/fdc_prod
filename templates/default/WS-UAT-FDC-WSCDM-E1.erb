@@ -8,7 +8,7 @@
     <add name="Archive" connectionString="Data Source=DU-GEN-SQL-01.egistics.local;Initial Catalog=FDC_archive;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
     <add name="AuditLog" connectionString="Data Source=DU-GEN-SQL-01.egistics.local;Initial Catalog=FDC_auditlog;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
   </connectionStrings>
-  <appSettings>
+<appSettings>
     <add key="EndPointName" value="FundsWrapperServiceSoap"/>
     <add key="NotifyUserGroupCaption" value="Access Funds Application"/>
     <add key="NotifyUserGroupRedirectUrl" value="https://msrc.ipsfirst.com/MorganStanley/content/Home.aspx"/>
@@ -25,17 +25,26 @@
     <add key="SaveChecksSP" value="spEGIRSaveCDMCheck"/>
     <add key="SaveStubsSP" value="spEGIRSaveCDMStub"/>
     <add key="DeleteChecksSP" value="spEGIMSDeleteCDMCheck"/>
+    <add key="UndeleteChecksSP" value="spEGIMSUndeleteCDMCheck"/>
     <add key="DeleteStubsSP" value="spEGIMSDeleteCDMStub"/>
     <add key="SaveAnnotationsSP" value="spEGIRSaveCDMAnnotation"/>
-    <add key="UpdCheckTypeSP" value="spEGIRSaveCheckPartyType"/>
+    <add key="SaveCheckPartyTypeSP" value="spEGIRSaveCheckPartyType"/>
     <add key="GetRejectLetterTemplateByIdSP" value="spEgiSelectCDMRejectLetterTemplateById"/>
     <add key="GetRejectLetterTemplateListSP" value="spCDMGetRejectLetterTemplateList"/>
     <add key="GetOverrideReasonsSP" value="spGetCDMOverridesReasons"/>
     <add key="SaveTransRejectLetterTemplateIDSP" value="spEGIMSSaveCDMTransactionRejectLetterTemplateID"/>
-    <add key="OrganizationPreferences" value="ForceAnnotationsOnDeleteCheck,ForceAnnotationsOnDeleteStub,DisplayStubs,DisplayChecks,AllowAddCDMStubs,AllowAddCDMChecks,AllowDeleteCDMChecks,AllowDeleteCDMStubs,ConfirmOnAccept,EnableCDMTransMenu,ImageViewerSizeMode,ITEM_PAGE_COUNT,UseSequencePaging,ValidateBalanceOnAccept,GoToNextTransactionOnAccept,DeleteOriginalCDMCheck,DeleteOriginalCDMStub"/>
+    <add key="SaveOverrideReasonAuditLogSP" value ="spCDMInsertOverrideReason"/>
+    <add key="SaveCDMWrapperAuditLogSP" value="spEGIMSSaveCDMWrapperAuditLog"/>
+    <add key="SaveCDMAuditLogSP" value="spEGIMSSaveCDMAuditLog"/>
+    <add key="GetNotificationMapSP" value="spEGIMSGetNotificationMapByRejectCode"/>
+    <add key="EnableValidateRulesLog" value="true"/>
+    <add key="EnableAccountViewLog" value="true"/>
+    <add key="EnableEntitlementsLog" value="true"/>
+    <add key="EnableNotifyLog" value="true"/>
+    <add key="OrganizationPreferences" value="ForceAnnotationsOnDeleteCheck,ForceAnnotationsOnDeleteStub,AllowAddCDMStubs,AllowAddCDMChecks,AllowDeleteCDMChecks,AllowDeleteCDMStubs,DisplayChecks,DisplayStubs,ConfirmOnAccept,EnableCDMTransMenu,ImageViewerSizeMode,ITEM_PAGE_COUNT,UseSequencePaging,ValidateBalanceOnAccept,GoToNextTransactionOnAccept,DeleteOriginalCDMCheck,DeleteOriginalCDMStub"/>
     <add key="ApplicationID" value="POP"/>
     <add key="WebServerIP" value="10.10.2.100"/>
-    <add key="UserID" value="TFNBMX"/>
+    <add key="UserID" value="TFNMOX"/>
   </appSettings>
 
   <system.net>
