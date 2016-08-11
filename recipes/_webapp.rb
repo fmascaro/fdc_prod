@@ -122,8 +122,8 @@ webapps.each do |webapp|
           if node.role?("xer_app") then
             iis_binding = "net.tcp/808:*,https/*:443:AP-XER-SPX-01.tisa.io"
           else
-            iis_binding.gsub!(/(:[dD][pP])/, 'AP')
-            iis_binding.gsub!(/(:[dD][uU])/, 'AU')
+            iis_binding.gsub!(/(:[dD][pP])/, ':AP')
+            iis_binding.gsub!(/(:[dD][uU])/, ':AU')
           end
       elsif node[:tags].include?("dallas")
         if node.role?("xer_app") && env == "uat" then
