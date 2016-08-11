@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <appSettings>
-    <add key="ConnectionString" value="Data Source=DP-FDC-SQL-01.egistics.local;DATABASE=rtc_Admin3g;Trusted_Connection=True;encrypt=true"/>
-    <add key="AuditConnectionString" value="Data Source=DP-FDC-SQL-01.egistics.local;DATABASE=RTC_AuditLog3g;Trusted_Connection=True;encrypt=true;Max Pool Size=300;Connect Timeout=30;;Network Library=DBMSSOCN;"/>
+    <add key="ConnectionString" value="SERVER=FDC-ADM-AG1;DATABASE=rtc_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="AuditConnectionString" value="SERVER=FDC-ALG-AG1;DATABASE=RTC_AuditLog3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true;Max Pool Size=300;Connect Timeout=30;;Network Library=DBMSSOCN;"/>
     <add key="QueueName" value=".\Private$\FDC3g"/>
     <add key="SleepTime" value="5000"/>
     <add key="QueueWaitTime" value="3000"/>
