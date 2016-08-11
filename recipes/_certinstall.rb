@@ -40,3 +40,12 @@ windows_certificate "//DP-ESL-EFS-01/GOLDREP/SSLCERTIFICATES/TISSSO_COMP.pfx" do
   store_name "ROOT"
   private_key_acl ["EGISTICS\\FDC-PRD-WEB$", "EGISTICS\\Domain Admins"]
 end
+
+windows_certificate "//DP-ESL-EFS-01/GOLDREP/SSLCERTIFICATES/TISPDFSITE.pfx" do
+  private_key_acl ["EGISTICS\\FDC-PRD-WEB$", "EGISTICS\\Domain Admins"]
+end
+
+windows_certificate "//DP-ESL-EFS-01/GOLDREP/SSLCERTIFICATES/TISPDFSITE.pfx" do
+  store_name "ROOT"
+  private_key_acl ["EGISTICS\\FDC-PRD-WEB$", "EGISTICS\\Domain Admins"]
+end
