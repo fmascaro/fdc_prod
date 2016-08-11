@@ -137,6 +137,12 @@
       <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://localhost:51842/[.]*" />
     </providers>
   </loginProviderService>
+  <saveAuditLogService defaultProvider="SqlSaveAuditLogProvider">
+    <providers>
+      <add name="MSMQSaveAuditLogProvider" ConnectionStringName="AuditLog" type="eGistics.AuditLog.Provider.MSMQSaveAuditLogProvider, eGistics.AuditLog" QueuePath=".\AuditLog" />
+      <add name="SqlSaveAuditLogProvider" ConnectionStringName="AuditLog" type="eGistics.AuditLog.Provider.SqlSaveAuditLogProvider, eGistics.AuditLog" />
+    </providers>
+  </saveAuditLogService>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
     <providers>
