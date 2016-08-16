@@ -19,13 +19,13 @@
 
   <ContextInfo>
     <Context>
-      <add name="CorroGenPlugin" type="iRemit Correspondence Generation Plugin dll" connstring="Data Source=FDC-ADM-AG2;Initial Catalog=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=True;Encrypt=true" providerName="System.Data.SqlClient" />
+      <add name="CorroGenPlugin" type="iRemit Correspondence Generation Plugin dll" connstring="Data Source=FDC-ADM-AG2;Initial Catalog=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=True;Encrypt=true" providerName="System.Data.SqlClient" />
     </Context>
   </ContextInfo>
 
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
-    <add name="Audit" connectionString="SERVER=FDC-ALG-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Audit" connectionString="SERVER=FDC-ALG-AG2;DATABASE=FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />

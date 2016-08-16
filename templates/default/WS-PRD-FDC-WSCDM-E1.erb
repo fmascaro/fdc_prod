@@ -4,9 +4,9 @@
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=Test_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
-    <add name="Archive" connectionString="SERVER=FDC-RMT-AG1;DATABASE=Test_FDC_MorganStanley;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
-    <add name="AuditLog" connectionString="SERVER=FDC-ALG-AG2;DATABASE=Test_FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
+    <add name="Archive" connectionString="SERVER=FDC-RMT-AG1;DATABASE=FDC_MorganStanley;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="SERVER=FDC-ALG-AG2;DATABASE=FDC_AuditLog;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"  providerName="System.Data.SqlClient" />
   </connectionStrings>
 <appSettings>
     <add key="EndPointName" value="FundsWrapperServiceSoap"/>
