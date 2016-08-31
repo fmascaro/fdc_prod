@@ -39,7 +39,7 @@
       <layout type="log4net.Layout.PatternLayout">
         <header value="--- HEADER ---&#xA;DATE                    &gt;Application&gt;Thread&gt;Class&gt;Method&gt;Message&#xA;"/>
         <footer value="--- FOOTER ---&#xA;&#xA;&#xA;"/>
-        <conversionPattern value="%date %-5level &gt;FDC Web App&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline"/>
+        <conversionPattern value="%date %-5level &gt;FDC Core Website&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline"/>
       </layout>
     </appender>
     <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
@@ -139,7 +139,7 @@
 
       <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
            name="morganTisSamlToken"
-           SupportsChangePassword="Default"
+           SupportsChangePassword="No"
            UserIdPrefix=""
            ClientX509SerialNumber=""
            HomePage="http://localhost:49518/Home"
@@ -152,12 +152,11 @@
            FindOnlyValidCertificates="false"
            VerifyExpiry="false"
            UseThisLoginProviderInCaseOfNullReferrer="true"
-           supportschangepassword="No"
       />
 
       <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security"
         name="morganSamlToken"
-        SupportsChangePassword="Default"
+        SupportsChangePassword="No"
         UserIdPrefix=""
         ClientX509SerialNumber="7d 00 6f 9d 0b 58 9a 95 7c 88 a8 5a e7 6a 70 3a"
         HomePage="https://saml.ms.com/idp/startSSO.ping?PARTNER=https://msrcp.fdps.com"
@@ -170,7 +169,6 @@
         FindOnlyValidCertificates="false"
         VerifyExpiry="false"
         UseThisLoginProviderInCaseOfNullReferrer="true"
-        supportschangepassword="No"
       />
     </providers>
   </loginProviderService>
