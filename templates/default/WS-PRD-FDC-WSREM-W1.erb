@@ -1,11 +1,8 @@
 <?xml version="1.0"?>
-
 <configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
-
   <configSections>
-      <sectionGroup name="system.web">
+    <sectionGroup name="system.web">
       <section name="ImageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
-    
       <section name="PDFService" type="eGistics.Output.PDF.Provider.PDFServiceSection, eGistics.Output" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
       <section name="SaveAuditLogService" type="eGistics.AuditLog.Provider.SaveAuditLogServiceSection, eGistics.AuditLog" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
     </sectionGroup>
@@ -41,7 +38,7 @@
     <add key="DEMOLBX_MaxImages" value="50" />
     <add key="DEMOLBX_AppID" value="fdc_direct"/>
     <add key="DEMOLBX_SharedSecret" value="xOOM5usTV4R/FxiTVB1j0pZjpww="/>
-	
+
     <add key="ADV3499WACHLBX_ConnectionString" value="<%= @ADV3499WACHLBX_archive_db %>"/>
     <add key="ADV3499WACHLBX_ArchivePath" value="C:\Temp"/>    
     <add key="ADV3499WACHLBX_SearchStoredProc" value="spAdvantaWebServiceSearch"/>
@@ -54,7 +51,6 @@
     <add key="ADV3499WACHLBX_AppID" value="fdc_wells2"/>
     <add key="ADV3499WACHLBX_SharedSecret" value="ef6Tqq/muKke2oVikFk0+fSBH1s="/>
 
-
     <add key="UBS0001LBX_ConnectionString" value="<%= @UBS0001LBX_archive_db %>"/>
     <add key="UBS0001LBX_ArchivePath" value="C:\Temp"/>    
     <add key="UBS0001LBX_SearchStoredProc" value="spUBSWebServiceSearch"/>
@@ -66,8 +62,6 @@
     <add key="UBS0001LBX_MaxImages" value="50" />
     <add key="UBS0001LBX_AppID" value="fdc_direct"/>
     <add key="UBS0001LBX_SharedSecret" value="xOOM5usTV4R/FxiTVB1j0pZjpww="/>
-	
-
 
     <add key="HONDAADC04285673_ConnectionString" value="<%= @HONDAADC04285673_archive_db %>"/>
     <add key="HONDAADC04285673_ArchivePath" value="C:\Temp"/>    
@@ -96,7 +90,6 @@
     
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
 
-
     <add key="LogPath" value="L:\WWW\PRD\FDC\WSREM-W1\"/>
     <add key="LogLevel" value="4"/>
     <add key="CommandTimeOut" value="60"/>
@@ -108,18 +101,16 @@
     <identity impersonate="false" />
 
     <!-- 
-            Set compilation debug="true" to insert debugging 
-            symbols into the compiled page. Because this 
-            affects performance, set this value to true only 
-            during development.
+            Set compilation debug="true" to insert debugging symbols into the compiled page. Because this 
+            affects performance, set this value to true only during development.
         -->
     <compilation debug="true" targetFramework="4.5"/>
-    <!--
-            The <authentication> section enables configuration 
-            of the security authentication mode used by 
-            ASP.NET to identify an incoming user. 
-        -->
     <authentication mode="Windows" />
+    <machineKey
+      validationKey="3060D3D78B4F73EA1D28E61E70EFE0F40EB4BB97F9CB737937A08A2D7A3826F4859685BA90CD053F31D87A6E6899F1AA2A57E0B023CF75DF8539D30C85612F43"
+      decryptionKey="641BEF499E1ADCEF04B45DB78EC5F97B95862A1C9F66442E"
+      validation="SHA1" decryption="AES"
+    />
     <!--
             The <customErrors> section enables configuration 
             of what to do if/when an unhandled error occurs 
@@ -134,19 +125,19 @@
         -->
 
     <ImageArchiveService defaultProvider="ATTSynaptic">
-    <providers>
+      <providers>
         <add name="ATTSynaptic" LegacyProviderName="FDCSingleMultipleIPS_Production" TimeOut="30000" type="eGistics.Archive.Cloud.ATTSynaptic, eGistics.Archive.Cloud"/>
         <add name="FDCIPSImageArchiveProvider_Test" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://test.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
         <add name="FDCIPSImageArchiveProvider_Production" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://www.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
         <add name="FDCSingleMultipleIPS_Test" LegacyProviderName="FDCIPSImageArchiveProvider_Test" SeekCatFile="False" type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
         <add name="FDCSingleMultipleIPS_Production" LegacyProviderName="FDCIPSImageArchiveProvider_Production" SeekCatFile="False" type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
-    </providers>
-  </ImageArchiveService>
+      </providers>
+    </ImageArchiveService>
 
   <PDFService defaultProvider="iTextSharpPDFProvider">
     <providers>
-        <add name="iTextSharpPDFProvider" type="eGistics.Output.PDF.iTextSharp.iTextSharpPDFProvider"/>
-        <add name="PDFNetPDFProvider" type="eGistics.PDFNet.PDFNetProvider, eGistics.PDFNet"/>
+      <add name="iTextSharpPDFProvider" type="eGistics.Output.PDF.iTextSharp.iTextSharpPDFProvider"/>
+      <add name="PDFNetPDFProvider" type="eGistics.PDFNet.PDFNetProvider, eGistics.PDFNet"/>
     </providers>
   </PDFService>
     <SaveAuditLogService defaultProvider="SqlSaveAuditLogProvider">

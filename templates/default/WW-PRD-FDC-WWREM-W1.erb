@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Note: As an alternative to hand editing this file you can use the
-    web admin tool to configure settings for your application. Use
-    the Website->Asp.Net Configuration option in Visual Studio.
-    A full list of settings and comments can be found in
-    machine.config.comments usually located in
-    \Windows\Microsoft.Net\Framework\v2.x\Config
--->
 <configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
   <configSections>
     <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
@@ -231,11 +223,8 @@
       <tagMapping>
       </tagMapping>
     </pages>
-    <!--
-            Set compilation debug="true" to insert debugging
-            symbols into the compiled page. Because this
-            affects performance, set this value to true only
-            during development.
+    <!-- Set compilation debug="true" to insert debugging symbols into the compiled page. Because this 
+            affects performance, set this value to true only during development.
         -->
     <compilation debug="true" defaultLanguage="c#" targetFramework="4.5">
       <assemblies>
@@ -263,6 +252,11 @@
         <add assembly="System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
       </assemblies>
     </compilation>
+    <machineKey
+      validationKey="3060D3D78B4F73EA1D28E61E70EFE0F40EB4BB97F9CB737937A08A2D7A3826F4859685BA90CD053F31D87A6E6899F1AA2A57E0B023CF75DF8539D30C85612F43"
+      decryptionKey="641BEF499E1ADCEF04B45DB78EC5F97B95862A1C9F66442E"
+      validation="SHA1" decryption="AES"
+    />
     <httpHandlers>
       <remove verb="*" path="*.asmx"/>
       <add verb="*" path="*.asmx" validate="false" type="System.Web.Script.Services.ScriptHandlerFactory, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
@@ -287,11 +281,8 @@
       <!-- DO NOT CHANGE THIS-->
     </authorization>
     <!--
-            The <customErrors> section enables configuration
-            of what to do if/when an unhandled error occurs
-            during the execution of a request. Specifically,
-            it enables developers to configure html error pages
-            to be displayed in place of a error stack trace.
+        The <customErrors> section enables configuration of what to do if/when an unhandled error occurs during the execution of a request. Specifically, 
+        it enables developers to configure html error pages to be displayed in place of a error stack trace.
     -->
     <!-- <customErrors mode="On" defaultRedirect="~/Login.aspx">
       <error statusCode="404" redirect="~/PageNotFound.aspx"/>
@@ -334,9 +325,6 @@
   <system.webServer>
     <httpProtocol>
       <customHeaders>
-        <!--
-              <clear />
-        -->
         <add name="X-UA-Compatible" value="IE=EmulateIE7" />
       </customHeaders>
     </httpProtocol>

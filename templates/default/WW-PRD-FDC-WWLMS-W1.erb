@@ -21,7 +21,6 @@
     <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
 
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-  <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
       <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
 </configSections>
 
@@ -66,7 +65,7 @@
     <add key="webpages:Enabled" value="false" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-    <add key="SmtpServer" value="mail.egisticsinc.com" />
+    <add key="SmtpServer" value="dp-egi-rly-01" />
     <add key="defaultEmailFrom" value="notifications@egisticsinc.com" />
     <add key="defaultDestination" value="https://www11.remitcoimagearchive.com/web/samlsso.ashx" />
     <add key="PasswordValidationExpression" value=".*" />
@@ -80,9 +79,17 @@
     <!--<add key="SAMLEncryptionSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />-->
   </appSettings>
   <system.web>
+    <machineKey
+      validationKey="3060D3D78B4F73EA1D28E61E70EFE0F40EB4BB97F9CB737937A08A2D7A3826F4859685BA90CD053F31D87A6E6899F1AA2A57E0B023CF75DF8539D30C85612F43"
+      decryptionKey="641BEF499E1ADCEF04B45DB78EC5F97B95862A1C9F66442E"
+      validation="SHA1" decryption="AES"
+    />
     <authentication mode="Windows" />
     <compilation debug="false" targetFramework="4.5" />
     <httpRuntime targetFramework="4.5" />
+    <customErrors mode="On" defaultRedirect="~/Home">
+      <error statusCode="404" redirect="~/PageNotFound.aspx" />
+    </customErrors>
   </system.web>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
