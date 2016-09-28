@@ -18,7 +18,7 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-DEV-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g;Trusted_Connection=True"/>
+      <add name="ES-DEV-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"/>
     </Context>
   </ContextInfo>
 
@@ -84,23 +84,23 @@
       <add name="MorganStanleyLTA" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyLTAImportProvider"
            triggerFileExtensions="trigger"
-           path="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\LTA\"
+           path="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
       />
 
       <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"     
            providerName="MorganStanleyReportImportProvider"
            triggerFileExtensions="trigger"       
-           path="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\Reports\"       
+           path="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"       
       />
 
       <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyCDMImportProvider"
            triggerFileExtensions="trigger"
-           path="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\CDM\"
+           path="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
       />
       
       <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
-           path="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\CORRO\"
+           path="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
            providerName="MorganStanleyCorroImportProvider"
            triggerFileExtensions="trigger"           
       />
@@ -118,9 +118,9 @@
            currentLoggingDebugLevel="Verbose"
            mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\LTA\"
            logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\LTA\"
-           backupPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
-           exceptionsPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
-           ftpPath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\LTA\"
+           backupPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
+           exceptionsPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
+           ftpPath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim"
@@ -138,11 +138,11 @@
            emailTo="noreply@eGisticsInc.com"
            smtpIP=""
            smtpPort="25"
-           ftpPath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\Reports\"
+           ftpPath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
            mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\Reports\"
            logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\Reports\"
-           backupPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
-           exceptionsPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
+           backupPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
+           exceptionsPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
            triggerLess="False"
            useCompressionProvider="True"
            compressionProvider="MorganStanleyReportZipCompressionProvider"
@@ -160,9 +160,9 @@
            currentLoggingDebugLevel="Verbose"
            mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\CDM\"
            logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\CDM\"
-           backupPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
-           exceptionsPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
-           ftpPath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\CDM\"
+           backupPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
+           exceptionsPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
+           ftpPath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim"
@@ -180,11 +180,11 @@
           emailTo="noreply@eGisticsInc.com"
           smtpIP=""
           smtpPort="25"
-          ftpPath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\CORRO\"
+          ftpPath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
           logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\CORRO\"
-          backupPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
-          exceptionsPath="\\DP-ESL-EFB-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
+          backupPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
+          exceptionsPath="\\pd-dev-efs-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
           triggerLess="False"
           useCompressionProvider="True"
           compressionProvider="MorganStanleyCorroZipCompressionProvider"
@@ -223,7 +223,7 @@
       />
 
       <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,SubSiteID,BundleID,BatchType2,BatchMode,Other1,Other2,Other3,Other4,Other5,Other6,Other7,RollupCode,Other9,Other10,Other11,Other12,ArcInd,CDMTransID,Other13,Other14,Other15,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -267,7 +267,7 @@
 
       <add name="MorganStanleyLTAResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\LTA\"
+           responseMainFilePath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    /> 
@@ -306,7 +306,7 @@
 
       <add name="MorganStanleyReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="SiteID,SubSiteID,BatchNum,ProcessDate,ReportName,Image_File_Name"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"
            callPostProcessURLColumnName=""
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -325,7 +325,7 @@
 
       <add name="MorganStanleyReportResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\Reports\"
+           responseMainFilePath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    />  
@@ -356,7 +356,7 @@
       />
 
       <add name="MorganStanleyCDMBaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNumber,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name,Annotation"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -400,7 +400,7 @@
 
       <add name="MorganStanleyCDMResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\CDM\"
+           responseMainFilePath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
@@ -428,7 +428,7 @@
       />
 
       <add name="MorganStanleyCorroAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider,        BaseLTAAdminDBProvider"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
+           connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
            getClientInfoSP="spGetClientInfoCorro"
            getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
@@ -457,7 +457,7 @@
 
       <add name="MorganStanleyCorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\DP-ESL-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\CORRO\"
+           responseMainFilePath="\\pd-dev-efs-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
@@ -469,7 +469,7 @@
 
       <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Site,subsiteid,ProcessDate,ItemType,BatchNum,TranNum,SeqNum,Amount,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,AccountNum,CheckRT,CheckNum,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Exception1,Exception2,Exception3,Exception4,Exception5,Exception6,Exception7,Exception8,Exception9,Exception10,Image_File_Name"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"
            getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
            clientConnectionStringInDatabase="True" 
@@ -493,7 +493,7 @@
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
            stackerMegaBytesSizeThreshold="2"
-           storageProxyListWebService="https://du-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/SynapticWebService.asmx|https://du-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/SynapticWebService.asmx"
+           storageProxyListWebService="https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/SynapticWebService.asmx|https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/SynapticWebService.asmx"
            storageProxyListWCFService=""    
       />
 
