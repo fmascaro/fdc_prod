@@ -102,7 +102,7 @@
         type="eGistics.FDC.Login.CitiBank.DirectToken, eGistics.FDC.Login"
       />
       <add name="CitiToken-EgiBUS"
-        OrganizationCode="REMITCO"
+        OrganizationCode="CITIBANK"
         AllowedRoleCodes="*"
         UserIdPrefix="eB:"
         ClientX509SerialNumber="<%= @EGI_Signature_Cert %>"
@@ -114,7 +114,7 @@
         type="eGistics.FDC.Login.CitiBank.BusinessOnlineToken, eGistics.FDC.Login"
       />
       <add name="CitiToken-EGI"
-        OrganizationCode="REMITCO"
+        OrganizationCode="CITIBANK"
         AllowedRoleCodes="*"
         UserIdPrefix="E:"
         ClientX509SerialNumber="<%= @EGI_Signature_Cert %>"
@@ -169,7 +169,7 @@
            OrganizationCode="eGistics"
            AllowedRoleCodes="*"
            FindOnlyValidCertificates="false"
-           VerifyExpiry="false"
+           VerifyExpiry="true"
            UseThisLoginProviderInCaseOfNullReferrer="true"
     />
    </providers>

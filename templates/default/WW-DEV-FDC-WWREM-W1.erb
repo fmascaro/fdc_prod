@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Note: As an alternative to hand editing this file you can use the
-    web admin tool to configure settings for your application. Use
-    the Website->Asp.Net Configuration option in Visual Studio.
-    A full list of settings and comments can be found in
-    machine.config.comments usually located in
-    \Windows\Microsoft.Net\Framework\v2.x\Config
--->
 <configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
   <configSections>
     <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
@@ -109,7 +101,7 @@
         type="eGistics.FDC.Login.CitiBank.DirectToken, eGistics.FDC.Login"
       />
       <add name="CitiToken-EgiBUS"
-        OrganizationCode="REMITCO"
+        OrganizationCode="CITIBANK"
         AllowedRoleCodes="*"
         UserIdPrefix="eB:"
         ClientX509SerialNumber=""
@@ -121,7 +113,7 @@
         type="eGistics.FDC.Login.CitiBank.BusinessOnlineToken, eGistics.FDC.Login"
       />
       <add name="CitiToken-EGI"
-        OrganizationCode="REMITCO"
+        OrganizationCode="CITIBANK"
         AllowedRoleCodes="*"
         UserIdPrefix="E:"
         ClientX509SerialNumber=""
@@ -177,7 +169,7 @@
            OrganizationCode="eGistics"
            AllowedRoleCodes="*"
            FindOnlyValidCertificates="false"
-           VerifyExpiry="false"
+           VerifyExpiry="true"
            UseThisLoginProviderInCaseOfNullReferrer="true"
     />
    </providers>
@@ -204,6 +196,7 @@
   </appSettings>
   <system.web>
     <httpCookies httpOnlyCookies="true" requireSSL="true" />
+    <httpRuntime enableVersionHeader="false"/>
     <sessionState timeout="15" cookieless="false"/>
     <identity impersonate="false" />
     <urlMappings enabled="true">
@@ -233,11 +226,8 @@
       <tagMapping>
       </tagMapping>
     </pages>
-    <!--
-            Set compilation debug="true" to insert debugging
-            symbols into the compiled page. Because this
-            affects performance, set this value to true only
-            during development.
+    <!-- Set compilation debug="true" to insert debugging symbols into the compiled page. Because this 
+            affects performance, set this value to true only during development.
         -->
     <compilation debug="true" defaultLanguage="c#" targetFramework="4.5">
       <assemblies>
@@ -289,11 +279,8 @@
       <!-- DO NOT CHANGE THIS-->
     </authorization>
     <!--
-            The <customErrors> section enables configuration
-            of what to do if/when an unhandled error occurs
-            during the execution of a request. Specifically,
-            it enables developers to configure html error pages
-            to be displayed in place of a error stack trace.
+        The <customErrors> section enables configuration of what to do if/when an unhandled error occurs during the execution of a request. Specifically, 
+        it enables developers to configure html error pages to be displayed in place of a error stack trace.
     -->
     <!-- <customErrors mode="On" defaultRedirect="~/Login.aspx">
       <error statusCode="404" redirect="~/PageNotFound.aspx"/>
@@ -336,10 +323,11 @@
   <system.webServer>
     <httpProtocol>
       <customHeaders>
-        <!--
-              <clear />
-        -->
         <add name="X-UA-Compatible" value="IE=EmulateIE7" />
+        <add name="X-Frame-Options" value="SAMEORIGIN"/>
+        <add name="X-XSS-Protection" value="1; mode=block"/>
+        <add name="X-Content-Type-Options" value="nosniff"/>
+        <add name="Strict-Transport-Security" value="max-age=31536000"/>
       </customHeaders>
     </httpProtocol>
     <validation validateIntegratedModeConfiguration="false"/>
