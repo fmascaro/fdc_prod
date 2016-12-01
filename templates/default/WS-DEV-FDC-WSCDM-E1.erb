@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<configuration>
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+  </configSections>
+  <connectionStrings>
+    <add name="Admin" connectionString="Data Source=PD-DEV-SQL-01\MSSQLDAL;Initial Catalog=FDC_admin;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
+    <add name="Archive" connectionString="Data Source=PD-DEV-SQL-01\MSSQLDAL;Initial Catalog=FDC_MorganStanley;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="Data Source=PD-DEV-SQL-01\MSSQLDAL;Initial Catalog=FDC_auditlog;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+<appSettings>
+    <add key="EndPointName" value="FundsWrapperServiceSoap"/>
+    <add key="NotifyUserGroupCaption" value="Access Funds Application"/>
+    <add key="NotifyUserGroupRedirectUrl" value="https://msrc.ipsfirst.tisa.io/MorganStanley/content/Home.aspx"/>
+    <add key="MobileRollupCode" value="MOB998" />
+    <add key="GetChecksSP" value="spEGIMSSelectCDMChecksByTransactionId" />
+    <add key="GetStubsSP" value="spEGIMSSelectCDMStubsByTransactionId" />
+    <add key="GetTransactionSP" value="spEGIRSelectCDMTransactionById" />
+    <add key="GetReferenceDataSP" value="spEGISelectReferenceDataTable" />
+    <add key="GetAnnotationsSP" value="spEGIRSelectCDMAnnotationsByTransactionId"/>
+    <add key="SaveTransSP" value="spEGIRSaveCDMTransaction"/>
+    <add key="SaveTransRollupCodeSP" value="spEGIRSaveCDMTransactionRollupCode"/>
+    <add key="SaveTransRejectReasonSP" value="spCDMUpdateTransactionRejectReason"/>
+    <add key="SaveTransStatusSP" value="spEGIRSaveCDMTransactionStatus"/>    
+    <add key="SaveChecksSP" value="spEGIRSaveCDMCheck"/>
+    <add key="SaveStubsSP" value="spEGIRSaveCDMStub"/>
+    <add key="DeleteChecksSP" value="spEGIMSDeleteCDMCheck"/>
+    <add key="UndeleteChecksSP" value="spEGIMSUndeleteCDMCheck"/>
+    <add key="DeleteStubsSP" value="spEGIMSDeleteCDMStub"/>
+    <add key="SaveAnnotationsSP" value="spEGIRSaveCDMAnnotation"/>
+    <add key="SaveCheckPartyTypeSP" value="spEGIRSaveCheckPartyType"/>
+    <add key="GetRejectLetterTemplateByIdSP" value="spEgiSelectCDMRejectLetterTemplateById"/>
+    <add key="GetRejectLetterTemplateListSP" value="spCDMGetRejectLetterTemplateList"/>
+    <add key="GetOverrideReasonsSP" value="spGetCDMOverridesReasons"/>
+    <add key="SaveTransRejectLetterTemplateIDSP" value="spEGIMSSaveCDMTransactionRejectLetterTemplateID"/>
+    <add key="SaveOverrideReasonAuditLogSP" value ="spCDMInsertOverrideReason"/>
+    <add key="SaveCDMWrapperAuditLogSP" value="spEGIMSSaveCDMWrapperAuditLog"/>
+    <add key="SaveCDMAuditLogSP" value="spEGIMSSaveCDMAuditLog"/>
+    <add key="GetNotificationMapSP" value="spEGIMSGetNotificationMapByRejectCode"/>
+    <add key="EnableValidateRulesLog" value="true"/>
+    <add key="EnableAccountViewLog" value="true"/>
+    <add key="EnableEntitlementsLog" value="true"/>
+    <add key="EnableNotifyLog" value="true"/>
+    <add key="OrganizationPreferences" value="ForceAnnotationsOnDeleteCheck,ForceAnnotationsOnDeleteStub,AllowAddCDMStubs,AllowAddCDMChecks,AllowDeleteCDMChecks,AllowDeleteCDMStubs,DisplayChecks,DisplayStubs,ConfirmOnAccept,EnableCDMTransMenu,ImageViewerSizeMode,ITEM_PAGE_COUNT,UseSequencePaging,ValidateBalanceOnAccept,GoToNextTransactionOnAccept,DeleteOriginalCDMCheck,DeleteOriginalCDMStub"/>
+    <add key="ApplicationID" value="POP"/>
+    <add key="WebServerIP" value="10.10.2.100"/>
+    <add key="UserID" value="TFNMOX"/>
+  </appSettings>
+
+  <system.net>
+    <settings>
+      <servicePointManager expect100Continue="false" />
+    </settings>
+  </system.net>
+
+  <system.web>
+    <trace enabled="true" localOnly="false" requestLimit="1000" traceMode="SortByTime" writeToDiagnosticsTrace="true" />
+
+    <compilation debug="true" defaultLanguage="c#" />
+    <authentication mode="Forms" />
+    <customErrors mode="Off" />
+  </system.web>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_FundsWrapperServiceSoap" closeTimeout="00:01:00"
+                 openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+                 maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+          <security mode="Transport"> 
+            <transport clientCredentialType="Certificate" />
+          </security>
+        </binding>
+        <binding name="BasicHttpBindingNoCert_FundsWrapperServiceSoap" closeTimeout="00:01:00"
+                 openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+                 maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+          <security mode="Transport" /> 
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://pd-dev-web-01.egdev.local/WSMFW-W2" 
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
+                contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
+    </client>
+  </system.serviceModel>
+
+  <log4net>
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="L:\WWW\DEV\FDC\WSCDM-E1\CDMWrapperNew.log" />
+      <appendToFile value="true" />
+      <maximumFileSize value="3MB" />
+      <maxSizeRollBackups value="100" />
+      <rollingStyle value="Composite" />
+      <datePattern value="yyyyMMdd" />
+      <staticLogFileName value="true" />
+      <filter type="log4net.Filter.LevelRangeFilter">
+        <acceptOnMatch value="true" />
+        <levelMin value="DEBUG" />
+        <levelMax value="FATAL" />
+      </filter>
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="HOUR    &#x9;LEVEL&#x9;HOST    &#x9;Application&#x9;Thread&#x9;Class&#x9;Method&#x9;NDC&#x9;TrackId1&#x9;TrackId2&#x9;Message&#xD;&#xA;" />
+        <footer value="&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+        <conversionPattern value="%date{HH:mm:ss}&#x9;%-5level&#x9;%property{log4net:HostName}&#x9;FundsWrapper&#x9;%thread&#x9;%property{Class}&#x9;%property{Method}&#x9;%property{NDC}&#x9;%property{TrackId1}&#x9;%property{TrackId2}&#x9;%message %newline" />
+      </layout>
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+    </appender>
+
+    <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingFileAppender" />
+    </root>
+  </log4net>
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="CDMWrapper.asmx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+  <system.web.extensions>
+   <scripting>
+     <webServices>
+       <jsonSerialization maxJsonLength="2147483644" />
+     </webServices>
+   </scripting>
+  </system.web.extensions>
+</configuration>
