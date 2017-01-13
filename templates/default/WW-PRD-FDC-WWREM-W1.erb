@@ -171,8 +171,9 @@
            FindOnlyValidCertificates="false"
            VerifyExpiry="true"
            UseThisLoginProviderInCaseOfNullReferrer="true"
-    />
-   </providers>
+      />
+
+    </providers>
   </loginProviderService>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
@@ -194,6 +195,7 @@
   </appSettings>
   <system.web>
     <httpCookies httpOnlyCookies="true" requireSSL="true" />
+    <httpRuntime enableVersionHeader="false"/>
     <sessionState timeout="15" cookieless="false"/>
     <identity impersonate="false" />
     <urlMappings enabled="true">
@@ -223,10 +225,10 @@
       <tagMapping>
       </tagMapping>
     </pages>
-    <!-- Set compilation debug="true" to insert debugging symbols into the compiled page. Because this 
+    <!-- Set compilation debug="true" to insert debugging symbols into the compiled page. Because this
             affects performance, set this value to true only during development.
-        -->
-    <compilation debug="true" defaultLanguage="c#" targetFramework="4.5">
+    -->
+    <compilation debug="false" defaultLanguage="c#" targetFramework="4.5">
       <assemblies>
         <add assembly="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral"/>
         <add assembly="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
@@ -281,7 +283,7 @@
       <!-- DO NOT CHANGE THIS-->
     </authorization>
     <!--
-        The <customErrors> section enables configuration of what to do if/when an unhandled error occurs during the execution of a request. Specifically, 
+        The <customErrors> section enables configuration of what to do if/when an unhandled error occurs during the execution of a request. Specifically,
         it enables developers to configure html error pages to be displayed in place of a error stack trace.
     -->
     <!-- <customErrors mode="On" defaultRedirect="~/Login.aspx">
@@ -325,7 +327,12 @@
   <system.webServer>
     <httpProtocol>
       <customHeaders>
-        <add name="X-UA-Compatible" value="IE=EmulateIE7" />
+        <add name="X-UA-Compatible" value="IE=EmulateIE7"/>
+        <add name="X-Frame-Options" value="SAMEORIGIN"/>
+        <add name="X-XSS-Protection" value="1; mode=block"/>
+        <add name="X-Content-Type-Options" value="nosniff"/>
+        <add name="Strict-Transport-Security" value="max-age=31536000"/>
+        <remove name="X-Powered-By"/>
       </customHeaders>
     </httpProtocol>
     <validation validateIntegratedModeConfiguration="false"/>
@@ -340,7 +347,6 @@
       <add name="ScriptResource.axd_GET,HEAD" path="ScriptResource.axd" verb="GET,HEAD" type="System.Web.Handlers.ScriptResourceHandler, System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="integratedMode,runtimeVersionv2.0" />
     </handlers>
   </system.webServer>
-
 
   <!-- Allow unauthenticated users to access these areas-->
   <location path="TokenLogoutDefault.html">
