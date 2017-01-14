@@ -21,8 +21,8 @@
     <section name="web.optimization" type="Web.Optimization.Configuration.OptimizationSection" />
 
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-      <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
-</configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+  </configSections>
 
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
@@ -76,7 +76,6 @@
     <add key="PasswordRepeatCharactersInvalid" value="true" />
     <add key="SAMLSigningSerialNumber" value="<%= @EGI_Signature_Cert %>" />
     <add key="OrganizationTreeSlidingExpirationInMinutes" value="5"/>
-    <!--<add key="SAMLEncryptionSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />-->
   </appSettings>
   <system.web>
     <machineKey
@@ -143,11 +142,23 @@
       <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
     </providers>
   </entityFramework>
-   <system.web.extensions>
-   <scripting>
-     <webServices>
-       <jsonSerialization maxJsonLength="2147483644" />
-     </webServices>
-   </scripting>
-</system.web.extensions>
+  <system.webServer>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-UA-Compatible" value="IE=EmulateIE7"/>
+        <add name="X-Frame-Options" value="SAMEORIGIN"/>
+        <add name="X-XSS-Protection" value="1; mode=block"/>
+        <add name="X-Content-Type-Options" value="nosniff"/>
+        <add name="Strict-Transport-Security" value="max-age=31536000"/>
+        <remove name="X-Powered-By"/>
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+  <system.web.extensions>
+    <scripting>
+      <webServices>
+        <jsonSerialization maxJsonLength="2147483644" />
+      </webServices>
+    </scripting>
+  </system.web.extensions>
 </configuration>
