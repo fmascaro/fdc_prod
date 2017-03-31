@@ -18,13 +18,15 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-DEV-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G;Trusted_Connection=True"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E1_MGN" type="FDC Synaptic Import (MorganStanley)" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"/>
     </Context>
   </ContextInfo>
 
   <appSettings>
-    <add key="ImportManagerStatusFile" value="E:\TIS\DEV\FDC\IMREM-E1\ImportStatus.txt"/>
-    <add key="MainLogPath" value="L:\TIS\DEV\FDC\IMREM-E1\MainLogs\"/>
+    <add key="ServiceName" value="ES-<%= @env %>-FDC-IMREM-E1"/>
+    <add key="ImportManagerStatusFile" value="E:\TIS\<%= @env %>\FDC\IMREM-E1\ImportStatus.txt"/>
+    <add key="MainLogPath" value="L:\TIS\<%= @env %>\FDC\IMREM-E1\MainLogs\"/>
     <add key="MainLogLevel" value="Normal"/>
 
     <!-- 0 means unlimited -->
@@ -36,7 +38,7 @@
           - from 05:00 hours to 09:59 hours maxRunningThreads = 5
           - from 10:00 hours to 19:59 hours maxRunningThreads = 5
           - from 20:00 hours to 23:59 hours maxRunningThreads = 5
-    
+
     <add key="MaxRunningThreadsByHour" value="0-4=5,5-9=5,10-19=5,20-23=5"/>
     -->
     <!-- SleepInterval in minutes could be decimal. For example 0.5 for 30 seconds-->
@@ -62,9 +64,9 @@
   <startupCleaners>
     <providers>
       <add name="StartupCleanerProvider" type="eGistics.Import.Manager.StartupCleanerProviders.StartupCleanerProvider, StartupCleanerProvider"
-           unableToDeleteObjectIDsFiles="E:\TIS\DEV\FDC\IMREM-E1\UnableToDelete\"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\"
-           ftpPath="E:\TIS\DEV\FDC\IMREM-E1\FTP\"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\"
+           ftpPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\FTP\"
            objectIDSaveFileExtension="objs"
            emailFrom="customerimportstatus@topimagesystems.com"
            emailTo=""
@@ -84,25 +86,35 @@
       <add name="MorganStanleyLTA" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyLTAImportProvider"
            triggerFileExtensions="trigger"
-           path="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
       />
 
-      <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"     
+      <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyReportImportProvider"
-           triggerFileExtensions="trigger"       
-           path="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"       
+           triggerFileExtensions="trigger"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"       
       />
 
       <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyCDMImportProvider"
            triggerFileExtensions="trigger"
-           path="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
       />
-      
+
       <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
-           path="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
            providerName="MorganStanleyCorroImportProvider"
            triggerFileExtensions="trigger"           
+      />
+      <add name="BaseRemittance1" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
+           providerName="BaseRemittanceImportProvider1"
+           triggerFileExtensions="trigger"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA_3X\"
+      />
+      <add name="BaseRemittance4x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
+           providerName="BaseRemittance4xImportProvider1"
+           triggerFileExtensions="trigger"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X\"
       />
     </providers>
   </incomingFolders>
@@ -110,17 +122,17 @@
   <fileHandlers>
     <providers>
       <add name="MorganStanleyLTAImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            smtpIP="10.100.10.46"
            smtpPort="25"
            emailFrom="noreply@eGisticsInc.com"
-           emailTo="noreply@eGisticsInc.com"
+           emailTo=""
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\LTA\"
-           logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\LTA\"
-           backupPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
-           exceptionsPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
-           ftpPath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\LTA\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
+           ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim"
@@ -131,18 +143,18 @@
       />
 
       <add name="MorganStanleyReportImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
            currentLoggingDebugLevel="Verbose"
            emailFrom="noreply@eGisticsInc.com"
-           emailTo="noreply@eGisticsInc.com"
+           emailTo=""
            smtpIP=""
            smtpPort="25"
-           ftpPath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\Reports\"
-           logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\Reports\"
-           backupPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
-           exceptionsPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
+           ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\Reports\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\Reports\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
            triggerLess="False"
            useCompressionProvider="True"
            compressionProvider="MorganStanleyReportZipCompressionProvider"
@@ -152,17 +164,17 @@
       />
 
       <add name="MorganStanleyCDMImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            smtpIP="10.100.10.46"
            smtpPort="25"
            emailFrom="noreply@eGisticsInc.com"
-           emailTo="noreply@eGisticsInc.com"
+           emailTo=""
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\CDM\"
-           logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\CDM\"
-           backupPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
-           exceptionsPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
-           ftpPath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\CDM\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
+           ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim"
@@ -172,34 +184,76 @@
            compressionFileExtension="zip"
       />
 
-     <add name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-          fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
-          moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
-          currentLoggingDebugLevel="Verbose"
-          emailFrom="noreply@eGisticsInc.com"
-          emailTo="noreply@eGisticsInc.com"
-          smtpIP=""
-          smtpPort="25"
-          ftpPath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
-          mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
-          logPath="L:\TIS\DEV\FDC\IMREM-E1\MorganStanley\CORRO\"
-          backupPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
-          exceptionsPath="\\PD-DEV-EFS-01\DEV\DEV-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
-          triggerLess="False"
-          useCompressionProvider="True"
-          compressionProvider="MorganStanleyCorroZipCompressionProvider"
-          itemHandler="MorganStanleyCorroItemProvider"
-          cleanUpProvider="GenericCleanupProvider"
-          compressionFileExtension="zip"
+      <add  name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
+            currentLoggingDebugLevel="Verbose"
+            emailFrom="noreply@eGisticsInc.com"
+            emailTo=""
+            smtpIP=""
+            smtpPort="25"
+            ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\CORRO\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
+            triggerLess="False"
+            useCompressionProvider="True"
+            compressionProvider="MorganStanleyCorroZipCompressionProvider"
+            itemHandler="MorganStanleyCorroItemProvider"
+            cleanUpProvider="GenericCleanupProvider"
+            compressionFileExtension="zip"
+      />
+
+      <add  name="BaseRemittanceImportProvider1" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            smtpIP=""
+            smtpPort="25"
+            emailFrom="noreply@eGisticsInc.com"
+            emailTo=""
+            currentLoggingDebugLevel="normal"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\"
+            ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X"
+            useCompressionProvider="True"
+            triggerLess="False"
+            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
+            compressionProvider="3XZipCompressionProvider"
+            itemHandler="BaseRemittanceItemProvider"
+            cleanUpProvider="GenericCleanupProvider"
+            compressionFileExtension="zip"
+      />
+
+      <add  name="BaseRemittance4xImportProvider1" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            smtpIP=""
+            smtpPort="25"
+            emailFrom="noreply@eGisticsInc.com"
+            emailTo=""
+            currentLoggingDebugLevel="normal"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_4X\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_4X\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_4X\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_4X\"
+            ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X"
+            useCompressionProvider="True"
+            triggerLess="False"
+            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
+            compressionProvider="4XZipCompressionProvider"
+            itemHandler="BaseRemittance4xItemProvider"
+            cleanUpProvider="GenericCleanupProvider"
+            compressionFileExtension="zip"
       />
     </providers>
   </fileHandlers>
 
   <subProviders>
-    <providers> 
+    <providers>
       <add name="MorganStanleyLTAZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\LTA\"
       />
 
       <add name="MorganStanleyLTAItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -207,7 +261,7 @@
            adminDBProvider="MorganStanleyLTABaseLTAAdminDBProvider"
            databaseProvider="MorganStanleyLTADatabaseProvider"
            archiveProvider="SynapticArchiveProviderStacked"
-           responseFileProvider="MorganStanleyLTAResponseFileProvider"     
+           responseFileProvider="MorganStanleyLTAResponseFileProvider"
            imageFileNameField="Image_File_Name"
            rowsWithNoImageHandling="NoImage"
            objectIDSaveFileExtension="objs"
@@ -218,8 +272,8 @@
            sequenceNumber="SequenceNum"
            itemTypeColumn="ItemType"
            numberOfImageFiles="1"
-           minLengthSmallOrLargePage = "2000" 
-           minHeightSmallOrLargePage = "900"         
+           minLengthSmallOrLargePage = "2000"
+           minHeightSmallOrLargePage = "900"
       />
 
       <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
@@ -227,16 +281,16 @@
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,SubSiteID,BundleID,BatchType2,BatchMode,Other1,Other2,Other3,Other4,Other5,Other6,Other7,RollupCode,Other9,Other10,Other11,Other12,ArcInd,CDMTransID,Other13,Other14,Other15,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@BatchNum(INT)=ItemData.BatchNum;@FileName(VarChar)=LoadTableFileName;@OrganizationID(INT)=ClientData.ID;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=LTA"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
@@ -267,15 +321,15 @@
 
       <add name="MorganStanleyLTAResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       /> 
 
       <add name="MorganStanleyReportZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\Reports\"
-      />   
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\Reports\"
+      />
 
       <add name="MorganStanleyReportItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
            indexColumnMapping="SiteID(INT),SubSiteID(VARCHAR),BatchNum(INT),ProcessDate(VARCHAR),ReportName(CHAR),Image_File_Name"
@@ -295,10 +349,10 @@
       />
 
       <add name="MorganStanleyReportDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
-           indexColumnMapping="@SiteID(INT),@SubSiteID(VARCHAR),@BatchNum(INT),@ProcessDate(VARCHAR),@ReportName(CHAR),@Image_File_Name,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
-           connectionString="None" 
+           indexColumnMapping="@SiteID(INT),@SubSiteID(VARCHAR),@BatchNum(INT),@ProcessDate(VARCHAR),@ReportName(CHAR),@Image_File_Name,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           connectionString="None"
            storedProcedureAdd="spImportReportSynapticMorganStanley"
-           storedProcedureAddParameters="@ReportName(CHAR),@ProcessDate(VARCHAR),@SiteID(INT),@SubSiteID(VARCHAR),@ObjectID(VARCHAR),@LoadTableID(BIGINT),@OrgID(INT)" 
+           storedProcedureAddParameters="@ReportName(CHAR),@ProcessDate(VARCHAR),@SiteID(INT),@SubSiteID(VARCHAR),@ObjectID(VARCHAR),@LoadTableID(BIGINT),@OrgID(INT)"
            storedProcedureDel="None"
            storedProcedureUpd="None"
            useTransaction="True"
@@ -317,22 +371,22 @@
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
       <add name="MorganStanleyReportResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
-      />  
+      />
 
       <add name="MorganStanleyCDMZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CDM\"
       />
 
       <add name="MorganStanleyCDMItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -340,7 +394,7 @@
            adminDBProvider="MorganStanleyCDMBaseLTAAdminDBProvider"
            databaseProvider="MorganStanleyCDMDatabaseProvider"
            archiveProvider="SynapticArchiveProviderStacked"
-           responseFileProvider="MorganStanleyCDMResponseFileProvider"     
+           responseFileProvider="MorganStanleyCDMResponseFileProvider"
            imageFileNameField="Image_File_Name"
            rowsWithNoImageHandling="NoImage"
            objectIDSaveFileExtension="objs"
@@ -351,8 +405,8 @@
            sequenceNumber="SequenceNumber"
            itemTypeColumn="ItemType"
            numberOfImageFiles="1"
-           minLengthSmallOrLargePage = "2000" 
-           minHeightSmallOrLargePage = "900"         
+           minLengthSmallOrLargePage = "2000"
+           minHeightSmallOrLargePage = "900"
       />
 
       <add name="MorganStanleyCDMBaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
@@ -360,16 +414,16 @@
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNumber,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name,Annotation"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@BatchNum(INT)=ItemData.BatchID;@FileName(VarChar)=LoadTableFileName;@OrganizationID(INT)=ClientData.ID;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=CDM"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
@@ -400,15 +454,15 @@
 
       <add name="MorganStanleyCDMResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
 
       <add name="MorganStanleyCorroZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
-      />    
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+      />
 
       <add name="MorganStanleyCorroItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
            indexColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
@@ -432,24 +486,24 @@
            lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
            getClientInfoSP="spGetClientInfoCorro"
            getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ItemData.SiteID;@SubSiteID(INT)=ItemData.SubSiteID;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Corro"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
       <add name="MorganStanleyCorroDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
-           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
-           connectionString="None" 
+           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           connectionString="None"
            storedProcedureAdd="spImportCorrespondenceGenerationItem"
-           storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"            
+           storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"
            storedProcedureDel="None"
            storedProcedureUpd="None"
            useTransaction="True"
@@ -457,14 +511,24 @@
 
       <add name="MorganStanleyCorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="\\PD-DEV-EFS-01\STAGED\DEV\DEV-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
 
       <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\DEV\FDC\IMREM-E1\Working\FirstBank\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FirstBank\"
+      />
+
+      <add  name="3XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_3X\"
+      />
+
+      <add  name="4XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_4X\"
       />
 
       <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
@@ -472,21 +536,21 @@
            connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin;Trusted_Connection=True"
            getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@subsiteid(INT)=ClientData.subsiteid;@ProcDate(INT)=ItemData.ProcessDate;@BatchNum(INT)=ItemData.BatchNum;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Daily"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
       <add name="SynapticArchiveProviderStacked" type="eGistics.Import.Manager.SynapticArchiveProviders.StackerSynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
@@ -494,21 +558,21 @@
            baseURI="32.65.211.48|32.65.211.49"
            stackerMegaBytesSizeThreshold="2"
            storageProxyListWebService="https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/SynapticWebService.asmx|https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/SynapticWebService.asmx"
-           storageProxyListWCFService=""    
+           storageProxyListWCFService=""
       />
 
       <add name="SynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\app.config"
-           overrideSynapticWebServiceWebConfigSettings="True" 
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
+           overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
       />
-      
+
       <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\app.config"
-           unableToDeleteObjectIDsFiles="E:\TIS\DEV\FDC\IMREM-E1\UnableToDelete\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
            overrideSynapticWebServiceWebConfigSettings="True"
            objectIDSaveFileExtension="objs"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
@@ -516,14 +580,149 @@
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
       />
-      
+
       <add name="SingleSynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\DEV\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
+      />
+    
+      <add name="FDCLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
+           connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g;Trusted_Connection=True"
+           lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,WorksourceID,BundleID,BatchType2,BatchMode,Account1,Account2,Account3,Account4,Account5,Account6,Account7,Account8,Account9,Account10,Account11,Account12,Account13,Account14,Account15,Account16,Account17,Account18,Account19,Account20,Amount2,Amount3,Account21,CDMTransID,Amount1,Amount4,Amount5,Image_File_Name,LockBox,TransAmount,BatchAmount,BatchID,MiscAmt1,MiscAmt2,MiscAmt3,MiscAmt4,MiscAmt5,Account22,Account23,Account24,DepositDate,Account25,Account26,Account27,Account28,Account29,Account30,Account31,Account32,Account33,Account34,Account35,Account36,Account37,Account38,Account39,Account40,Account41,Account42,Account43,Account44,Account45"
+           getClientInfoSP="spGetClientInfoSynaptic"
+           getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=WorksourceID"
+           clientConnectionStringInDatabase="True"
+           clientConnectionStringColumnName="SqlClientConnectionString"
+           addLoadTableElementSP="spAddLoadElementGeneric"
+           addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@subsiteid(INT)=ClientData.subsiteid;@ProcDate(INT)=ItemData.ProcessDate;@BatchNum(INT)=ItemData.BatchNum;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=LTA"
+           addLoadTableElementOutParameter="@NEWID(BIGINT)"
+           updLoadTableElementSP="spUpdateLoadElementGeneric"
+           updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad;@LargePagesCount(INT)=LargePagesCount;@SmallPagesCount(INT)=SmallPagesCount;@Overage(INT)=Overage"
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
+           useTransaction="False"
+      />
+
+      <add  name="BaseRemittanceItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+            indexColumnMapping="BatchNum(INT),SequenceNum(INT),ProcessDate(SMALLDATETIME),,AccountNum(VARCHAR),Amount(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),CheckNumPC(VARCHAR),CheckNumBUS(VARCHAR),,ItemType(VARCHAR),TranNumber(INT),BatchType(VARCHAR),MSCode(VARCHAR),SiteID(INT),WorksourceID(INT),,,BatchMode(TINYINT),,Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount2(NUMERIC),Amount3(NUMERIC),,RollupCode(VARCHAR),,,,,ArcInd(CHAR),CDMTransID(BIGINT),,,,Image_File_Name"
+            responseFileProvider=""
+            databaseProvider="BaseRemittanceDatabaseProvider"
+            archiveProvider="SynapticArchiveProvider"
+            adminDBProvider="FDCLTAAdminDBProvider"
+            imageFileNameField="Image_File_Name"
+            rowsWithNoImageHandling="NoImage"
+            objectIDSaveFileExtension="objs"
+            indexFileExtension="A"
+            indexFileDelimiter="|"
+            hasImages="True"
+            transGrouping="TranNumber"
+            sequenceNumber="SequenceNum"
+            itemTypeColumn="ItemType"
+            numberOfImageFiles="1"
+            minLengthSmallOrLargePage = "2000"
+            minHeightSmallOrLargePage = "900"
+      />
+
+      <add  name="BaseRemittance4xItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
+            indexColumnMapping="BatchNum(INT),SequenceNum(INT),ProcessDate(SMALLDATETIME),SystemDate(SMALLDATETIME),AccountNum(VARCHAR),Amount(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),CheckNumPC(VARCHAR),CheckNumBUS(VARCHAR),RejectFlag(TINYINT),ItemType(VARCHAR),TranNumber(INT),BatchType(VARCHAR),MSCode(VARCHAR),SiteID(INT),WorksourceID(INT),BundleID(VARCHAR),BatchType2(VARCHAR),BatchMode(TINYINT),Account1(VARCHAR),Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Account5(VARCHAR),Account6(VARCHAR),Account7(VARCHAR),Account8(VARCHAR),Account9(VARCHAR),Account10(VARCHAR),Account11(VARCHAR),Account12(VARCHAR),Account13(VARCHAR),Account14(VARCHAR),Account15(VARCHAR),Account16(VARCHAR),Account17(VARCHAR),Account18(VARCHAR),Account19(VARCHAR),Account20(VARCHAR),Amount2(NUMERIC),Amount3(NUMERIC),Account21(VARCHAR),CDMTransID(BUGINT),Amount1(NUMERIC),Amount4(NUMERIC),Amount5(NUMERIC),Image_File_Name(NOTYPE),LockBox(VARCHAR),TransAmount(NUMERIC),BatchAmount(NUMERIC),BatchID(INT),MiscAmt1(NUMERIC),
+                                MiscAmt2(NUMERIC),MiscAmt3(NUMERIC),MiscAmt4(NUMERIC),MiscAmt5(NUMERIC),Account22(VARCHAR),Account23(VARCHAR),Account24(VARCHAR),DepositDate(SMALLDATETIME),Account25(VARCHAR),Account26(VARCHAR),Account27(VARCHAR),Account28(VARCHAR),Account29(VARCHAR),Account30(VARCHAR),Account31(VARCHAR),Account32(VARCHAR),Account33(VARCHAR),Account34(VARCHAR),Account35(VARCHAR),Account36(VARCHAR),Account37(VARCHAR),Account38(VARCHAR),Account39(VARCHAR),Account40(VARCHAR),Account41(VARCHAR),Account42(VARCHAR),Account43(VARCHAR),Account44(VARCHAR),Account45(VARCHAR)"
+            responseFileProvider="BaseRemittance4xResponseFileProvider" 
+            databaseProvider="BaseRemittance4xDatabaseProvider"
+            archiveProvider="SynapticArchiveProvider"
+            adminDBProvider="FDCLTAAdminDBProvider"
+            imageFileNameField="Image_File_Name"
+            rowsWithNoImageHandling="NoImage"
+            objectIDSaveFileExtension="objs"
+            indexFileExtension="DAT"
+            indexFileDelimiter="|"
+            hasImages="True"
+            transGrouping="TranNumber"
+            sequenceNumber="SequenceNum"
+            itemTypeColumn="ItemType"
+            numberOfImageFiles="1"
+            minLengthSmallOrLargePage = "2000" 
+            minHeightSmallOrLargePage = "900"         
+      />
+
+      <add  name="BaseRemittanceResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
+            responseMainFilePath="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\<%= @env %>\LTA_3X"
+            responseFileExtension="rsp"
+            responseFileDelimiter="|"
+      />
+
+      <add  name="BaseRemittance4xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
+            responseMainFilePath="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\<%= @env %>\LTA_4X"
+            responseFileExtension="rsp"
+            responseFileDelimiter="|"
+      />
+
+      <add  name="BaseRemittanceDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+            connectionString=""
+            addTransElementReturnParameter="@TRANSID(BIGINT)"
+
+            transIndexColumnMapping="@BatchNum(INT),,@ProcessDate(SMALLDATETIME),,,,,,,,,,@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@WorksourceID(INT),,,@BatchMode(TINYINT),,,,,,,,,,,,,,@CDMTransID(BIGINT),,,,,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+            checkIndexColumnMapping=",@SequenceNum(INT),,,,@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),,@ItemType(VARCHAR),,@BatchType(VARCHAR),@MSCode(VARCHAR),,,,,,,,,,,,,@RollupCode(VARCHAR),,,,,@ArcInd(CHAR),,,,,,@TranID(BIGINT)"
+            stubIndexColumnMapping=",@SequenceNum(INT),,,@AccountNum(VARCHAR),@Amount(NUMERIC),,,,,,@ItemType(VARCHAR),,@BatchType(VARCHAR),@MSCode(VARCHAR),,,,,,,@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),,,,@RollupCode(VARCHAR),,,@Amount2(NUMERIC),@Amount3(NUMERIC),,,,,,,@TranID(BIGINT)"
+
+            storedProcedureTransAdd="spImportTransactionSynaptic"
+            storedProcedureAddTransParameters="@ProcessDate(SMALLDATETIME),@BatchNum(INT),@TranNumber(INT),@BatchType(VARCHAR),@SiteID(INT),@WorksourceID(INT),@BatchMode(TINYINT),@CDMTransID(BIGINT),@ObjectID(VARCHAR),@OrgID(INT),@LoadTableID(BIGINT)"
+            storedProcedureTransDel="None"
+            storedProcedureTransUpd="None"
+
+            storedProcedureCheckAdd="spImportCheckSynaptic"
+            storedProcedureAddCheckParameters="@SequenceNum(INT),@ItemType(VARCHAR),@Amount(NUMERIC),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@CheckRTNum(VARCHAR),@MSCode(VARCHAR),@RollupCode(VARCHAR),@BatchNum(INT),@BatchType(VARCHAR),@ArcInd(CHAR),@TranID(BIGINT)"
+            storedProcedureCheckDel="None"
+            storedProcedureCheckUpd="None"
+
+            storedProcedureStubAdd="spImportStubSynaptic"
+            storedProcedureAddStubParameters="@SequenceNum(INT),@ItemType(VARCHAR),@AccountNum(VARCHAR),@Amount(NUMERIC),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@MSCode(VARCHAR),@RollupCode(VARCHAR),@BatchNum(INT),@BatchType(VARCHAR),@TranID(BIGINT)"
+            storedProcedureStubDel="None"
+            storedProcedureStubUpd="None"
+            useTransaction="True"
+
+            spOnBeforeProcessingFile=""
+            spOnBeforeProcessingRow=""
+            spOnAfterProcessingRow=""
+            spOnAfterProcessingFile=""
+      />
+        
+      <add  name="BaseRemittance4xDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+            connectionString=""
+            addTransElementReturnParameter="@TRANSID(BIGINT)"
+
+            transIndexColumnMapping="@BatchNum(INT),@SequenceNum(INT),@ProcessDate(SMALLDATETIME),@SystemDate(SMALLDATETIME),@AccountNum(VARCHAR),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@RejectFlag(TINYINT),@ItemType(VARCHAR),@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@WorksourceID(INT),@BundleID(VARCHAR),@BatchType2(VARCHAR),@BatchMode(TINYINT),@Account1(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Account5(VARCHAR),@Account6(VARCHAR),@Account7(VARCHAR),@Account8(VARCHAR),@Account9(VARCHAR),@Account10(VARCHAR),@Account11(VARCHAR),@Account12(VARCHAR),@Account13(VARCHAR),@Account14(VARCHAR),@Account15(VARCHAR),@Account16(VARCHAR),@Account17(VARCHAR),@Account18(VARCHAR),@Account19(VARCHAR),@Account20(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Account21(VARCHAR),@CDMTransID(BIGINT),@Amount1(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Image_File_Name(NOTYPE),@LockBox(VARCHAR),@TransAmount(NUMERIC),@BatchAmount(NUMERIC),@BatchID(INT),@MiscAmt1(NUMERIC),@MiscAmt2(NUMERIC),@MiscAmt3(NUMERIC),@MiscAmt4(NUMERIC),@MiscAmt5(NUMERIC),@Account22(VARCHAR),@Account23(VARCHAR),@Account24(VARCHAR),@DepositDate(SMALLDATETIME),@Account25(VARCHAR),@Account26(VARCHAR),@Account27(VARCHAR),@Account28(VARCHAR),@Account29(VARCHAR),@Account30(VARCHAR),@Account31(VARCHAR),@Account32(VARCHAR),@Account33(VARCHAR),@Account34(VARCHAR),@Account35(VARCHAR),@Account36(VARCHAR),@Account37(VARCHAR),@Account38(VARCHAR),@Account39(VARCHAR),@Account40(VARCHAR),@Account41(VARCHAR),@Account42(VARCHAR),@Account43(VARCHAR),@Account44(VARCHAR),@Account45(VARCHAR),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+
+            checkIndexColumnMapping="@BatchNum(INT),@SequenceNum(INT),@ProcessDate(SMALLDATETIME),@SystemDate(SMALLDATETIME),@AccountNum(VARCHAR),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@RejectFlag(TINYINT),@ItemType(VARCHAR),@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@WorksourceID(INT),@BundleID(VARCHAR),@BatchType2(VARCHAR),@BatchMode(TINYINT),@Account1(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Account5(VARCHAR),@Account6(VARCHAR),@Account7(VARCHAR),@Account8(VARCHAR),@Account9(VARCHAR),@Account10(VARCHAR),@Account11(VARCHAR),@Account12(VARCHAR),@Account13(VARCHAR),@Account14(VARCHAR),@Account15(VARCHAR),@Account16(VARCHAR),@Account17(VARCHAR),@Account18(VARCHAR),@Account19(VARCHAR),@Account20(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Account21(VARCHAR),@CDMTransID(BIGINT),@Amount1(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Image_File_Name(NOTYPE),@LockBox(VARCHAR),@TransAmount(NUMERIC),@BatchAmount(NUMERIC),@BatchID(INT),@MiscAmt1(NUMERIC),@MiscAmt2(NUMERIC),@MiscAmt3(NUMERIC),@MiscAmt4(NUMERIC),@MiscAmt5(NUMERIC),@Account22(VARCHAR),@Account23(VARCHAR),@Account24(VARCHAR),@DepositDate(SMALLDATETIME),@Account25(VARCHAR),@Account26(VARCHAR),@Account27(VARCHAR),@Account28(VARCHAR),@Account29(VARCHAR),@Account30(VARCHAR),@Account31(VARCHAR),@Account32(VARCHAR),@Account33(VARCHAR),@Account34(VARCHAR),@Account35(VARCHAR),@Account36(VARCHAR),@Account37(VARCHAR),@Account38(VARCHAR),@Account39(VARCHAR),@Account40(VARCHAR),@Account41(VARCHAR),@Account42(VARCHAR),@Account43(VARCHAR),@Account44(VARCHAR),@Account45(VARCHAR),@TranID(BIGINT)"
+
+            stubIndexColumnMapping="@BatchNum(INT),@SequenceNum(INT),@ProcessDate(SMALLDATETIME),@SystemDate(SMALLDATETIME),@AccountNum(VARCHAR),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@RejectFlag(TINYINT),@ItemType(VARCHAR),@TranNumber(INT),@BatchType(VARCHAR),@MSCode(VARCHAR),@SiteID(INT),@WorksourceID(INT),@BundleID(VARCHAR),@BatchType2(VARCHAR),@BatchMode(TINYINT),@Account1(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Account5(VARCHAR),@Account6(VARCHAR),@Account7(VARCHAR),@Account8(VARCHAR),@Account9(VARCHAR),@Account10(VARCHAR),@Account11(VARCHAR),@Account12(VARCHAR),@Account13(VARCHAR),@Account14(VARCHAR),@Account15(VARCHAR),@Account16(VARCHAR),@Account17(VARCHAR),@Account18(VARCHAR),@Account19(VARCHAR),@Account20(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Account21(VARCHAR),@CDMTransID(BIGINT),@Amount1(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Image_File_Name(NOTYPE),@LockBox(VARCHAR),@TransAmount(NUMERIC),@BatchAmount(NUMERIC),@BatchID(INT),@MiscAmt1(NUMERIC),@MiscAmt2(NUMERIC),@MiscAmt3(NUMERIC),@MiscAmt4(NUMERIC),@MiscAmt5(NUMERIC),@Account22(VARCHAR),@Account23(VARCHAR),@Account24(VARCHAR),@DepositDate(SMALLDATETIME),@Account25(VARCHAR),@Account26(VARCHAR),@Account27(VARCHAR),@Account28(VARCHAR),@Account29(VARCHAR),@Account30(VARCHAR),@Account31(VARCHAR),@Account32(VARCHAR),@Account33(VARCHAR),@Account34(VARCHAR),@Account35(VARCHAR),@Account36(VARCHAR),@Account37(VARCHAR),@Account38(VARCHAR),@Account39(VARCHAR),@Account40(VARCHAR),@Account41(VARCHAR),@Account42(VARCHAR),@Account43(VARCHAR),@Account44(VARCHAR),@Account45(VARCHAR),@TranID(BIGINT)"
+
+            storedProcedureTransAdd="spImport4xTransactionSynaptic"
+            storedProcedureAddTransParameters="@BatchNum(INT),@ProcessDate(SMALLDATETIME),@RejectFlag(TINYINT),@TranNumber(INT),@BatchType(VARCHAR),@SiteID(INT),@WorksourceID(INT),@BundleID(VARCHAR),@BatchMode(TINYINT),@CDMTransID(BIGINT),@LockBox(VARCHAR),@TransAmount(NUMERIC),@BatchAmount(NUMERIC),@BatchID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+            storedProcedureTransDel="None"
+            storedProcedureTransUpd="None"
+
+            storedProcedureCheckAdd="spImport4xCheckSynaptic"
+            storedProcedureAddCheckParameters="@BatchNUM(INT),@SequenceNum(INT),@Amount(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@CheckNumPC(VARCHAR),@CheckNumBUS(VARCHAR),@ItemType(VARCHAR),@BatchType(VARCHAR),@MSCode(VARCHAR),@Account8(VARCHAR),@Account13(VARCHAR),@TranID(BIGINT)"
+            storedProcedureCheckDel="None"
+            storedProcedureCheckUpd="None"
+
+            storedProcedureStubAdd="spImport4xStubSynaptic"
+            storedProcedureAddStubParameters="@BatchNUM(INT),@SequenceNum(INT),@AccountNum(VARCHAR),@Amount(NUMERIC),@ItemType(VARCHAR),@BatchType(VARCHAR),@MSCode(VARCHAR),@Account1(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Account5(VARCHAR),@Account6(VARCHAR),@Account7(VARCHAR),@Account8(VARCHAR),@Account9(VARCHAR),@Account10(VARCHAR),@Account11(VARCHAR),@Account12(VARCHAR),@Account13(VARCHAR),@Account14(VARCHAR),@Account15(VARCHAR),@Account16(VARCHAR),@Account17(VARCHAR),@Account18(VARCHAR),@Account19(VARCHAR),@Account20(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@TranID(BIGINT)"
+            storedProcedureStubDel="None"
+            storedProcedureStubUpd="None"
+            useTransaction="True"
+
+            spOnBeforeProcessingFile="spBeforeFileProcess_FDC"
+            spOnBeforeProcessingRow=""
+            spOnAfterProcessingRow=""
+            spOnAfterProcessingFile=""
       />
     </providers>
   </subProviders>
@@ -531,14 +730,14 @@
   <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://dd-esl-sau-01.egistics.local:8181/strongkeyliteWAR/EncryptionService">
     <Ping Password-Clear="Abcd1234!"/>
     <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="C:\temp"/>
-    <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="C:\temp"/>
+    <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="E:\temp"/>
   </StrongAuth.CryptoSection>
 
   <system.serviceModel>
     <bindings>
       <wsHttpBinding>
         <binding name="WSHttpBinding_IEventCollection">
-          <security mode="Transport"> 
+          <security mode="Transport">
             <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
           </security>
         </binding>
@@ -606,7 +805,7 @@
   <system.web>
     <httpRuntime executionTimeout="20" maxRequestLength="102400"
       minFreeThreads="352" minLocalRequestFreeThreads="304" />
-  </system.web> 
+  </system.web>
   <system.net>
     <defaultProxy>
       <proxy autoDetect="False"/>
