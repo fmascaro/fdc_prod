@@ -85,7 +85,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://<%= @site %><%= @env %>-fdc-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" 
+      <endpoint address="https://<%= @site %><%= @envcode %>-fdc-WSW-01.tisa.io/FundsWrapper/FundsWrapper.asmx" 
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingNoCert_FundsWrapperServiceSoap"
                 contract="FundsWrapperWS.FundsWrapperServiceSoap" name="FundsWrapperServiceSoap" />
     </client>

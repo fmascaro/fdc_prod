@@ -350,7 +350,7 @@
       </wsHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://<%= @site %><%= @env %>-fdc-WSE-01.tisa.io/Dashboard/DashboardWcf.svc" binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IDashboardWcfService" contract="Dashboard.IDashboardWcfService" name="WSHttpBinding_IDashboardWcfService">
+      <endpoint address="https://<%= @site %><%= @envcode %>-fdc-WSE-01.tisa.io/Dashboard/DashboardWcf.svc" binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IDashboardWcfService" contract="Dashboard.IDashboardWcfService" name="WSHttpBinding_IDashboardWcfService">
       </endpoint>
       <!-- <endpoint address="https://du-irm-wse-01.tisa.io/ValidationEngine/ValidationEngineProxy.asmx" binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap" contract="Validation.ValidationEngineProxySoap" name="ValidationEngineProxySoap" />
       <endpoint address="https://du-irm-wse-01.tisa.io/EventSubscription/eGistics.Notification.Subscription.SubscriptionManagement.svc"
@@ -359,7 +359,7 @@
       <endpoint address="https://du-irm-wse-01.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc"
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" /> -->
-      <endpoint address="https://<%= @site %><%= @env %>-fdc-WSE-01.tisa.io/CDMWrapper/CDMWrapper.asmx"
+      <endpoint address="https://<%= @site %><%= @envcode %>-fdc-WSE-01.tisa.io/CDMWrapper/CDMWrapper.asmx"
         binding="basicHttpBinding" bindingConfiguration="CDMWrapperSoap"
         contract="CDMWrapperSoap" name="CDMWrapperSoap" />
     </client>

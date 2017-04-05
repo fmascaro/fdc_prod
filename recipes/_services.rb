@@ -105,7 +105,8 @@ services.each do |service|
 				:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx',
 				:strongauthblock => strongauth,
 				:site => site,
-				:env => environment
+				:env => env,
+				:envcode => environment
 				})
 			notifies :restart, "service[#{svc_db_item[service]['ServiceName']}]"
 		end unless svc_db_item[service]['config_filename'].empty?
