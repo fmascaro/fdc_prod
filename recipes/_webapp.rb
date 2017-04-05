@@ -236,7 +236,8 @@ webapps.each do |webapp|
       	variables({
       		:strongauth => web_db_item[webapp]['strongauth'],
           :site => site,
-          :env => environment,
+          :env => env,
+          :envcode => environment,
           :storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
       		})
       	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
