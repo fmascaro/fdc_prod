@@ -18,8 +18,8 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-<%= @env %>-FDC-IMREM-E2" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"/>
-      <add name="ES-<%= @env %>-FDC-IMREM-E2_MGN" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E2" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_Admin3G;Trusted_Connection=True"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E2_MGN" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_admin;Trusted_Connection=True"/>
     </Context>
   </ContextInfo>
 
@@ -533,7 +533,7 @@
 
       <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Site,subsiteid,ProcessDate,ItemType,BatchNum,TranNum,SeqNum,Amount,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,AccountNum,CheckRT,CheckNum,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Exception1,Exception2,Exception3,Exception4,Exception5,Exception6,Exception7,Exception8,Exception9,Exception10,Image_File_Name"
-           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=BaseRemit_Admin;Trusted_Connection=True"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
            clientConnectionStringInDatabase="True"
