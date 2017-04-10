@@ -71,7 +71,7 @@
     <add key="UnsignedPage0" value="~/default1.aspx" />
     <add key="UnsignedPage1" value="~/default2.aspx" />
     <add key="eGistics.Data.DatabaseWrapper.GlobalCommandTimeout" value="120" />
-    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$"/>  
+    <add key="PasswordValidationExpression" value="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$"/>
     <add key="PasswordValidationMessage" value="Password must be between 8 and 20 characters, contain at least one numeric and one alphabetic character, and may not contain any special characters." />
     <add key="NumberOfMinutesBeforeDisplayingSessionAboutToTimeoutPopup" value="3" />
     <add key="PdfWebSite" value="" />
@@ -160,7 +160,7 @@
         name="morganSamlToken"
         SupportsChangePassword="No"
         UserIdPrefix=""
-        ClientX509SerialNumber="7d 00 6f 9d 0b 58 9a 95 7c 88 a8 5a e7 6a 70 3a"
+        ClientX509SerialNumber="00 d9 e1 14 ff ab 6f cf af c8 ef 50 fa 63 45 47 ee"
         HomePage="https://samlqa.ms.com/idp/startSSO.ping?PARTNER=https://msrc.fdps.com"
         ErrorValidationPage="https://msrc.fdps.com/RemitCore/ssoerror.html"
         DecryptMessage="false"
@@ -253,7 +253,7 @@
       <add name="RadCompression" type="Telerik.Web.UI.RadCompression" />
     </httpModules>
     <sessionState timeout="20" cookieless="false" />
-    <!-- 
+    <!--
          The <authentication> section enables configuration of the security authentication mode used by
          ASP.NET to identify an incoming user.
     -->
@@ -263,7 +263,7 @@
     <authorization>
       <deny users="?" />
     </authorization>
-    <!-- 
+    <!--
             The <customErrors> section enables configuration of what to do if/when an unhandled error occurs
             during the execution of a request. Specifically, it enables developers to configure html error pages
             to be displayed in place of a error stack trace.
@@ -318,8 +318,8 @@
           openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
           allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
           maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
-          <security mode="Transport"> 
-            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/> 
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
           </security>
         </binding>
 
@@ -327,8 +327,8 @@
           openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
           allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
           maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
-          <security mode="Transport"> 
-            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/> 
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
           </security>
         </binding>
       </basicHttpBinding>
