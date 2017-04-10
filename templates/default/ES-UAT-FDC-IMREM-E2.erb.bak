@@ -18,15 +18,15 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-<%= @env %>-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG2;DATABASE=RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
-      <add name="ES-<%= @env %>-FDC-IMREM-E1_MGN" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG2;DATABASE=FDC_admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E2" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_Admin3G;Trusted_Connection=True"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E2_MGN" type="FDC Synaptic Import" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_admin;Trusted_Connection=True"/>
     </Context>
   </ContextInfo>
 
   <appSettings>
-    <add key="ServiceName" value="ES-<%= @env %>-FDC-IMREM-E1"/>
-    <add key="ImportManagerStatusFile" value="E:\TIS\<%= @env %>\FDC\IMREM-E1\ImportStatus.txt"/>
-    <add key="MainLogPath" value="L:\TIS\<%= @env %>\FDC\IMREM-E1\MainLogs\"/>
+    <add key="ServiceName" value="ES-<%= @env %>-FDC-IMREM-E2"/>
+    <add key="ImportManagerStatusFile" value="E:\TIS\<%= @env %>\FDC\IMREM-E2\ImportStatus.txt"/>
+    <add key="MainLogPath" value="L:\TIS\<%= @env %>\FDC\IMREM-E2\MainLogs\"/>
     <add key="MainLogLevel" value="Normal"/>
 
     <!-- 0 means unlimited -->
@@ -38,7 +38,7 @@
           - from 05:00 hours to 09:59 hours maxRunningThreads = 5
           - from 10:00 hours to 19:59 hours maxRunningThreads = 5
           - from 20:00 hours to 23:59 hours maxRunningThreads = 5
-    
+
     <add key="MaxRunningThreadsByHour" value="0-4=5,5-9=5,10-19=5,20-23=5"/>
     -->
     <!-- SleepInterval in minutes could be decimal. For example 0.5 for 30 seconds-->
@@ -53,10 +53,10 @@
   <applicationSettings>
     <eGistics.Import.Manager.Base.Properties.Settings>
       <setting name="BaseProvider_SynapticWebService_SynapticWebService" serializeAs="String">
-        <value><%= @storage_proxy %></value>
+        <value>https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E1/SynapticWebService.asmx</value>
       </setting>
       <setting name="BaseProvider_SynapticWebService_Net4_SynapticWebService" serializeAs="String">
-        <value><%= @storage_proxy %></value>
+        <value>https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E1/SynapticWebService.asmx</value>
       </setting>
     </eGistics.Import.Manager.Base.Properties.Settings>
   </applicationSettings>
@@ -64,9 +64,9 @@
   <startupCleaners>
     <providers>
       <add name="StartupCleanerProvider" type="eGistics.Import.Manager.StartupCleanerProviders.StartupCleanerProvider, StartupCleanerProvider"
-           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\"
-           ftpPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\FTP\"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E2\UnableToDelete\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\"
+           ftpPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\FTP\"
            objectIDSaveFileExtension="objs"
            emailFrom="customerimportstatus@topimagesystems.com"
            emailTo=""
@@ -89,7 +89,7 @@
            path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA\"
       />
 
-      <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"     
+      <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyReportImportProvider"
            triggerFileExtensions="trigger"       
            path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\Reports\"       
@@ -122,14 +122,14 @@
   <fileHandlers>
     <providers>
       <add name="MorganStanleyLTAImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\BaseLTAImportProvider.dll.config"
            smtpIP="10.100.10.46"
            smtpPort="25"
            emailFrom="noreply@eGisticsInc.com"
-           emailTo="noreply@eGisticsInc.com"
+           emailTo=""
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\LTA\"
-           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\LTA\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\LTA\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E2\MorganStanley\LTA\"
            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
            ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA\"
@@ -143,16 +143,16 @@
       />
 
       <add name="MorganStanleyReportImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
-           moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\BaseLTAImportProvider.dll.config"
+           moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
            currentLoggingDebugLevel="Verbose"
            emailFrom="noreply@eGisticsInc.com"
-           emailTo="noreply@eGisticsInc.com"
+           emailTo=""
            smtpIP=""
            smtpPort="25"
            ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\Reports\"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\Reports\"
-           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\Reports\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\Reports\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E2\MorganStanley\Reports\"
            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
            triggerLess="False"
@@ -164,14 +164,14 @@
       />
 
       <add name="MorganStanleyCDMImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\BaseLTAImportProvider.dll.config"
            smtpIP="10.100.10.46"
            smtpPort="25"
            emailFrom="noreply@eGisticsInc.com"
-           emailTo="noreply@eGisticsInc.com"
+           emailTo=""
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CDM\"
-           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\CDM\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\CDM\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E2\MorganStanley\CDM\"
            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
            ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\CDM\"
@@ -184,35 +184,36 @@
            compressionFileExtension="zip"
       />
 
-     <add name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-          fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
-          moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
-          currentLoggingDebugLevel="Verbose"
-          emailFrom="noreply@eGisticsInc.com"
-          emailTo="noreply@eGisticsInc.com"
-          smtpIP=""
-          smtpPort="25"
-          ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\CORRO\"
-          mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
-          logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\CORRO\"
-          backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
-          exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
-          triggerLess="False"
-          useCompressionProvider="True"
-          compressionProvider="MorganStanleyCorroZipCompressionProvider"
-          itemHandler="MorganStanleyCorroItemProvider"
-          cleanUpProvider="GenericCleanupProvider"
-          compressionFileExtension="zip"
+      <add  name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\BaseLTAImportProvider.dll.config"
+            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
+            currentLoggingDebugLevel="Verbose"
+            emailFrom="noreply@eGisticsInc.com"
+            emailTo=""
+            smtpIP=""
+            smtpPort="25"
+            ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\CORRO\"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\CORRO\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E2\MorganStanley\CORRO\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
+            triggerLess="False"
+            useCompressionProvider="True"
+            compressionProvider="MorganStanleyCorroZipCompressionProvider"
+            itemHandler="MorganStanleyCorroItemProvider"
+            cleanUpProvider="GenericCleanupProvider"
+            compressionFileExtension="zip"
       />
-     <add  name="BaseRemittanceImportProvider1" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+
+      <add  name="BaseRemittanceImportProvider1" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\BaseLTAImportProvider.dll.config"
             smtpIP=""
             smtpPort="25"
             emailFrom="noreply@eGisticsInc.com"
             emailTo=""
             currentLoggingDebugLevel="normal"
-            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\"
-            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\WORKING\FDC\LTA_3X\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E2\LTA_3X\"
             backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\"
             exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\"
             ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X"
@@ -249,10 +250,10 @@
   </fileHandlers>
 
   <subProviders>
-    <providers> 
+    <providers>
       <add name="MorganStanleyLTAZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\LTA\"
       />
 
       <add name="MorganStanleyLTAItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -260,7 +261,7 @@
            adminDBProvider="MorganStanleyLTABaseLTAAdminDBProvider"
            databaseProvider="MorganStanleyLTADatabaseProvider"
            archiveProvider="SynapticArchiveProviderStacked"
-           responseFileProvider="MorganStanleyLTAResponseFileProvider"     
+           responseFileProvider="MorganStanleyLTAResponseFileProvider"
            imageFileNameField="Image_File_Name"
            rowsWithNoImageHandling="NoImage"
            objectIDSaveFileExtension="objs"
@@ -271,25 +272,25 @@
            sequenceNumber="SequenceNum"
            itemTypeColumn="ItemType"
            numberOfImageFiles="1"
-           minLengthSmallOrLargePage = "2000" 
-           minHeightSmallOrLargePage = "900"         
+           minLengthSmallOrLargePage = "2000"
+           minHeightSmallOrLargePage = "900"
       />
 
       <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,SubSiteID,BundleID,BatchType2,BatchMode,Other1,Other2,Other3,Other4,Other5,Other6,Other7,RollupCode,Other9,Other10,Other11,Other12,ArcInd,CDMTransID,Other13,Other14,Other15,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@BatchNum(INT)=ItemData.BatchNum;@FileName(VarChar)=LoadTableFileName;@OrganizationID(INT)=ClientData.ID;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=LTA"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
@@ -316,19 +317,19 @@
            spOnBeforeProcessingRow=""
            spOnAfterProcessingRow=""
            spOnAfterProcessingFile=""
-  />
+      />
 
       <add name="MorganStanleyLTAResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
-   /> 
+      /> 
 
       <add name="MorganStanleyReportZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\Reports\"
-      />   
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\Reports\"
+      />
 
       <add name="MorganStanleyReportItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
            indexColumnMapping="SiteID(INT),SubSiteID(VARCHAR),BatchNum(INT),ProcessDate(VARCHAR),ReportName(CHAR),Image_File_Name"
@@ -348,10 +349,10 @@
       />
 
       <add name="MorganStanleyReportDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
-           indexColumnMapping="@SiteID(INT),@SubSiteID(VARCHAR),@BatchNum(INT),@ProcessDate(VARCHAR),@ReportName(CHAR),@Image_File_Name,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
-           connectionString="None" 
+           indexColumnMapping="@SiteID(INT),@SubSiteID(VARCHAR),@BatchNum(INT),@ProcessDate(VARCHAR),@ReportName(CHAR),@Image_File_Name,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           connectionString="None"
            storedProcedureAdd="spImportReportSynapticMorganStanley"
-           storedProcedureAddParameters="@ReportName(CHAR),@ProcessDate(VARCHAR),@SiteID(INT),@SubSiteID(VARCHAR),@ObjectID(VARCHAR),@LoadTableID(BIGINT),@OrgID(INT)" 
+           storedProcedureAddParameters="@ReportName(CHAR),@ProcessDate(VARCHAR),@SiteID(INT),@SubSiteID(VARCHAR),@ObjectID(VARCHAR),@LoadTableID(BIGINT),@OrgID(INT)"
            storedProcedureDel="None"
            storedProcedureUpd="None"
            useTransaction="True"
@@ -359,7 +360,7 @@
 
       <add name="MorganStanleyReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="SiteID,SubSiteID,BatchNum,ProcessDate,ReportName,Image_File_Name"
-           connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            callPostProcessURLColumnName=""
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
@@ -370,9 +371,9 @@
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
@@ -381,11 +382,11 @@
            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\Reports\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
-   />  
+      />
 
       <add name="MorganStanleyCDMZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\CDM\"
       />
 
       <add name="MorganStanleyCDMItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -393,7 +394,7 @@
            adminDBProvider="MorganStanleyCDMBaseLTAAdminDBProvider"
            databaseProvider="MorganStanleyCDMDatabaseProvider"
            archiveProvider="SynapticArchiveProviderStacked"
-           responseFileProvider="MorganStanleyCDMResponseFileProvider"     
+           responseFileProvider="MorganStanleyCDMResponseFileProvider"
            imageFileNameField="Image_File_Name"
            rowsWithNoImageHandling="NoImage"
            objectIDSaveFileExtension="objs"
@@ -404,25 +405,25 @@
            sequenceNumber="SequenceNumber"
            itemTypeColumn="ItemType"
            numberOfImageFiles="1"
-           minLengthSmallOrLargePage = "2000" 
-           minHeightSmallOrLargePage = "900"         
+           minLengthSmallOrLargePage = "2000"
+           minHeightSmallOrLargePage = "900"
       />
 
       <add name="MorganStanleyCDMBaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNumber,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name,Annotation"
            getClientInfoSP="spGetClientInfoSynapticMorganStanley"
            getClientInfoParameters="@SiteID(INT)=SiteID;@SubSiteID(INT)=SubSiteID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@BatchNum(INT)=ItemData.BatchID;@FileName(VarChar)=LoadTableFileName;@OrganizationID(INT)=ClientData.ID;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=CDM"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
@@ -459,9 +460,9 @@
       />
 
       <add name="MorganStanleyCorroZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
-      />    
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\CORRO\"
+      />
 
       <add name="MorganStanleyCorroItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
            indexColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
@@ -481,28 +482,28 @@
       />
 
       <add name="MorganStanleyCorroAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider,        BaseLTAAdminDBProvider"
-           connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
            getClientInfoSP="spGetClientInfoCorro"
            getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ItemData.SiteID;@SubSiteID(INT)=ItemData.SubSiteID;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Corro"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
       <add name="MorganStanleyCorroDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
-           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"           
-           connectionString="None" 
+           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           connectionString="None"
            storedProcedureAdd="spImportCorrespondenceGenerationItem"
-           storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"            
+           storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"
            storedProcedureDel="None"
            storedProcedureUpd="None"
            useTransaction="True"
@@ -516,61 +517,62 @@
       />
 
       <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FirstBank\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\FirstBank\"
       />
+
       <add  name="3XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_3X\"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\FDC\LTA_3X\"
       />
 
       <add  name="4XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_4X\"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\FDC\LTA_4X\"
       />
 
       <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Site,subsiteid,ProcessDate,ItemType,BatchNum,TranNum,SeqNum,Amount,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,AccountNum,CheckRT,CheckNum,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Exception1,Exception2,Exception3,Exception4,Exception5,Exception6,Exception7,Exception8,Exception9,Exception10,Image_File_Name"
-           connectionString="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=FDC_Admin;Trusted_Connection=True"
            getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@subsiteid(INT)=ClientData.subsiteid;@ProcDate(INT)=ItemData.ProcessDate;@BatchNum(INT)=ItemData.BatchNum;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=Daily"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
       <add name="SynapticArchiveProviderStacked" type="eGistics.Import.Manager.SynapticArchiveProviders.StackerSynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\SynapticArchiveProvider.dll.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
            stackerMegaBytesSizeThreshold="2"
-           storageProxyListWebService="<%= @storage_proxy %>"
-           storageProxyListWCFService=""    
+           storageProxyListWebService="https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E1/SynapticWebService.asmx|https://du-esl-spx-01.tisa.io/UAT-ESL-WSSPX-E1/SynapticWebService.asmx"
+           storageProxyListWCFService=""
       />
 
       <add name="SynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
-           overrideSynapticWebServiceWebConfigSettings="True" 
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\app.config"
+           overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
       />
-      
+
       <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
-           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\app.config"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E2\UnableToDelete\"
            overrideSynapticWebServiceWebConfigSettings="True"
            objectIDSaveFileExtension="objs"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
@@ -578,9 +580,9 @@
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
       />
-      
+
       <add name="SingleSynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\SynapticArchiveProvider.dll.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
@@ -588,9 +590,8 @@
            baseURI="32.65.211.48|32.65.211.49"
       />
 
-
       <add name="FDCLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=FDC-ADM-AG2;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;Encrypt=true"
+           connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_Admin3g;Trusted_Connection=True"
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,WorksourceID,BundleID,BatchType2,BatchMode,Account1,Account2,Account3,Account4,Account5,Account6,Account7,Account8,Account9,Account10,Account11,Account12,Account13,Account14,Account15,Account16,Account17,Account18,Account19,Account20,Amount2,Amount3,Account21,CDMTransID,Amount1,Amount4,Amount5,Image_File_Name,LockBox,TransAmount,BatchAmount,BatchID,MiscAmt1,MiscAmt2,MiscAmt3,MiscAmt4,MiscAmt5,Account22,Account23,Account24,DepositDate,Account25,Account26,Account27,Account28,Account29,Account30,Account31,Account32,Account33,Account34,Account35,Account36,Account37,Account38,Account39,Account40,Account41,Account42,Account43,Account44,Account45"
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=WorksourceID"
@@ -605,13 +606,13 @@
            delLoadTableElementSPParameters="None"
            organizationIDColumnName="ID"
            useTransaction="False"
-		   ContextName="ES-<%= @env %>-FDC-IMREM-E1"
+		   ContextName="ES-<%= @env %>-FDC-IMREM-E2"
       />
 
       <add  name="BaseRemittanceItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
             indexColumnMapping="BatchNum(INT),SequenceNum(INT),ProcessDate(SMALLDATETIME),,AccountNum(VARCHAR),Amount(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),CheckNumPC(VARCHAR),CheckNumBUS(VARCHAR),,ItemType(VARCHAR),TranNumber(INT),BatchType(VARCHAR),MSCode(VARCHAR),SiteID(INT),WorksourceID(INT),,,BatchMode(TINYINT),,Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount2(NUMERIC),Amount3(NUMERIC),,RollupCode(VARCHAR),,,,,ArcInd(CHAR),CDMTransID(BIGINT),,,,Image_File_Name"
             responseFileProvider="BaseRemittance3xResponseFileProvider"
-            databaseProvider="BaseRemittance3xDatabaseProvider"
+            databaseProvider="BaseRemittanceDatabaseProvider"
             archiveProvider="SynapticArchiveProvider"
             adminDBProvider="FDCLTAAdminDBProvider"
             imageFileNameField="Image_File_Name"
@@ -663,7 +664,7 @@
             responseFileDelimiter="|"
       />
 
-      <add  name="BaseRemittance3xDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+      <add  name="BaseRemittanceDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
             connectionString=""
             addTransElementReturnParameter="@TRANSID(BIGINT)"
 
@@ -727,13 +728,17 @@
     </providers>
   </subProviders>
 
- <%= @strongauthblock %>
+  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://dd-esl-sau-01.egistics.local:8181/strongkeyliteWAR/EncryptionService">
+    <Ping Password-Clear="Abcd1234!"/>
+    <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="C:\temp"/>
+    <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="E:\temp"/>
+  </StrongAuth.CryptoSection>
 
   <system.serviceModel>
     <bindings>
       <wsHttpBinding>
         <binding name="WSHttpBinding_IEventCollection">
-          <security mode="Transport"> 
+          <security mode="Transport">
             <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
           </security>
         </binding>
@@ -770,7 +775,7 @@
       </netTcpBinding>
     </bindings>
     <client>
-      <!-- <endpoint address="https://DP-IRM-WSESL.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc" binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection" contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
+      <!-- <endpoint address="https://DU-IRM-WSE-01.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc" binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection" contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
         <identity>
           <dns value="localhost"/>
         </identity>
@@ -801,7 +806,7 @@
   <system.web>
     <httpRuntime executionTimeout="20" maxRequestLength="102400"
       minFreeThreads="352" minLocalRequestFreeThreads="304" />
-  </system.web> 
+  </system.web>
   <system.net>
     <defaultProxy>
       <proxy autoDetect="False"/>

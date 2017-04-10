@@ -91,8 +91,8 @@
 
       <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyReportImportProvider"
-           triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\Reports\"
+           triggerFileExtensions="trigger"       
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\Reports\"       
       />
 
       <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
@@ -100,7 +100,7 @@
            triggerFileExtensions="trigger"
            path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\CDM\"
       />
-
+      
       <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\CORRO\"
            providerName="MorganStanleyCorroImportProvider"
@@ -250,7 +250,7 @@
   </fileHandlers>
 
   <subProviders>
-    <providers>
+    <providers> 
       <add name="MorganStanleyLTAZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\ZipCompressionProvider.dll.config"
            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E2\Working\MorganStanley\LTA\"
@@ -261,7 +261,7 @@
            adminDBProvider="MorganStanleyLTABaseLTAAdminDBProvider"
            databaseProvider="MorganStanleyLTADatabaseProvider"
            archiveProvider="SynapticArchiveProviderStacked"
-           responseFileProvider="MorganStanleyLTAResponseFileProvider"
+           responseFileProvider="MorganStanleyLTAResponseFileProvider"     
            imageFileNameField="Image_File_Name"
            rowsWithNoImageHandling="NoImage"
            objectIDSaveFileExtension="objs"
@@ -272,8 +272,8 @@
            sequenceNumber="SequenceNum"
            itemTypeColumn="ItemType"
            numberOfImageFiles="1"
-           minLengthSmallOrLargePage = "2000"
-           minHeightSmallOrLargePage = "900"
+           minLengthSmallOrLargePage = "2000" 
+           minHeightSmallOrLargePage = "900"         
       />
 
       <add name="MorganStanleyLTABaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
