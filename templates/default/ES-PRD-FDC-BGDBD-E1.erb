@@ -64,7 +64,7 @@
           <dns value="localhost" />
         </identity>
       </endpoint>
-      <endpoint address="https://<%= @site %><%= @env %>-fdc-wse-01.tisa.io/Dashboard/DashboardWcf.svc"
+      <endpoint address="https://<%= @site %><%= @envcode %>-fdc-wse-01.tisa.io/Dashboard/DashboardWcf.svc"
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IDashboardWcfService"
         contract="DashboardService.IDashboardWcfService" name="WSHttpBinding_IDashboardWcfService">
         <identity>
