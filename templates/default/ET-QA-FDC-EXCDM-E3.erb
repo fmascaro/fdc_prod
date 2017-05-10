@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+  </configSections>
+  <dataConfiguration defaultDatabase="AdminConn"/>
+  <appSettings>
+    <add key="logLevel" value="Debug"/>
+    <add key="logPath" value="L:\TIS\QA\FDC\EXCDM-E3"/>
+    <add key="LogFileDateToken" value="MMDDYYYY"/>
+    <add key ="SqlTimeout" value="900"/>
+  </appSettings>
+  <connectionStrings>
+    <add name="AdminConn" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_Admin3G;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_AuditLog3g;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+</configuration>
