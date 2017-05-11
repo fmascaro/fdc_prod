@@ -3,21 +3,38 @@ case node.chef_environment
   when "production"
     env = "prd"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
+    efb = "DP-ESL-EFB-01"
   when "uat"
     env = "uat"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
+    efb = "DP-ESL-EFB-01"
   when "development"
     env = "dev"
     domain = "EGDEV"
+    efs = "PD-DEV-EFS-01"
+    efb = "PD-DEV-EFS-01"
+  when "qa"
+    env = "qa"
+    domain = "EGDEV"
+    efs = "PD-DEV-EFS-01"
+    efb = "PD-DEV-EFS-01"
   when "staging"
     env = "prd"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
+    efb = "DP-ESL-EFB-01"
   when "test"
     env = "tst"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
+    efb = "DP-ESL-EFB-01"
   else
     env = "prd"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
+    efb = "DP-ESL-EFB-01"
 end
 svc_db_item = data_bag_item('esl',"#{env}_fdc_services")
 
@@ -104,9 +121,9 @@ services.each do |service|
 				:efs => node[:tags].include?("ashburn") ? '\\\\AP-ESL-EFS-01' : '\\\\DP-ESL-EFS-01',
 				:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx',
 				:strongauthblock => strongauth,
-				:site => site,
-				:env => env,
-				:envcode => environment
+				:site => site.upcase,
+				:env => env.upcase,
+				:envcode => environment.upcase
 				})
 			notifies :restart, "service[#{svc_db_item[service]['ServiceName']}]"
 		end unless svc_db_item[service]['config_filename'].empty?
