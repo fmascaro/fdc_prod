@@ -3,21 +3,31 @@ case node.chef_environment
   when "production"
     env = "PRD"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
   when "uat"
     env = "UAT"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
   when "development"
     env = "DEV"
     domain = "EGDEV"
+    efs = "PD-DEV-EFS-01"
+  when "qa"
+    env = "QA"
+    domain = "EGDEV"
+    efs = "PD-DEV-EFS-01"
   when "staging"
     env = "PRD"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
   when "test"
     env = "TST"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
   else
     env = "PRD"
     domain = "EGISTICS"
+    efs = "DP-ESL-EFS-01"
 end
 
 web_db_item = data_bag_item('web',"#{env}_fdc")
@@ -60,6 +70,8 @@ webapps.each do |webapp|
         minutes = "0" + minutes if minutes.length < 2
         webpass = Chef::EncryptedDataBagItem.load("web", "webpass")
         IntegratedPipeline = web_db_item[webapp]['ManagedPipelineMode'] ? :Integrated : :Classic
+        cust = web_db_item[webapp]['site_pool'].split("-").first
+        appenv = web_db_item[webapp]['app_pool'].split("-").first
 
         #Config variables
         config = {
@@ -235,10 +247,10 @@ webapps.each do |webapp|
       	action :create
       	variables({
       		:strongauth => web_db_item[webapp]['strongauth'],
-          :site => site,
-          :env => env,
-          :envcode => environment,
-          :storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
+      		:site => site.upcase,
+      		:env => env.upcase,
+      		:envcode => environment.upcase,
+      		:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
       		})
       	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
       end
@@ -247,13 +259,13 @@ webapps.each do |webapp|
       if web_db_item[webapp]['assets']
           powershell_script "CopyImages" do
           guard_interpreter :powershell_script
-          code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\#{env}\\FDC\\#{web_db_item[webapp]['app_directory']}\\images #{app_root}\\Images /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
+          code "robocopy \\\\#{efs}\\GOLDREP\\Assets\\#{env}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\images #{app_root}\\Images /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
           exit $LASTEXITCODE"
         end
 
         powershell_script "CopyManuals" do
           guard_interpreter :powershell_script
-          code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\#{env}\\FDC\\#{web_db_item[webapp]['app_directory']}\\manuals #{app_root}\\Content\\Manuals /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
+          code "robocopy \\\\#{efs}\\GOLDREP\\Assets\\#{appenv}}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\manuals #{app_root}\\Content\\Manuals /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
           exit $LASTEXITCODE"
         end
       end
@@ -262,7 +274,7 @@ webapps.each do |webapp|
 
       powershell_script "set_sslcert" do
       	code <<-EOH
-      	$cert_thumb = (get-childitem Cert:/LocalMachine/My | where-object {$_.Subject -MATCH $env:COMPUTERNAME+".egistics.local"}).Thumbprint
+      	$cert_thumb = (get-childitem Cert:/LocalMachine/My | where-object {$_.Subject -MATCH $env:COMPUTERNAME+".#{domain}.local"}).Thumbprint
       	netsh http add sslcert ipport=0.0.0.0:443 certhash="$cert_thumb" appid="{4dc3e181-e14b-4a21-b022-59fc669b0914}" verifyclientcertrevocation=disable
       	EOH
       	action :nothing
