@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig"/>
+  </configSections>
+  <appSettings>
+    <add key="ServiceName" value="ES-QA-FDC-BGGFM-E1"/>
+    <add key="Entries" value="1"/>
+  </appSettings>
+  <ContextInfo>
+    <Context>
+      <add name="MGN_CDM_Mover"     type="MorganStanley_CDM"     connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      <add name="MGN_LTA_Mover"     type="MorganStanley_LTA"     connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      <add name="MGN_Reports_Mover" type="MorganStanley_Reports" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      <add name="MGN_Corro_Mover"   type="MorganStanley_Corro"   connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      <add name="PNC_Returns_Mover" type="PNC_Returns"           connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+	  <add name="fdcltamover3x"     type="fdcltamover3x"         connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      <add name="fdcltamover4x"     type="fdcltamover4x"         connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      <add name="fdcmellonmover"    type="fdcmellonmover"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+
+    </Context>
+  </ContextInfo>
+  <system.serviceModel>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="WSHttpBinding_IEventCollection">
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+
+    <!-- <client>
+      <endpoint address="https://DP-IRM-WSESL.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc"
+        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+        contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
+        <identity>
+          <servicePrincipalName value="&#xD;&#xA;          " />
+        </identity>
+      </endpoint>
+    </client> -->
+
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+</configuration>
