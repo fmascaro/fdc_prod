@@ -250,7 +250,6 @@ webapps.each do |webapp|
       		:site => site.upcase,
       		:env => env.upcase,
       		:envcode => environment.upcase,
-
       		:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
       		})
       	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
@@ -261,7 +260,7 @@ webapps.each do |webapp|
       end
       #Copy Assets from GOLDREP to Local App Directory
       web_db_item[webapp]['assets'].each do |node|
-  			source = node.split("|").first
+        source = node.split("|").first
         dest = node.split("|").last
         directory = web_db_item[webapp]['app_directory']
         powershell_script "CopyAsset" do
