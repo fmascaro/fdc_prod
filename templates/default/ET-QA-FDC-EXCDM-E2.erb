@@ -2,7 +2,7 @@
 <configuration>
   <appSettings>
     <add key="WorkingFolder" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\WORKING"/>
-    <add key="BackupFolder" value="\\Pd-dev-efs-01\qa\QA-FDC-FTX-ALL\EXCDM-E2\BACKUP"/>
+    <add key="BackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXCDM-E2\BACKUP"/>
     <add key="LogPath" value="L:\TIS\<%= @env %>\FDC\EXCDM-E2"/>
     <add key="LogFileName" value="ReadONLYSweep.log"/>
     <add key="LogLevel" value="4"/>
@@ -12,7 +12,7 @@
     <add key="InputProc1" value="spReadONLYSweep"/>
     <add key="InputProcParam1" value="480,2,96"/>
     <add key="Transform1" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\trans.xsl"/>
-    <add key="TargetFolder1" value="\\Pd-dev-efs-01\ftp\QA\QA-FDC-FTX-ALL\CDM\2207744\OUT"/>
+    <add key="TargetFolder1" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\2207744\OUT"/>
     <add key="TargetFileNameTransform1" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\filename.xsl"/>
     <add key="CreateTrigger1" value="0"/>
     <add key="ActiveDays1" value="Monday,Tuesday,Wednesday,Thursday,Friday"/>
@@ -22,7 +22,7 @@
     <add key="InputProc2" value="spReadONLYSweep"/>
     <add key="InputProcParam2" value="25669,20,998|100435,145,00122"/>
     <add key="Transform2" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\trans.xsl"/>
-    <add key="TargetFolder2" value="\\Pd-dev-efs-01\ftp\QA\QA-FDC-FTX-ALL\CDM\2102612\OUT|\\Pd-dev-efs-01\ftp\QA\QA-FDC-FTX-ALL\CDM\2206010\OUT"/>
+    <add key="TargetFolder2" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\2102612\OUT|<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\2206010\OUT"/>
     <add key="TargetFileNameTransform2" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\filename.xsl"/>
     <add key="CreateTrigger2" value="0"/>
     <add key="ActiveDays2" value="Monday,Tuesday,Wednesday,Thursday,Friday"/>
