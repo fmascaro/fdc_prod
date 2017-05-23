@@ -3,31 +3,31 @@ case node.chef_environment
   when "production"
     env = "PRD"
     domain = "EGISTICS"
-    efs = "DP-ESL-EFS-01"
+    efs = "\\\\DP-ESL-EFS-01"
   when "uat"
     env = "UAT"
     domain = "EGISTICS"
-    efs = "DP-ESL-EFS-01"
+    efs = "\\\\DP-ESL-EFS-01"
   when "development"
     env = "DEV"
     domain = "EGDEV"
-    efs = "PD-DEV-EFS-01"
+    efs = "\\\\PD-DEV-EFS-01"
   when "qa"
     env = "QA"
     domain = "EGDEV"
-    efs = "PD-DEV-EFS-01"
+    efs = "\\\\PD-DEV-EFS-01"
   when "staging"
     env = "PRD"
     domain = "EGISTICS"
-    efs = "DP-ESL-EFS-01"
+    efs = "\\\\DP-ESL-EFS-01"
   when "test"
     env = "TST"
     domain = "EGISTICS"
-    efs = "DP-ESL-EFS-01"
+    efs = "\\\\DP-ESL-EFS-01"
   else
     env = "PRD"
     domain = "EGISTICS"
-    efs = "DP-ESL-EFS-01"
+    efs = "\\\\DP-ESL-EFS-01"
 end
 
 web_db_item = data_bag_item('web',"#{env}_fdc")
@@ -250,25 +250,27 @@ webapps.each do |webapp|
       		:site => site.upcase,
       		:env => env.upcase,
       		:envcode => environment.upcase,
+
       		:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
       		})
       	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
       end
 
-      #Copy Assets from Golden Repository
-      if web_db_item[webapp]['assets']
-          powershell_script "CopyImages" do
+	  if node[:tags].include?("ashburn") then
+        efs.gsub!(/[dD][pP]/, 'AP')
+      end
+      #Copy Assets from GOLDREP to Local App Directory
+      web_db_item[webapp]['assets'].each do |node|
+  			source = node.split("|").first
+        dest = node.split("|").last
+        directory = web_db_item[webapp]['app_directory']
+        powershell_script "CopyAsset" do
           guard_interpreter :powershell_script
-          code "robocopy \\\\#{efs}\\GOLDREP\\Assets\\#{env}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\images #{app_root}\\Images /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
+          code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt
           exit $LASTEXITCODE"
         end
 
-        powershell_script "CopyManuals" do
-          guard_interpreter :powershell_script
-          code "robocopy \\\\#{efs}\\GOLDREP\\Assets\\#{appenv}}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\manuals #{app_root}\\Content\\Manuals /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
-          exit $LASTEXITCODE"
-        end
-      end
+  		end
 
       #Support resources to assign ssl cert to web site, and additional configs for application pools and application
 
