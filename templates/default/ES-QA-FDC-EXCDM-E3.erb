@@ -2,16 +2,52 @@
 <configuration>
   <configSections>
     <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig"/>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
   </configSections>
   <dataConfiguration defaultDatabase="AdminConn"/>
-  <appSettings>
-    <add key="logLevel" value="Debug"/>
-    <add key="logPath" value="L:\TIS\<%= @env %>\FDC\EXCDM-E3"/>
-    <add key="LogFileDateToken" value="MMDDYYYY"/>
-    <add key ="SqlTimeout" value="900"/>
-  </appSettings>
+  <ContextInfo>
+    <Context>
+      <add name="CDMSweepProcess" type="Description" connstring="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
+    </Context>
+  </ContextInfo>
+
   <connectionStrings>
     <add name="AdminConn" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
     <add name="AuditConn" connectionString="SERVER=DU-GEN-SQL-01.egistics.local;DATABASE=RTC_AuditLog3G_QA;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
   </connectionStrings>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/>
+  </startup>
+  <log4net>
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="L:\TIS\QA\FDC\EXCDM-E3\CDMSweepEvent.log"/>
+      <appendToFile value="true"/>
+      <maximumFileSize value="3MB"/>
+      <maxSizeRollBackups value="100"/>
+      <rollingStyle value="Composite"/>
+      <datePattern value="yyyyMMdd"/>
+      <staticLogFileName value="true"/>
+      <filter type="log4net.Filter.LevelRangeFilter">
+        <acceptOnMatch value="true"/>
+        <levelMin value="INFO"/>
+        <levelMax value="FATAL"/>
+      </filter>
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="HOUR     LEVEL Thread Class Method Message
+"/>
+        <footer value="
+
+
+"/>
+        <conversionPattern value="%date{HH:mm:ss} %-5level %thread %property{Class} %property{Method} %message %newline"/>
+      </layout>
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock"/>
+    </appender>
+    <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
+    <root>
+      <level value="Debug"/>
+      <appender-ref ref="RollingFileAppender"/>
+    </root>
+  </log4net>
 </configuration>
