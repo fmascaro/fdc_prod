@@ -53,10 +53,10 @@
   <applicationSettings>
     <eGistics.Import.Manager.Base.Properties.Settings>
       <setting name="BaseProvider_SynapticWebService_SynapticWebService" serializeAs="String">
-        <value>https://pq-esl-spx-01.tisa.io/QA-ESL-WSSPX-E1/synapticwebservice.asmx</value>
+        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
       </setting>
       <setting name="BaseProvider_SynapticWebService_Net4_SynapticWebService" serializeAs="String">
-        <value>https://pq-esl-spx-01.tisa.io/QA-ESL-WSSPX-E1/synapticwebservice.asmx</value>
+        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
       </setting>
     </eGistics.Import.Manager.Base.Properties.Settings>
   </applicationSettings>
@@ -92,7 +92,7 @@
       <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyReportImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"       
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
       />
 
       <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
@@ -109,7 +109,7 @@
       <add name="BaseRemittance1" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="BaseRemittanceImportProvider1"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA_3X\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\"
       />
       <add name="BaseRemittance4x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="BaseRemittance4xImportProvider1"
@@ -557,7 +557,7 @@
            applicationID="egBetaTest"
            baseURI="32.65.211.48|32.65.211.49"
            stackerMegaBytesSizeThreshold="2"
-           storageProxyListWebService="https://pq-esl-spx-01.tisa.io/QA-ESL-WSSPX-E1/synapticwebservice.asmx|https://pq-esl-spx-01.tisa.io/QA-ESL-WSSPX-E1/synapticwebservice.asmx"
+           storageProxyListWebService="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx"
            storageProxyListWCFService=""
       />
 
@@ -606,11 +606,12 @@
            delLoadTableElementSPParameters="None"
            organizationIDColumnName="ID"
            useTransaction="False"
+		   ContextName="ES-<%= @env %>-FDC-IMREM-E1"
       />
 
       <add  name="BaseRemittanceItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
             indexColumnMapping="BatchNum(INT),SequenceNum(INT),ProcessDate(SMALLDATETIME),,AccountNum(VARCHAR),Amount(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),CheckNumPC(VARCHAR),CheckNumBUS(VARCHAR),,ItemType(VARCHAR),TranNumber(INT),BatchType(VARCHAR),MSCode(VARCHAR),SiteID(INT),WorksourceID(INT),,,BatchMode(TINYINT),,Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount2(NUMERIC),Amount3(NUMERIC),,RollupCode(VARCHAR),,,,,ArcInd(CHAR),CDMTransID(BIGINT),,,,Image_File_Name"
-            responseFileProvider=""
+            responseFileProvider="BaseRemittance3xResponseFileProvider"
             databaseProvider="BaseRemittanceDatabaseProvider"
             archiveProvider="SynapticArchiveProvider"
             adminDBProvider="FDCLTAAdminDBProvider"
@@ -649,16 +650,16 @@
             minHeightSmallOrLargePage = "900"         
       />
 
-      <add  name="BaseRemittanceResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+      <add  name="BaseRemittance3xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
             lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-            responseMainFilePath="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\<%= @env %>\LTA_3X"
+            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\"
             responseFileExtension="rsp"
             responseFileDelimiter="|"
       />
 
       <add  name="BaseRemittance4xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
             lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-            responseMainFilePath="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\<%= @env %>\LTA_4X"
+            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA_4X\"
             responseFileExtension="rsp"
             responseFileDelimiter="|"
       />
