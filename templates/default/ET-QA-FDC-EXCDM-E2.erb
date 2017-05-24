@@ -8,9 +8,9 @@
     <add key="LogLevel" value="4"/>
     <add key="Entries" value="2"/>
 
-    <add key="ConnectionString1" value="SERVER=PD-DEV-SQL-01.egdev.local\MSSQLDAL;DATABASE=RTC_Archive4X_QA;Connect Timeout=36Integrated Security=SSPI;Encrypt=Yes"/>
+    <add key="ConnectionString1" value="SERVER=PD-DEV-SQL-01.egdev.local\MSSQLDAL;DATABASE=RTC_Archive4X_QA;Connect Timeout=36;Integrated Security=SSPI;Encrypt=Yes"/>
     <add key="InputProc1" value="spReadONLYSweep"/>
-    <add key="InputProcParam1" value="480,2,96"/>
+    <add key="InputProcParam1" value="4194,22,7744"/>
     <add key="Transform1" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\trans.xsl"/>
     <add key="TargetFolder1" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\2207744\OUT"/>
     <add key="TargetFileNameTransform1" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\filename.xsl"/>
@@ -18,7 +18,7 @@
     <add key="ActiveDays1" value="Monday,Tuesday,Wednesday,Thursday,Friday"/>
     <add key="ExecuteAt1" value="13:40,8:30,11:45"/>
 
-    <add key="ConnectionString2" value="SERVER=PD-DEV-SQL-01.egdev.local\MSSQLDAL;DATABASE=RTC_Archive4X_QA;Connect Timeout=36Integrated Security=SSPI;Encrypt=Yes4"/>
+    <add key="ConnectionString2" value="SERVER=PD-DEV-SQL-01.egdev.local\MSSQLDAL;DATABASE=RTC_Archive4X_QA;Connect Timeout=36;Integrated Security=SSPI;Encrypt=Yes4"/>
     <add key="InputProc2" value="spReadONLYSweep"/>
     <add key="InputProcParam2" value="25669,20,998|100435,145,00122"/>
     <add key="Transform2" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\trans.xsl"/>
