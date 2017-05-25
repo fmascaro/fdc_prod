@@ -1,33 +1,33 @@
 env = nil
 case node.chef_environment
-  when "production"
-    env = "PRD"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-  when "uat"
-    env = "UAT"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-  when "development"
-    env = "DEV"
-    domain = "EGDEV"
-    efs = "\\\\PD-DEV-EFS-01"
-  when "qa"
-    env = "QA"
-    domain = "EGDEV"
-    efs = "\\\\PD-DEV-EFS-01"
-  when "staging"
-    env = "PRD"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-  when "test"
-    env = "TST"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
+  when 'production'
+    env = 'PRD'
+    domain = 'EGISTICS'
+    efs = '\\\\DP-ESL-EFS-01'
+  when 'uat'
+    env = 'UAT'
+    domain = 'EGISTICS'
+    efs = '\\\\DP-ESL-EFS-01'
+  when 'development'
+    env = 'DEV'
+    domain = 'EGDEV'
+    efs = '\\\\PD-DEV-EFS-01'
+  when 'qa'
+    env = 'QA'
+    domain = 'EGDEV'
+    efs = '\\\\PD-DEV-EFS-01'
+  when 'staging'
+    env = 'PRD'
+    domain = 'EGISTICS'
+    efs = '\\\\DP-ESL-EFS-01'
+  when 'test'
+    env = 'TST'
+    domain = 'EGISTICS'
+    efs = '\\\\DP-ESL-EFS-01'
   else
-    env = "PRD"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
+    env = 'PRD'
+    domain = 'EGISTICS'
+    efs = '\\\\DP-ESL-EFS-01'
 end
 
 web_db_item = data_bag_item('web',"#{env}_fdc")
@@ -238,9 +238,9 @@ webapps.each do |webapp|
       	not_if { ::File.exists?("#{app_root}/web.config") || web_db_item[webapp]['baseapp'] }
       end
 
-      #Split Site and Environment from node name
+      #Split Site from node name
       name = node.name
-      site, environment = name[0..1][0], name[0..1][1]
+      site = name[0..1][0]
 
       template "#{app_root}/web.config" do
       	source "#{web_db_item[webapp]['web_config']}.erb"
@@ -249,13 +249,13 @@ webapps.each do |webapp|
       		:strongauth => web_db_item[webapp]['strongauth'],
       		:site => site.upcase,
       		:env => env.upcase,
-      		:envcode => environment.upcase,
+      		:envcode => envcode.upcase,
       		:storage_proxy => node[:tags].include?("ashburn") ? 'https://ap-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx' : 'https://dp-esl-spx-01.tisa.io/PRD-ESL-WSSPX-E1/synapticWebService.asmx'
       		})
       	notifies :restart, "iis_pool[#{config[:pool][:name]}]"
       end
 
-	  if node[:tags].include?("ashburn") then
+      if node[:tags].include?("ashburn") then
         efs.gsub!(/[dD][pP]/, 'AP')
       end
       #Copy Assets from GOLDREP to Local App Directory

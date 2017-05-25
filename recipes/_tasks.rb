@@ -1,47 +1,54 @@
 env = nil
 case node.chef_environment
-  when "production"
-    env = "prd"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-    efb = "\\\\DP-ESL-EFB-01"
-  when "uat"
-    env = "uat"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-    efb = "\\\\DP-ESL-EFB-01"
-  when "development"
-    env = "dev"
-    domain = "EGDEV"
-    efs = "\\\\PD-DEV-EFS-01"
-    efb = "\\\\PD-DEV-EFS-01"
-  when "qa"
-    env = "qa"
-    domain = "EGDEV"
-    efs = "\\\\PD-DEV-EFS-01"
-    efb = "\\\\PD-DEV-EFS-01"
-  when "staging"
-    env = "prd"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-    efb = "\\\\DP-ESL-EFB-01"
-  when "test"
-    env = "tst"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-    efb = "\\\\DP-ESL-EFB-01"
-  else
-    env = "prd"
-    domain = "EGISTICS"
-    efs = "\\\\DP-ESL-EFS-01"
-    efb = "\\\\DP-ESL-EFB-01"
+when 'production'
+  env = 'prd'
+  domain = 'EGISTICS'
+  efs = '\\\\DP-ESL-EFS-0'
+  efb = '\\\\DP-ESL-EFB-01'
+  envcode = 'P'
+when 'uat'
+  env = 'uat'
+  domain = 'EGISTICS'
+  efs = '\\\\DP-ESL-EFS-01'
+  efb = '\\\\DP-ESL-EFB-01'
+  envcode = 'U'
+when 'development'
+  env = 'dev'
+  domain = 'EGDEV'
+  efs = '\\\\PD-DEV-EFS-01'
+  efb = '\\\\PD-DEV-EFS-01'
+  envcode = 'D'
+when 'qa'
+  env = 'qa'
+  domain = 'EGDEV'
+  efs = '\\\\PD-DEV-EFS-01'
+  efb = '\\\\PD-DEV-EFS-01'
+  envcode = 'Q'
+when 'staging'
+  env = 'prd'
+  domain = 'EGISTICS'
+  efs = '\\\\DP-ESL-EFS-01'
+  efb = '\\\\DP-ESL-EFB-01'
+  envcode = 'P'
+when 'test'
+  env = 'tst'
+  domain = 'EGISTICS'
+  efs = '\\\\DP-ESL-EFS-01'
+  efb = '\\\\DP-ESL-EFB-01'
+  envcode = 'P'
+else
+  env = 'prd'
+  domain = 'EGISTICS'
+  efs = '\\\\DP-ESL-EFS-01'
+  efb = '\\\\DP-ESL-EFB-01'
+  envcode = 'P'
 end
 
 tsk_db_item = data_bag_item('esl',"#{env}_fdc_tasks")
 
 tasks = node.assigned_tasks
 
-#StrongAuth block that will be the same no matter which node it is used on.  The EndpointUrl is substituded below if the node is in Ashburn.
+# StrongAuth block that will be the same no matter which node it is used on.  The EndpointUrl is substituded below if the node is in Ashburn.
 strongauth = <<-EOH
 								<StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://dp-egi-cry-01:8181/strongkeyliteWAR/EncryptionService">
 								<!--
@@ -59,6 +66,10 @@ strongauth = <<-EOH
 tasks.each do |task|
 
 	if task.downcase.include?('fdc')
+
+		#Pull value for the application environment
+		appenv = tsk_db_item[task]['ServiceAccount'].split('-')[1]
+		env = appenv if (appenv.upcase == 'CFG')
 
 		# Add all of the directories to the list
 		folders = Array.new
@@ -111,9 +122,10 @@ tasks.each do |task|
 		if node[:tags].include?("ashburn")
 					 strongauth.gsub!('dp-egi-cry-01', 'ap-esl-sau-lb')
 		end
-		#Split Site and Environment from node name
+
+		#Split Site from node name
 	  name = node.name
-	  site, environment = name[0..1][0], name[0..1][1]
+		site = name[0..1][0]
 
 		template "#{tsk_db_item[task]['app_directory']}/#{tsk_db_item[task]['config_filename']}" do
 			source "#{tsk_db_item[task]['ServiceName']}.erb"
@@ -125,7 +137,7 @@ tasks.each do |task|
 				:strongauthblock => strongauth,
 				:site => site.upcase,
 				:env => env.upcase,
-				:envcode => environment.upcase
+				:envcode => envcode.upcase
 				})
 		end unless tsk_db_item[task]['config_filename'].empty?
 
