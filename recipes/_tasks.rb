@@ -66,6 +66,7 @@ strongauth = <<-EOH
 tasks.each do |task|
 
 	if task.downcase.include?('fdc')
+
 		#Pull value for the application environment
 		appenv = tsk_db_item[task]['ServiceAccount'].split('-')[1]
 		env = appenv if (appenv.upcase == 'CFG')

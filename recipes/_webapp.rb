@@ -269,12 +269,7 @@ webapps.each do |webapp|
           exit $LASTEXITCODE"
         end
 
-        powershell_script "CopyManuals" do
-          guard_interpreter :powershell_script
-          code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\manuals #{app_root}\\Content\\Manuals /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
-          exit $LASTEXITCODE"
-        end
-      end
+  		end
 
       #Support resources to assign ssl cert to web site, and additional configs for application pools and application
 
