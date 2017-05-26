@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="LogLevel" value="Normal"/>
+    <!-- Levels are Normal, Debug -->
+    <add key="BackupPath" value="FDCImport"/>
+    <add key="InputExtension" value="zip"/>
+    <add key="OutputExtension" value="tar"/>
+    <add key="IndexFileExtension" value="dat"/>
+    <add key="NDMPrefix" value="FTP4.EGP.EGIS."/>
+    <!-- Sleep Interval is in minutes -->
+    <add key="SleepInterval" value="1"/>
+    <add key="LockboxInfoKey" value="eGLockbox"/>
+    <add key="LockboxInfoValue" value="DARSLockbox"/>
+  </appSettings>
+  <connectionStrings>
+    <add connectionString="SERVER=PD-DEV-SQL-01.egdev.local\MSSQLDAL;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+</configuration>
