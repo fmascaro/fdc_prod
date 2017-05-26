@@ -3,6 +3,14 @@
   <appSettings>
     <add key="LogLevel" value="Normal"/>
     <!-- Levels are Normal, Debug -->
+    <add key="PreProcessorPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1"/>
+    <add key="LogPath" value="L:\TIS\<%= @env %>\FDC\PRMRP-E1"/>
+    <add key="ExceptionPath" value="\\Pd-dev-efs-01\<%= @env %>\QA-FDC-FTX-ALL\PRMRP-E1"/>
+    <add key="WorkingPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\Working"/>
+    <add key="ImportPath" value="\\Pd-dev-efs-01\staged\<%= @env %>\QA-FDC-FTX-ALL\IMREM-E1\FDC\LTA"/>
+    <add key="ProcessedPath" value="\\Pd-dev-efs-01\ftp\<%= @env %>\QA-FDC-FTX-ALL\Citi\OUT"/>
+    <add key="ProcessedBackupPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\ProcessedBackup"/>
+    <add key="BatchProcessedPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\BatchProcessed"/>
     <add key="BackupPath" value="FDCImport"/>
     <add key="InputExtension" value="zip"/>
     <add key="OutputExtension" value="tar"/>
@@ -12,6 +20,7 @@
     <add key="SleepInterval" value="1"/>
     <add key="LockboxInfoKey" value="eGLockbox"/>
     <add key="LockboxInfoValue" value="DARSLockbox"/>
+    <add key="ExclusionList" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\ExclusionList.txt"/> 
   </appSettings>
   <connectionStrings>
     <add connectionString="SERVER=PD-DEV-SQL-01.egdev.local\MSSQLDAL;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
