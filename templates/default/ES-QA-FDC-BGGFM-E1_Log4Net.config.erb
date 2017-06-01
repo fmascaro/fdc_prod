@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <log4net>
+    <root>
+      <level value="DEBUG"/>
+      <appender-ref ref="LogFileAppender"/>
+    </root>
+    <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <param name="File" value="L:/TIS/QA/FDC/BGGFM-E1/GenericFileMover.log"/>
+      <param name="AppendToFile" value="true"/>
+      <rollingStyle value="Size"/>
+      <maxSizeRollBackups value="10"/>
+      <maximumFileSize value="10MB"/>
+      <staticLogFileName value="true"/>
+      <layout type="log4net.Layout.PatternLayout">
+        <param name="header" value="--- HEADER ---&#xA;DATE                    &gt;Application&gt;Thread&gt;Class&gt;Method&gt;Message&#xA;"/>
+        <param name="footer" value="--- FOOTER ---&#xA;&#xA;&#xA;"/>
+        <param name="conversionPattern" value="%date %-5level &gt;iRemit GenericFileMover&gt;%thread&gt;%property{Class}&gt;%property{Method}&gt;%message %newline"/>
+        <!-- <param name="ConversionPattern" value="%date [%thread] %-5level %logger - %message%newline"/> -->
+      </layout>
+    </appender>
+  </log4net>
+</configuration>
