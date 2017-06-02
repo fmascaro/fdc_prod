@@ -11,7 +11,7 @@
     <!--<add key="CertificateName" value="CertificateName"/>-->
     <add key="CertificateSerialNo" value="0179ad305015cf2fb3f04b856b4776b8" />
     <add key="EnableSSL" value="1" />
-    <add key="LogPath" value="L:\WWW\UAT\FDC\WSMFW-W2\FundsWrapper.log" />
+    <add key="LogPath" value="L:\WWW\<%= @env %>\FDC\WSMFW-W2\FundsWrapper.log" />
     <add key="LogExceptionsOnly" value="false" />
     <add key="EndPointAddress" value="https://rdcwebservices-qa.services.morganstanley.com/webservices/rdcwebserviceshim/FundsWebServiceShim.svc"/>
     <add key="UseBindingConfig" value="false"/>
@@ -54,7 +54,7 @@
   </system.serviceModel>
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
-      <file value="L:\WWW\UAT\FDC\WSMFW-W2\FundsWrapper.log" />
+      <file value="L:\WWW\<%= @env %>\FDC\WSMFW-W2\FundsWrapper.log" />
       <appendToFile value="true" />
       <maximumFileSize value="3MB" />
       <maxSizeRollBackups value="100" />
@@ -84,7 +84,7 @@
   <!-- Enable tracing only when debugging WSE is needed. -->
   <microsoft.web.services3>
     <diagnostics>
-      <trace enabled="true" input="L:\WWW\UAT\FDC\WSMFW-W2\UAT_InputTrace.webinfo" output="L:\WWW\UAT\FDC\WSMFW-W2\UAT_OutputTrace.webinfo" />
+      <trace enabled="true" input="L:\WWW\<%= @env %>\FDC\WSMFW-W2\<%= @env %>_InputTrace.webinfo" output="L:\WWW\<%= @env %>\FDC\WSMFW-W2\<%= @env %>_OutputTrace.webinfo" />
       <detailedErrors enabled="true" />
     </diagnostics>
   </microsoft.web.services3>
