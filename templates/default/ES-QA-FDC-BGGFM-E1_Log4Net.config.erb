@@ -6,7 +6,7 @@
       <appender-ref ref="LogFileAppender"/>
     </root>
     <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
-      <param name="File" value="L:/TIS/QA/FDC/BGGFM-E1/GenericFileMover.log"/>
+      <param name="File" value="L:/TIS/<%= @env %>/FDC/BGGFM-E1/GenericFileMover.log"/>
       <param name="AppendToFile" value="true"/>
       <rollingStyle value="Size"/>
       <maxSizeRollBackups value="10"/>
