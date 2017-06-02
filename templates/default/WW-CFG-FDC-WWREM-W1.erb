@@ -16,7 +16,7 @@
   </configSections>
   <log4net>
     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
-      <file value="L:\WWW\CFG\FDC\WWREM-W1\wellsfargosso.log" />
+      <file value="L:\WWW\<%= @env %>\FDC\WWREM-W1\wellsfargosso.log" />
       <appendToFile value="true"/>
       <maximumFileSize value="3MB"/>
       <maxSizeRollBackups value="100"/>
@@ -49,7 +49,7 @@
          AutoInsertNewUser="true"
          HomePage="https://config11.remitcoimagearchive.com/RemitcoLTA/CloseSession.html"
          HTTP_REFERER="[http|https]://gw\.amerhonda\.com/[.]*"
-         LogFile="L:\WWW\CFG\FDC\WWREM-W1\DebugSSO.Log"
+         LogFile="L:\WWW\<%= @env %>\FDC\WWREM-W1\DebugSSO.Log"
          AlwaysLog="true"
          SessionTimeoutPage="/Honda.html"
         Logo="~/Images/HondaLogo.GIF"
@@ -78,7 +78,7 @@
         AllowedRoleCodes="LTA|CITILTA|CDMUser|RPT|CITIEX|EXSUPER|AUDIT|CDMVIEW"
         UserIdPrefix="B:"
         ClientX509SerialNumber="1a 6c d6 78 82 2f 0d f9 b1 c9 26 6f b2 ce 75 9d"
-        LogFolder="L:\WWW\CFG\FDC\WWREM-W1\citi-bus"
+        LogFolder="L:\WWW\<%= @env %>\FDC\WWREM-W1\citi-bus"
         HomePage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         SessionTimeOutPage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="cbolredirect.html"
@@ -90,7 +90,7 @@
         AllowedRoleCodes="LTA|CITILTA|CDMUser|RPT|CITIEX|EXSUPER|AUDIT|CDMVIEW"
         UserIdPrefix="D:"
         ClientX509SerialNumber="61 76 8f c5 5c ae c8 ec 38 ad 87 a6 07 8b 55 cc"
-        LogFolder="L:\WWW\CFG\FDC\WWREM-W1\citi-dir"
+        LogFolder="L:\WWW\<%= @env %>\FDC\WWREM-W1\citi-dir"
         HomePage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         SessionTimeOutPage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="http://www.egisticsinc.com"
@@ -106,7 +106,7 @@
         AllowedRoleCodes="*"
         UserIdPrefix="eB:"
         ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6"
-        LogFolder="L:\WWW\CFG\FDC\WWREM-W1\citi-egiBus"
+        LogFolder="L:\WWW\<%= @env %>\FDC\WWREM-W1\citi-egiBus"
         HomePage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         SessionTimeOutPage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="http://www.egisticsinc.com"
@@ -118,7 +118,7 @@
         AllowedRoleCodes="*"
         UserIdPrefix="E:"
         ClientX509SerialNumber="00 c1 13 c3 d5 66 f3 0f e6"
-        LogFolder="L:\WWW\CFG\FDC\WWREM-W1\citi-egi"
+        LogFolder="L:\WWW\<%= @env %>\FDC\WWREM-W1\citi-egi"
         HomePage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         SessionTimeOutPage="https://config11.remitcoimagearchive.com/RemitcoLTA/TokenLogout.html"
         ErrorValidationPage="http://www.egisticsinc.com"
@@ -318,7 +318,7 @@
   <applicationSettings>
     <eGistics.FDC.Remitco.Properties.Settings>
       <setting name="eGistics_FDC_Remitco_ValidationEngine_ValidationEngineProxy" serializeAs="String">
-        <value>https://CFG-FDC-WSESL.tisa.io/ValidationEngine/ValidationEngineProxy.asmx</value>
+        <value>https://<%= @env %>-FDC-WSESL.tisa.io/ValidationEngine/ValidationEngineProxy.asmx</value>
       </setting>
     </eGistics.FDC.Remitco.Properties.Settings>
   </applicationSettings>
@@ -523,7 +523,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://CFG-FDC-WSESL.tisa.io/ValidationEngine/ValidationEngineProxy.asmx"
+      <endpoint address="https://<%= @env %>-FDC-WSESL.tisa.io/ValidationEngine/ValidationEngineProxy.asmx"
       binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap"
       contract="eGistics.Validation.ValidationEngineProxySoap" name="ValidationEngineProxySoap"  />
     </client>
