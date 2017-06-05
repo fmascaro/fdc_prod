@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionStrings>
+    <add connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;Trusted_Connection=True" name="PRODAdminDB"/>
+  </connectionStrings>
+
+  <appSettings>
+
+    <add key="Environment" value="<%= @env %>"/>
+
+    <add key="ImportDirectoryPROD" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\IN\<%= @env %>"/>
+    <add key="ProcessedDirectoryPROD" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\OUT"/>
+
+    <add key="WorkingDirectoryPROD" value="E:\TIS\<%= @env %>\FDC\EXRPT-E1\Working"/>
+    <add key="BackupDirectoryPROD" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXRPT-E1\Backup"/>
+    <add key="ExceptionDirectoryPROD" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXRPT-E1\Exception"/>
+    <add key="LogDirectoryPROD" value="L:\TIS\<%= @env %>\FDC\EXRPT-E1"/>
+    <add key="FileExtensionPROD" value=".TXT"/>
+
+    <add key="DIRECTOutputFileNamePROD" value="FTP4.DELP.EGIS.LBXDLPQX.RSP.DIRECT"/>
+    <add key="BUSOLOutputFileNamePROD" value="FTP4.DELP.EGIS.LBXDLPQX.RSP.CBUSOL"/>
+
+	<add key="FileExtension" value=".TXT"/>
+
+  </appSettings>
+</configuration>
+
