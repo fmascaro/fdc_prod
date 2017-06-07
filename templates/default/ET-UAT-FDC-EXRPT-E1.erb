@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <connectionStrings>
-    <add connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g;Trusted_Connection=True" name="PRODAdminDB"/>
+    <add connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;Trusted_Connection=True" name="PRODAdminDB"/>
   </connectionStrings>
 
   <appSettings>
 
-    <add key="Environment" value="<%= @env %>"/>
+    <add key="Environment" value="PROD"/> <!-- This must be set to prod to work -->
 
     <add key="ImportDirectoryPROD" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\IN\<%= @env %>"/>
     <add key="ProcessedDirectoryPROD" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\OUT"/>
