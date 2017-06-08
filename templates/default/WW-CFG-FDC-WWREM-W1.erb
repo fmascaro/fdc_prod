@@ -302,7 +302,7 @@
         <add name="iTextSharpPDFProvider" type="eGistics.Output.PDF.iTextSharp.iTextSharpPDFProvider"/>
       </providers>
     </PDFService>
-    <SaveAuditLogService defaultProvider="MSMQSaveAuditLogProvider">
+    <SaveAuditLogService defaultProvider="SqlSaveAuditLogProvider">
       <providers>
         <add name="MSMQSaveAuditLogProvider" type="eGistics.AuditLog.Provider.MSMQSaveAuditLogProvider" QueuePath=".\Private$\fdc3g_config"/>
         <add name="SqlSaveAuditLogProvider" type="eGistics.AuditLog.Provider.SqlSaveAuditLogProvider"/>
