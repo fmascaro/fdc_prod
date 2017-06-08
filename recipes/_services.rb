@@ -144,6 +144,9 @@ services.each do |service|
 		template "#{svc_db_item[service]['app_directory']}/#{svc_db_item[service]['ConfigFilesExtra']}" do
 			source "#{svc_db_item[service]['ServiceName']}_#{svc_db_item[service]['ConfigFilesExtra']}.erb"
 			action :create
+      variables({
+        :env => env.upcase
+      })
 			notifies :restart, "service[#{svc_db_item[service]['ServiceName']}]"
 		end unless svc_db_item[service]['ConfigFilesExtra'].empty?
 
