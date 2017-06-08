@@ -24,8 +24,8 @@
   </ContextInfo>
 
   <connectionStrings>
-    <add name="Admin" connectionString="du-gen-sql-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
-    <add name="Audit" connectionString="du-gen-sql-01;DATABASE=RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=du-gen-sql-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Audit" connectionString="SERVER=du-gen-sql-01;DATABASE=RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
@@ -117,9 +117,9 @@
     </root>
   </log4net>
 
-  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://dd-esl-sau-01.egistics.local:8181/strongkeyliteWAR/EncryptionService">
+  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://<%= @site %><%= @envcode %>-esl-sau-01.egistics.local:8181/strongkeyliteWAR/EncryptionService">
     <Ping Password-Clear="Abcd1234!"/>
-    <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="C:\temp"/>
+    <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="E:\temp"/>
     <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="E:\temp"/>
   </StrongAuth.CryptoSection>
 
@@ -147,7 +147,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://du-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
+      <endpoint address="https://<%= @site %><%= @envcode %>-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
 
