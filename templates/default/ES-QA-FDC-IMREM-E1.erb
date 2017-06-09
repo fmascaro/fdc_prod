@@ -640,11 +640,6 @@
            responseFileDelimiter="|"
       />
 
-      <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FirstBank\"
-      />
-
       <add  name="3XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
             fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
             mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_3X\"
@@ -688,17 +683,6 @@
       <add name="SynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
            overrideSynapticWebServiceWebConfigSettings="True"
-           subtenantID="6a5c3d578baf402da8283b3d6522e150"
-           sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
-           applicationID="egBetaTest"
-           baseURI="32.65.211.48|32.65.211.49"
-      />
-
-      <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
-           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
-           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
-           overrideSynapticWebServiceWebConfigSettings="True"
-           objectIDSaveFileExtension="objs"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
            applicationID="egBetaTest"
@@ -783,7 +767,7 @@
 
       <add  name="BaseRemittance4xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
             lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\LTA_4X\"
+            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X\"
             responseFileExtension="rsp"
             responseFileDelimiter="|"
       />
