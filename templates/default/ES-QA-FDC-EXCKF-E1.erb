@@ -12,7 +12,7 @@
   </configSections>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=PD-DEV-SQL-01.EGDEV.LOCAL;DATABASE=RTC_Admin3G_QA;User Id=dev;Password=Abcd1234" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=PD-DEV-SQL-01.egdev.local;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True;Encrypt=Yes" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <system.web>
     <ImageArchiveService defaultProvider="FDCSingleMultipleIPS_Production">
@@ -70,7 +70,7 @@
   <applicationSettings>
     <eGistics.CheckFree.Properties.Settings>
       <setting name="CheckFreeService_FDCWebService_InternalHelper" serializeAs="String">
-        <value>http://PD-DEV-WEB-01:8080/internalHelper/InternalHelper.asmx</value>
+        <value>https://qafdc.tisa.io/WebService/InternalHelper.asmx</value>
       </setting>
     </eGistics.CheckFree.Properties.Settings>
   </applicationSettings>
