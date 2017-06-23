@@ -124,12 +124,12 @@
       <add name="RejectLetter" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="RejectLetterImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\RejLetter"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\CORRO"
       />
        <add name="WellsWholesale" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="WellsWholesaleImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\80099"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\WHOLESALE"
       />
       <add name="FDCCDMBaseRemittance3x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="CDMBaseRemittance3xImportProvider"
@@ -298,11 +298,11 @@
            emailFrom="noone@eGisticsInc.com"
            emailTo="noone@eGisticsInc.com"
            currentLoggingDebugLevel="normal"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\RejLetter\"
-           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\RejLetter\"
-           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\RejLetter"
-           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\RejLetter"
-           ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\RejLetter\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\CORRO\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\CORRO\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\CORRO"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\CORRO"
+           ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\CORRO\"
            triggerLess="False"
            useCompressionProvider="True"
            compressionFileExtension="zip"
@@ -317,11 +317,11 @@
     		  emailFrom="noreply@eGisticsInc.com"
     		  emailTo="noreply@eGisticsInc.com"
     		  currentLoggingDebugLevel="Verbose"
-    		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\WellsWholesale\"
-    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\WellsWholesale\"
-    		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\WellsWholesale\"
-    		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\WellsWholesale"
-    		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\80099"
+    		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\wholesale\"
+    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\wholesale\"
+    		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\wholesale\"
+    		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\wholesale"
+    		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\WHOLESALE"
     		  useCompressionProvider="True"
     		  triggerLess="False"
     		  moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -835,7 +835,7 @@
       />
       <add name="BaseLTAItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
            indexColumnMapping="SiteID(INT),SubSiteID(VARCHAR),BatchNum(INT),ProcessDate(VARCHAR),ReportName(CHAR),Image_File_Name"
-           responseFileProvider=""
+           responseFileProvider="ReportsResponseFileProvider"
            disconnectedDatabaseProvider="False"
            databaseProvider="BaseLTADatabaseProvider"
            archiveProvider="SynapticArchiveProvider"
@@ -851,7 +851,7 @@
       />
       <add name="RejectLetterItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
            indexColumnMapping="Image_File_Name,PageCount,TransID,SiteID,SubSiteID"
-           responseFileProvider=""
+           responseFileProvider="CorroResponseFileProvider"
            disconnectedDatabaseProvider="False"
            databaseProvider="RejectLetterDatabaseProvider"
            archiveProvider="SynapticArchiveProvider"
@@ -867,7 +867,7 @@
       />
       <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\RejLetter\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\CORRO\"
       />
       <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\GenericCleanupProvider.dll.config"
@@ -881,7 +881,7 @@
       />
       <add name="WellsWholesaleZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\WellsWholesale\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\wholesale\"
       />
       <add name="WellsWholesaleItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
          indexColumnMapping="BankID(INT),BoxID(INT),ProcessDate(INT),BatchNum(INT),TranNumber(INT),,SequenceNum(INT),ItemType(VARCHAR),Amount(NUMERIC),CheckNum(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),Image_File_Name(NOTYPE),AccountNum(VARCHAR),Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount1(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),SiteID(INT),WorksourceID(INT)"
@@ -903,6 +903,39 @@
          minHeightSmallOrLargePage = "900"
 	       disconnectedDatabaseProvider="False"
        />
+
+       <add name="WellsWholesaleDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+         connectionString="None"
+         addTransElementReturnParameter="@TRANSID(BIGINT)"
+
+	 transIndexColumnMapping=",,@ProcessDate(INT),@BatchNum(INT),@TranNumber(INT),,@SequenceNum(INT),@ItemType(VARCHAR),@Amount(NUMERIC),@CheckNum(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@Image_File_Name(NOTYPE),@AccountNum(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@SiteID(INT),@WorksourceID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+
+	 checkIndexColumnMapping=",,@ProcessDate(INT),@BatchNum(INT),@TranNumber(INT),,@SequenceNum(INT),@ItemType(VARCHAR),@Amount(NUMERIC),@CheckNum(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@Image_File_Name(NOTYPE),@AccountNum(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@SiteID(INT),@WorksourceID(INT),@TranID(BIGINT)"
+
+	 stubIndexColumnMapping=",,@ProcessDate(INT),@BatchNum(INT),@TranNumber(INT),,@SequenceNum(INT),@ItemType(VARCHAR),@Amount(NUMERIC),@CheckNum(NUMERIC),@CheckRTNum(VARCHAR),@CheckAcct(VARCHAR),@Image_File_Name(NOTYPE),@AccountNum(VARCHAR),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@SiteID(INT),@WorksourceID(INT),@TranID(BIGINT)"
+
+         storedProcedureTransAdd="spImportWellsWholesaleTransactionSynaptic"
+         storedProcedureAddTransParameters="@BatchNum(INT),@ProcessDate(INT),@TranNumber(INT),@SiteID(INT),@WorksourceID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+         storedProcedureTransDel="None"
+         storedProcedureTransUpd="None"
+
+         storedProcedureCheckAdd="spImportWellsWholesaleItemSynaptic"
+         storedProcedureAddCheckParameters="@BatchNUM(INT),@SequenceNum(INT),@ItemType(VARCHAR),@CheckAcct(VARCHAR),@CheckNum(NUMERIC),@CheckRTNum(VARCHAR),@AccountNum(VARCHAR),@Amount(NUMERIC),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@TranID(BIGINT)"
+         storedProcedureCheckDel="None"
+         storedProcedureCheckUpd="None"
+
+         storedProcedureStubAdd="spImportWellsWholesaleItemSynaptic"
+         storedProcedureAddStubParameters="@BatchNUM(INT),@SequenceNum(INT),@ItemType(VARCHAR),@CheckAcct(VARCHAR),@CheckNum(NUMERIC),@CheckRTNum(VARCHAR),@AccountNum(VARCHAR),@Amount(NUMERIC),@Account2(VARCHAR),@Account3(VARCHAR),@Account4(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@TranID(BIGINT)"
+		 storedProcedureStubDel="None"
+         storedProcedureStubUpd="None"
+         useTransaction="True"
+
+         spOnBeforeProcessingFile="spBeforeFileProcess_FDC"
+         spOnBeforeProcessingRow=""
+         spOnAfterProcessingRow=""
+         spOnAfterProcessingFile=""
+	     />
+
        <add name="WellsWholesaleGenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\GenericCleanupProvider.dll.config"
            unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
@@ -931,6 +964,66 @@
          numberOfImageFiles="1"
          minLengthSmallOrLargePage = "2000"
          minHeightSmallOrLargePage = "900"
+     />
+
+     <add name="CDMBaseRemittance3xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+     />
+
+     <add name="WellsWholesaleResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\WHOLESALE"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+      />
+
+     <add name="ReportsResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\Reports\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+	   />
+
+     <add name="CorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\CORRO\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+	   />
+
+     <add name="CDMBaseRemittance4xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
+           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
+           responseFileExtension="rsp"
+           responseFileDelimiter="|"
+	   />
+
+     <add name="CDMBaseRemittance3xDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+         connectionString="None"
+         addTransElementReturnParameter="@CDMTRANSID(BIGINT)"
+         transIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+         checkIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@CDMTRANSID(BIGINT)"
+         stubIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@CDMTRANSID(BIGINT)"
+         storedProcedureTransAdd="spCDMImportTransactionSynaptic"
+         storedProcedureAddTransParameters="@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@BatchType(INT),@SecApproval(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@ObjectID(VARCHAR),@OrgID(INT),@LoadTableID(BIGINT)"
+         storedProcedureTransDel="None"
+         storedProcedureTransUpd="None"
+         storedProcedureCheckAdd="spCDMImportCheckSynaptic"
+         storedProcedureAddCheckParameters="@SequenceNum(INT),@Other2(VARCHAR),@Other3(VARCHAR),@Amount1(NUMERIC),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),@CDMTRANSID(BIGINT)"
+         storedProcedureCheckDel="None"
+         storedProcedureCheckUpd="None"
+         storedProcedureStubAdd="spCDMImportStubSynaptic"
+         storedProcedureAddStubParameters="@SequenceNum(INT),@ItemType(VARCHAR),@Other1(VARCHAR),@Amount1(NUMERIC),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),@CDMTRANSID(BIGINT)"
+         storedProcedureStubDel="None"
+         storedProcedureStubUpd="None"
+         useTransaction="True"
+         spOnBeforeProcessingFile=""
+         spOnBeforeProcessingRow=""
+         spOnAfterProcessingRow=""
+         spOnAfterProcessingFile=""
       />
       <add name="CDMBaseRemittance4xItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
          indexColumnMapping="ItemType(VARCHAR),SiteID(INT),SubSiteID(INT),BatchID(INT),TranNumber(INT),SequenceNum(INT),RejectFlag(TINYINT),BatchType(INT),SecApproval(VARCHAR),Amount1(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),Amount4(NUMERIC),Amount5(NUMERIC),Amount6(NUMERIC),Amount7(NUMERIC),Amount8(NUMERIC),Amount9(NUMERIC),Amount10(NUMERIC),Other1(VARCHAR),Other2(VARCHAR),Other3(VARCHAR),Other4(VARCHAR),Other5(VARCHAR),Other6(VARCHAR),Other7(VARCHAR),Other8(VARCHAR),Other9(VARCHAR),Other10(VARCHAR),Other11(VARCHAR),Other12(VARCHAR),Other13(VARCHAR),Other14(VARCHAR),Other15(VARCHAR),Other16(VARCHAR),Other17(VARCHAR),Other18(VARCHAR),Other19(VARCHAR),Other20(VARCHAR),LockBox(VARCHAR),BatchNum(INT),eGisticsTransID(BIGINT),OriginalSequenceNum(INT),Image_File_Name(NOTYPE)"
@@ -951,6 +1044,56 @@
          minLengthSmallOrLargePage = "2000"
          minHeightSmallOrLargePage = "900"
       />
+
+      <add name="BaseLTADatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
+           indexColumnMapping="@SiteID(INT),@SubSiteID(VARCHAR),@BatchNum(INT),@ProcessDate(VARCHAR),@ReportName(CHAR),@Image_File_Name,@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           connectionString="None"
+           storedProcedureAdd="spImportReportSynaptic"
+           storedProcedureAddParameters="@ReportName(CHAR),@ProcessDate(VARCHAR),@SiteID(INT),@SubSiteID(VARCHAR),@ObjectID(VARCHAR),@LoadTableID(BIGINT),@OrgID(INT)"
+           storedProcedureDel="None"
+           storedProcedureUpd="None"
+           useTransaction="True"
+      />
+
+      <add name="RejectLetterDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
+           indexColumnMapping="@Image_File_Name(NOTYPE),@PageCount(INT),@TransID(BIGINT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           connectionString="None"
+           storedProcedureAdd="spImportRejectLetterSynaptic"
+           storedProcedureAddParameters="@ObjectID(VARCHAR),@TransID(BIGINT)"
+           storedProcedureDel="None"
+           storedProcedureUpd="None"
+           useTransaction="True"
+      />
+
+      <add name="CDMBaseRemittance4xDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
+         connectionString="None"
+         addTransElementReturnParameter="@CDMTRANSID(BIGINT)"
+
+         transIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),@Other16(VARCHAR),@Other17(VARCHAR),@Other18(VARCHAR),@Other19(VARCHAR),@Other20(VARCHAR),@LockBox(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+         checkIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),@Other16(VARCHAR),@Other17(VARCHAR),@Other18(VARCHAR),@Other19(VARCHAR),@Other20(VARCHAR),@LockBox(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@CDMTRANSID(BIGINT)"
+         stubIndexColumnMapping="@ItemType(VARCHAR),@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@RejectFlag(TINYINT),@BatchType(INT),@SecApproval(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),@Other16(VARCHAR),@Other17(VARCHAR),@Other18(VARCHAR),@Other19(VARCHAR),@Other20(VARCHAR),@LockBox(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),Image_File_Name(NOTYPE),@CDMTRANSID(BIGINT)"
+
+         storedProcedureTransAdd="spCDMImportTransactionWausau4xSynaptic"
+         storedProcedureAddTransParameters="@SiteID(INT),@SubSiteID(INT),@BatchID(INT),@TranNumber(INT),@SequenceNum(INT),@BatchType(INT),@SecApproval(VARCHAR),@BatchNum(INT),@eGisticsTransID(BIGINT),@LockBox(VARCHAR),@ObjectID(VARCHAR),@OrgID(INT),@LoadTableID(BIGINT)"
+         storedProcedureTransDel="None"
+         storedProcedureTransUpd="None"
+
+         storedProcedureCheckAdd="spCDMImportCheck4xSynaptic"
+         storedProcedureAddCheckParameters="@SequenceNum(INT),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),@Other16(VARCHAR),@Other17(VARCHAR),@Other18(VARCHAR),@Other19(VARCHAR),@Other20(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@CDMTRANSID(BIGINT)"
+         storedProcedureCheckDel="None"
+         storedProcedureCheckUpd="None"
+
+         storedProcedureStubAdd="spCDMImportStub4xSynaptic"
+         storedProcedureAddStubParameters="@SequenceNum(INT),@ItemType(VARCHAR),@Other1(VARCHAR),@Other2(VARCHAR),@Other3(VARCHAR),@Other4(VARCHAR),@Other5(VARCHAR),@Other6(VARCHAR),@Other7(VARCHAR),@Other8(VARCHAR),@Other9(VARCHAR),@Other10(VARCHAR),@Other11(VARCHAR),@Other12(VARCHAR),@Other13(VARCHAR),@Other14(VARCHAR),@Other15(VARCHAR),@Other16(VARCHAR),@Other17(VARCHAR),@Other18(VARCHAR),@Other19(VARCHAR),@Other20(VARCHAR),@Amount1(NUMERIC),@Amount2(NUMERIC),@Amount3(NUMERIC),@Amount4(NUMERIC),@Amount5(NUMERIC),@Amount6(NUMERIC),@Amount7(NUMERIC),@Amount8(NUMERIC),@Amount9(NUMERIC),@Amount10(NUMERIC),@eGisticsTransID(BIGINT),@OriginalSequenceNum(INT),@CDMTRANSID(BIGINT)"
+         storedProcedureStubDel="None"
+         storedProcedureStubUpd="None"
+         useTransaction="True"
+
+         spOnBeforeProcessingFile=""
+         spOnBeforeProcessingRow=""
+         spOnAfterProcessingRow=""
+         spOnAfterProcessingFile=""
+	    />
     </providers>
   </subProviders>
 
