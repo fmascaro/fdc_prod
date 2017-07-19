@@ -32,6 +32,7 @@ case node.chef_environment
     envcode = 'P'
   when 'prodnext'
     env = 'PRDNEXT'
+    domain = 'EGISTICS'
     efs = '\\\\DP-ESL-EFS-01'
     envcode = 'P'
   else
