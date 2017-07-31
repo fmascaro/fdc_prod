@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+    Note: As an alternative to hand editing this file you can use the
+    web admin tool to configure settings for your application. Use
+    the Website->Asp.Net Configuration option in Visual Studio.
+    A full list of settings and comments can be found in
+    machine.config.comments usually located in
+    \Windows\Microsoft.Net\Framework\v2.x\Config
+-->
+<configuration>
+  <configSections>
+    <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+    <sectionGroup name="system.web">
+      <section name="ImageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+      <section name="PDFService" type="eGistics.Output.PDF.Provider.PDFServiceSection, eGistics.Output" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+      <section name="SaveAuditLogService" type="eGistics.AuditLog.Provider.SaveAuditLogServiceSection, eGistics.AuditLog" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    </sectionGroup>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="eGistics.Archive.Cloud.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
+    </sectionGroup>
+    <section name="UrlSection" type="eGistics.Archive.Cloud.UrlSection, eGistics.Archive.Cloud"/>
+  </configSections>
+  <dataConfiguration defaultDatabase="AdminConn"/>
+  <connectionStrings>
+    <add name="AdminConn" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=rtc_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=rtc_AuditLog3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <applicationSettings>
+    <eGistics.Archive.Cloud.Properties.Settings>
+      <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
+        <value>https://<%= @site %><%= @envcode %>-esl-spx-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/synapticWebService.asmx</value>
+      </setting>
+    </eGistics.Archive.Cloud.Properties.Settings>
+  </applicationSettings>
+  <UrlSection>
+    <Urls>
+      <add name="URL1" url="https://<%= @site %><%= @envcode %>-esl-spx-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/synapticWebService.asmx"/>
+      <add name="URL2" url="https://<%= @site %><%= @envcode %>-esl-spx-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/synapticWebService.asmx"/>
+    </Urls>
+  </UrlSection>
+  <appSettings>
+    <add key="Expiration" value="1"/>
+    <add key="LogFile" value="L:\WWW\<%= @env %>\FDC\WWMSC-W1\pdfwebsite\logFile2.txt"/>
+    <add key="PDFNetLicenseKey" value="eGistics, Inc.:CPU:1::W:AMC(20120103):4965BCCE260DF3EF1CDDBBB2D5E92ECE4B5A394DDF6E297B7AF0FA"/>
+    <add key="MaxTransItems" value="700"/>
+    <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
+    <add key="ApplicationID" value="fdc_hampden"/>
+    <add key="SharedSecret" value="r8w0thCS55Nv6NymykfFtWa5n/A="/>
+    <add key="MaxTransMessage" value="The selected transaction is associated with a large image file which exceeds system display  threshold.  Please view image using Item View (instead of Transaction View) Icon.  Image view Icon is located in the left most column of each row in Long Term Archive (LTA) Search Results Screen."/>
+  </appSettings>
+  <system.web>
+    <identity impersonate="false" />
+    <!--
+            Set compilation debug="true" to insert debugging symbols into the compiled page. Because this
+            affects performance, set this value to true only during development.
+    -->
+    <compilation debug="true" defaultLanguage="c#" targetFramework="4.5">
+      <assemblies>
+        <add assembly="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral"/>
+        <add assembly="System.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Data.OracleClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Messaging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Management, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Configuration.Install, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="Microsoft.VisualC, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+      </assemblies>
+    </compilation>
+    <!-- The <authentication> section enables configuration of the security authentication mode used by ASP.NET to identify an incoming user. -->
+    <authentication mode="None"/>
+    <sessionState mode="Off"/>
+    <machineKey
+      validationKey="3060D3D78B4F73EA1D28E61E70EFE0F40EB4BB97F9CB737937A08A2D7A3826F4859685BA90CD053F31D87A6E6899F1AA2A57E0B023CF75DF8539D30C85612F43"
+      decryptionKey="641BEF499E1ADCEF04B45DB78EC5F97B95862A1C9F66442E"
+      validation="SHA1" decryption="AES"
+    />
+    <ImageArchiveService defaultProvider="ATTSynaptic">
+      <providers>
+        <add name="ATTSynaptic" LegacyProviderName="FDCSingleMultipleIPS_Production" TimeOut="30000" type="eGistics.Archive.Cloud.ATTSynaptic, eGistics.Archive.Cloud"/>
+        <add name="FDCIPSImageArchiveProvider_Test" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://test.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCIPSImageArchiveProvider_Production" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://www.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Test" LegacyProviderName="FDCIPSImageArchiveProvider_Test" SeekCatFile="False"  type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Production" LegacyProviderName="FDCIPSImageArchiveProvider_Production" SeekCatFile="False"  type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+      </providers>
+    </ImageArchiveService>
+    <PDFService defaultProvider="iTextSharpPDFProvider">
+  <providers>
+    <add name="iTextSharpPDFProvider" type="eGistics.Output.PDF.iTextSharp.iTextSharpPDFProvider"/>
+    <add name="PDFNetPDFProvider" type="eGistics.PDFNet.PDFNetProvider, eGistics.PDFNet"/>
+  </providers>
+    </PDFService>
+    <SaveAuditLogService defaultProvider="SqlSaveAuditLogProvider">
+      <providers>
+        <add name="MSMQSaveAuditLogProvider" type="eGistics.AuditLog.Provider.MSMQSaveAuditLogProvider" QueuePath=".\AuditLog"/>
+        <add name="SqlSaveAuditLogProvider" type="eGistics.AuditLog.Provider.SqlSaveAuditLogProvider"/>
+      </providers>
+    </SaveAuditLogService>
+    <!--
+      The <customErrors> section enables configuration of what to do if/when an unhandled error occurs during the execution of a request.
+      Specifically, it enables developers to configure html error pages to be displayed in place of a error stack trace.
+
+      <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+          <error statusCode="403" redirect="NoAccess.htm" />
+          <error statusCode="404" redirect="FileNotFound.htm" />
+      </customErrors>
+    -->
+  </system.web>
+</configuration>
