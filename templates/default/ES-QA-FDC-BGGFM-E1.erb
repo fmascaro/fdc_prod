@@ -9,19 +9,25 @@
   </appSettings>
   <ContextInfo>
     <Context>
-      <add name="MGN_CDM_Mover"     type="MorganStanley_CDM"     connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
-      <add name="MGN_LTA_Mover"     type="MorganStanley_LTA"     connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
-      <add name="MGN_Reports_Mover" type="MorganStanley_Reports" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
-      <add name="MGN_Corro_Mover"   type="MorganStanley_Corro"   connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
-      <add name="PNC_Returns_Mover" type="PNC_Returns"           connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdcltamover3x"     type="fdcltamover3x"         connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdcltamover4x"     type="fdcltamover4x"         connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdcmellonmover"    type="fdcmellonmover"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdccdmmover3x"    type="fdccdmmover3x"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdccdmmover4x"    type="fdccdmmover4x"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdclta3xreports"    type="fdclta3xreports"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdclta3xcorro"    type="fdclta3xcorro"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
-      <add name="fdclta3xhonwholesale"    type="fdclta3xhonwholesale"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCCDMMover3x"    type="FDCCDMMover3x"          connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCCDMMover4x"    type="FDCCDMMover4x"          connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCLTAMover3x"     type="FDCLTAMover3x"         connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCLTAMover4x"     type="FDCLTAMover4x"         connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCCorroMover"     type="FDCCorro-RejLetter"    connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCMellonMover"    type="FDCMellonMover"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+      	<add name="FDCReportMover"    type="FDCReportMover"        connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/> 
+ 
+ 	<add name="MGN_CDM_Mover"     type="MorganStanley_CDM"     connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      	<add name="MGN_LTA_Mover"     type="MorganStanley_LTA"     connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      	<add name="MGN_Reports_Mover" type="MorganStanley_Reports" connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      	<add name="MGN_Corro_Mover"   type="MorganStanley_Corro"   connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=FDC_Admin_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36" />
+      	<add name="PNC_Returns_Mover" type="PNC_Returns"           connstring="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36"/>
+   
+ 
+ 
+ 
+      
+      
     </Context>
   </ContextInfo>
   <system.serviceModel>
