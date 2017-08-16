@@ -341,7 +341,7 @@
     		  emailTo="noreply@eGisticsInc.com"
     		  currentLoggingDebugLevel="Verbose"
     		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\Wholesale\"
-    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\Wholesale\"
+    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\WELLSWHOLESALE\"
     		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Wholesale\"
     		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Wholesale"
     		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\WHOLESALE\80099"
@@ -672,7 +672,7 @@
             fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
             mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_4X\"
       />
-	  
+
       <add  name="ReportZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
             fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
             mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\Reports\"
@@ -970,12 +970,12 @@
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CORRO\"
       />
-	  
+
 	   <add name="CDM3xZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CDM_3X\"
       />
-	  
+
 	   <add name="CDM4xZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CDM_4X\"
@@ -996,7 +996,7 @@
       />
       <add name="WellsWholesaleItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
          indexColumnMapping="BankID(INT),BoxID(INT),ProcessDate(INT),BatchNum(INT),TranNumber(INT),,SequenceNum(INT),ItemType(VARCHAR),Amount(NUMERIC),CheckNum(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),Image_File_Name(NOTYPE),AccountNum(VARCHAR),Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount1(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),SiteID(INT),WorksourceID(INT)"
-         responseFileProvider="WellsWholesaleResponseFileProvider"
+         responseFileProvider=""
          databaseProvider="WellsWholesaleDatabaseProvider"
          archiveProvider="SynapticArchiveProviderStacked"
          adminDBProvider="WellsWholesaleAdminDBProvider"
@@ -1014,22 +1014,22 @@
          minHeightSmallOrLargePage = "900"
 	 disconnectedDatabaseProvider="False"
        />
-	   
+
 	   <add name="WellsWholesaleAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3g_QA;Trusted_Connection=True"
 		   lineDataColumnMapping=",,ProcessDate,BatchNum,TranNumber,,SequenceNum,ItemType,Amount,CheckNumPC,CheckRTNum,CheckAcct,Image_File_Name,AccountNum,Account2,Account3,Account4,Amount1,Amount2,Amount3,SiteID,WorksourceID"
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=WorksourceID"
-           clientConnectionStringInDatabase="True" 
+           clientConnectionStringInDatabase="True"
            clientConnectionStringColumnName="SqlClientConnectionString"
            addLoadTableElementSP="spAddLoadElementGeneric"
            addLoadTableElementSPParameters="@SiteID(INT)=ClientData.SiteID;@SubSiteID(INT)=ClientData.SubSiteID;@ProcDate(INT)=ItemData.ProcessDate;@BatchNum(INT)=ItemData.BatchNum;@OrganizationID(INT)=ClientData.ID;@FileName(VarChar)=LoadTableFileName;@FTPWaitTime(INT)=FTPWaitTime;@SourceType(VARCHAR)=LTA"
            addLoadTableElementOutParameter="@NEWID(BIGINT)"
            updLoadTableElementSP="spUpdateLoadElementGeneric"
            updLoadTableElementSPParameters="@LoadTableID(BIGINT)=LoadTableID;@ErrorCode(TINYINT)=LoadTableErrorCode;@ArchiveSize(BIGINT)=ArchiveSize;@ItemCount(INT)=ItemCount;@PageCount(INT)=PageCount;@TimeToLoad(INT)=TimeToLoad;@LargePagesCount(INT)=LargePagesCount;@SmallPagesCount(INT)=SmallPagesCount;@Overage(INT)=Overage"
-           delLoadTableElementSP="None" 
-           delLoadTableElementSPParameters="None" 
-           organizationIDColumnName="ID" 
+           delLoadTableElementSP="None"
+           delLoadTableElementSPParameters="None"
+           organizationIDColumnName="ID"
            useTransaction="False"
       />
 
@@ -1101,13 +1101,6 @@
            responseFileExtension="rsp"
            responseFileDelimiter="|"
      />
-
-     <add name="WellsWholesaleResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
-           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-           responseMainFilePath="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\FDC\WHOLESALE\"
-           responseFileExtension="rsp"
-           responseFileDelimiter="|"
-      />
 
      <add name="ReportsResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
