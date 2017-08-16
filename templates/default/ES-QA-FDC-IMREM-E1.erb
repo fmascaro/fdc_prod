@@ -341,7 +341,7 @@
     		  emailTo="noreply@eGisticsInc.com"
     		  currentLoggingDebugLevel="Verbose"
     		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\Wholesale\"
-    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\Wholesale\"
+    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\WELLSWHOLESALE\"
     		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Wholesale\"
     		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Wholesale"
     		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\WHOLESALE\80099"
@@ -996,7 +996,7 @@
       />
       <add name="WellsWholesaleItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
          indexColumnMapping="BankID(INT),BoxID(INT),ProcessDate(INT),BatchNum(INT),TranNumber(INT),,SequenceNum(INT),ItemType(VARCHAR),Amount(NUMERIC),CheckNum(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),Image_File_Name(NOTYPE),AccountNum(VARCHAR),Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount1(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),SiteID(INT),WorksourceID(INT)"
-         responseFileProvider="WellsWholesaleResponseFileProvider"
+         responseFileProvider=""
          databaseProvider="WellsWholesaleDatabaseProvider"
          archiveProvider="SynapticArchiveProviderStacked"
          adminDBProvider="WellsWholesaleAdminDBProvider"
@@ -1101,13 +1101,6 @@
            responseFileExtension="rsp"
            responseFileDelimiter="|"
      />
-
-     <add name="WellsWholesaleResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
-           lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-           responseMainFilePath="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\FDC\WHOLESALE\80099"
-           responseFileExtension="rsp"
-           responseFileDelimiter="|"
-      />
 
      <add name="ReportsResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
