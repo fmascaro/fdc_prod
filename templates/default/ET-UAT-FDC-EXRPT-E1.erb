@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <connectionStrings>
-    <add connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;Trusted_Connection=True" name="PRODAdminDB"/>
+    <add connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" name="PRODAdminDB"/>
   </connectionStrings>
 
   <appSettings>
 
-    <add key="Environment" value="PROD"/> <!-- This must be set to prod to work -->
+    <add key="Environment" value="PROD"/>
 
-    <add key="ImportDirectoryPROD" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\IN\<%= @env %>"/>
-    <add key="ProcessedDirectoryPROD" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\OUT"/>
+    <add key="ImportDirectoryPROD" value="<%= @efs %>\NDM\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\IN\<%= @env %>"/>
+    <add key="ProcessedDirectoryPROD" value="<%= @efs %>\NDM\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CITI\OUT"/>
 
     <add key="WorkingDirectoryPROD" value="E:\TIS\<%= @env %>\FDC\EXRPT-E1\Working"/>
     <add key="BackupDirectoryPROD" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXRPT-E1\Backup"/>
@@ -24,4 +24,3 @@
 
   </appSettings>
 </configuration>
-
