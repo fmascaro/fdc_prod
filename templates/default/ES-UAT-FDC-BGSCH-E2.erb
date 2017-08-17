@@ -147,7 +147,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address=""
+      <endpoint address="https://<%= @site %><%= @envcode %>-fdc-wsw-01.tisa.io/FundsWrapper/FundsWrapper.asmx"
         binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
         contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
 
