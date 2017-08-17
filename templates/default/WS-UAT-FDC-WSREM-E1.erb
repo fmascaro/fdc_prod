@@ -14,14 +14,14 @@
   <applicationSettings>
     <eGistics.Archive.Cloud.Properties.Settings>
       <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
-        <value>https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/synapticwebservice.asmx</value>
+        <value>https://<%= @site %><%= @envcode %>-esl-spx-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/synapticwebservice.asmx</value>
       </setting>
     </eGistics.Archive.Cloud.Properties.Settings>
   </applicationSettings>
   <UrlSection>
     <Urls>
-      <add name="URL1" url="https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/synapticwebservice.asmx"/>
-      <add name="URL2" url="https://pd-esl-spx-01.tisa.io/DEV-ESL-WSSPX-E1/synapticwebservice.asmx"/>
+      <add name="URL1" url="https://<%= @site %><%= @envcode %>-esl-spx-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/synapticwebservice.asmx"/>
+      <add name="URL2" url="https://<%= @site %><%= @envcode %>-esl-spx-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/synapticwebservice.asmx"/>
     </Urls>
   </UrlSection>
   <appSettings>
@@ -38,7 +38,7 @@
     <add key="ADVANTABANK_SignatureCertID" value=""/>
     <add key="ADVANTABANK_EncryptionCertID" value=""/>
     <add key="ADVANTABANK_MaxImages" value="25"/> -->
-    <add key="DEMOLBX_ConnectionString" value="Data Source=PD-DEV-SQL-01.egdev.local;Initial Catalog=RTC_Admin3g_QA;Trusted_Connection=yes;"/>
+    <add key="DEMOLBX_ConnectionString" value="Data Source=SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="DEMOLBX_ArchivePath" value="\\egi-mom\MomLocal\Archive\|\\egi-mom\MomLocal\Archive\"/>
     <add key="DEMOLBX_SearchStoredProc" value="spDemoWebServiceSearch"/>
     <add key="DEMOLBX_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
@@ -50,18 +50,18 @@
     <add key="DEMOLBX_SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64="/>
     <add key="DEMOLBX_MaxImages" value="50"/>
     <add key="DEMOLBX_TokenSecurity" value=""/>
-    <add key="InternalHelper_ConnectionString" value="Data Source=PD-DEV-SQL-01.egdev.local;Initial Catalog=RTC_Admin3g_QA;Trusted_Connection=yes;"/>
+    <add key="InternalHelper_ConnectionString" value="Data Source=SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="InternalHelper_ArchivePath" value="\\egi-mom\MomLocal\Archive\|\\egi-mom\MomLocal\Archive\"/>
     <add key="InternalHelper_SearchStoredProc" value="spDemoWebServiceSearch"/>
     <add key="InternalHelper_Id2ArchiveIDStoredProc" value="spWebServiceId2ArchiveID"/>
     <add key="InternalHelper_Orientation" value="Portrait"/>
-    <add key="InternalHelper_IPAddressList" value="127.0.0.1,::1,10.10.5.249"/>
+    <add key="InternalHelper_IPAddressList" value="127.0.0.1,::1,10.100.10.201,10.201.10.201"/>
     <add key="InternalHelper_LogFileName" value="InternalHelper.log"/>
     <add key="InternalHelper_TokenSecurity" value=""/>
     <add key="InternalHelper_AppID" value="egBetaTest"/>
     <add key="InternalHelper_SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64="/>
     <add key="InternalHelper_MaxImages" value="50"/>
-    <add key="InternalHelper_AdminConnectionString" value="Data Source=PD-DEV-SQL-01.egdev.local;Initial Catalog=RTC_Admin3g_QA;Trusted_Connection=yes;"/>
+    <add key="InternalHelper_AdminConnectionString" value="Data Source=SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
     <add key="LogPath" value="L:\WWW\<%= @env %>\FDC\WSREM-W1\"/>
     <add key="LogLevel" value="10"/>
