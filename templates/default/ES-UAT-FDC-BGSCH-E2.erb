@@ -117,7 +117,7 @@
     </root>
   </log4net>
 
-  <StrongAuth.CryptoSection DomainIdentifier="2" EndpointUrl="https://<%= @site %><%= @envcode %>-ESL-SAU-01:8181/strongkeyliteWAR/EncryptionService">
+  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://<%= @site %><%= @envcode %>-ESL-SAU-01:8181/strongkeyliteWAR/EncryptionService">
     <Ping Password-Clear="Abcd1234!"/>
     <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="L:\TIS\<%= @env %>\ESL\WSSPX-E1" />
     <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="L:\TIS\<%= @env %>\ESL\WSSPX-E1" />
