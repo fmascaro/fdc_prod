@@ -12,7 +12,7 @@
   </configSections>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <system.web>
     <ImageArchiveService defaultProvider="FDCSingleMultipleIPS_Production">
@@ -52,25 +52,25 @@
       <appender-ref ref="RollingFileAppender" />
     </root>
   </log4net>
-  
+
   <appSettings>
     <add key="ServiceName" value="FDC CheckFree"/>
 	  <add key="SleepTime" value="5"/>
     <add key="WildCard" value="*.*"/>
     <add key="FTPCommandExe" value=""/>
     <add key="FTPCommandParameters" value="-s -ssl -winssl {0} -on -u"/>
-    <add key="FTPSite" value="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-01\BGSCH-E2\CKF"/> <!-- this path is where the plugin scheduler picks up the output-->
-    <add key="InputFolder" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-CKF-FTX-01"/>
-    <add key="InputBackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-CKF-FTX-01\EXCKF-E1\BACKUP\Input"/>
+    <add key="FTPSite" value="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\BGSCH-E2\CKF"/> <!-- this path is where the plugin scheduler picks up the output-->
+    <add key="InputFolder" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-CKF-01"/>
+    <add key="InputBackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-CKF-01\EXCKF-E1\BACKUP\Input"/>
     <add key="WorkingFolder" value="E:\TIS\<%= @env %>\FDC\EXCKF-E1\Working"/>
-    <add key="OutputBackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-CKF-FTX-01\EXCKF-E1\BACKUP\Output"/>
-    <add key="ExceptionFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-CKF-FTX-01\EXCKF-E1\BACKUP\EXCEPTION"/>
+    <add key="OutputBackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-CKF-01\EXCKF-E1\BACKUP\Output"/>
+    <add key="ExceptionFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-CKF-01\EXCKF-E1\EXCEPTION"/>
     <add key="LogFolder" value="L:\TIS\<%= @env %>\FDC\EXCKF-E1"/>
   </appSettings>
   <applicationSettings>
     <eGistics.CheckFree.Properties.Settings>
       <setting name="CheckFreeService_FDCWebService_InternalHelper" serializeAs="String">
-        <value>http://du-egi-web-02.egistics.local/internalHelper/InternalHelper.asmx</value>
+        <value>https://<%= @site %><%= @envcode %>-FDC-WSE-01.tisa.io/WebService/InternalHelper.asmx</value>
       </setting>
     </eGistics.CheckFree.Properties.Settings>
   </applicationSettings>
@@ -78,4 +78,3 @@
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
   </startup>
 </configuration>
-

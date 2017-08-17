@@ -705,7 +705,7 @@
    <add name="BaseLTAReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Site,subsiteid,BatchNum,ProcessDate,ReportName,Image_File_Name"
            connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
-	   
+
 	   getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
            clientConnectionStringInDatabase="True"
@@ -842,7 +842,7 @@
       <add  name="BaseRemittance4xItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
             indexColumnMapping="BatchNum(INT),SequenceNum(INT),ProcessDate(SMALLDATETIME),SystemDate(SMALLDATETIME),AccountNum(VARCHAR),Amount(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),CheckNumPC(VARCHAR),CheckNumBUS(VARCHAR),RejectFlag(TINYINT),ItemType(VARCHAR),TranNumber(INT),BatchType(VARCHAR),MSCode(VARCHAR),SiteID(INT),WorksourceID(INT),BundleID(VARCHAR),BatchType2(VARCHAR),BatchMode(TINYINT),Account1(VARCHAR),Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Account5(VARCHAR),Account6(VARCHAR),Account7(VARCHAR),Account8(VARCHAR),Account9(VARCHAR),Account10(VARCHAR),Account11(VARCHAR),Account12(VARCHAR),Account13(VARCHAR),Account14(VARCHAR),Account15(VARCHAR),Account16(VARCHAR),Account17(VARCHAR),Account18(VARCHAR),Account19(VARCHAR),Account20(VARCHAR),Amount2(NUMERIC),Amount3(NUMERIC),Account21(VARCHAR),CDMTransID(BUGINT),Amount1(NUMERIC),Amount4(NUMERIC),Amount5(NUMERIC),Image_File_Name(NOTYPE),LockBox(VARCHAR),TransAmount(NUMERIC),BatchAmount(NUMERIC),BatchID(INT),MiscAmt1(NUMERIC),
                                 MiscAmt2(NUMERIC),MiscAmt3(NUMERIC),MiscAmt4(NUMERIC),MiscAmt5(NUMERIC),Account22(VARCHAR),Account23(VARCHAR),Account24(VARCHAR),DepositDate(SMALLDATETIME),Account25(VARCHAR),Account26(VARCHAR),Account27(VARCHAR),Account28(VARCHAR),Account29(VARCHAR),Account30(VARCHAR),Account31(VARCHAR),Account32(VARCHAR),Account33(VARCHAR),Account34(VARCHAR),Account35(VARCHAR),Account36(VARCHAR),Account37(VARCHAR),Account38(VARCHAR),Account39(VARCHAR),Account40(VARCHAR),Account41(VARCHAR),Account42(VARCHAR),Account43(VARCHAR),Account44(VARCHAR),Account45(VARCHAR)"
-            responseFileProvider="BaseRemittance4xResponseFileProvider" 
+            responseFileProvider="BaseRemittance4xResponseFileProvider"
             databaseProvider="BaseRemittance4xDatabaseProvider"
             archiveProvider="SynapticArchiveProviderStacked"
             adminDBProvider="FDCLTAAdminDBProvider"
@@ -856,8 +856,8 @@
             sequenceNumber="SequenceNum"
             itemTypeColumn="ItemType"
             numberOfImageFiles="1"
-            minLengthSmallOrLargePage = "2000" 
-            minHeightSmallOrLargePage = "900"         
+            minLengthSmallOrLargePage = "2000"
+            minHeightSmallOrLargePage = "900"
       />
 
       <add  name="BaseRemittance3xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
@@ -903,7 +903,7 @@
             spOnAfterProcessingRow=""
             spOnAfterProcessingFile=""
       />
-        
+
       <add  name="BaseRemittance4xDatabaseProvider" type="eGistics.Import.Manager.BaseRemittanceDatabaseProviders.BaseRemittanceDatabaseProvider, BaseRemittanceDatabaseProvider"
             connectionString=""
             addTransElementReturnParameter="@TRANSID(BIGINT)"
