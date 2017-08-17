@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
+  <configSections>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig"/>
+  </configSections>
+  <ContextInfo>
+    <Context>
+      <add name="MellonReverseProcessor" type="FDC Citi Mellon Reverse Processor" connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    </Context>
+  </ContextInfo>
   <appSettings>
-    <add key="LogLevel" value="Normal"/>
-    <!-- Levels are Normal, Debug -->
-    <add key="PreProcessorPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1"/>
-    <add key="LogPath" value="L:\TIS\<%= @env %>\FDC\PRMRP-E1"/>
-    <add key="ExceptionPath" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\PRMRP-E1"/>
-    <add key="WorkingPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\Working"/>
-    <add key="ImportPath" value="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA"/>
-    <add key="ProcessedPath" value="<%= @efs %>\ftp\<%= @env %>\<%= @env %>-FDC-FTX-ALL\Citi\OUT"/>
-    <add key="ProcessedBackupPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\ProcessedBackup"/>
-    <add key="BatchProcessedPath" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\BatchProcessed"/>
-    <add key="BackupPath" value="FDCImport"/>
-    <add key="InputExtension" value="zip"/>
-    <add key="OutputExtension" value="tar"/>
-    <add key="IndexFileExtension" value="dat"/>
-    <add key="NDMPrefix" value="FTP4.EGP.EGIS."/>
-    <!-- Sleep Interval is in minutes -->
-    <add key="SleepInterval" value="1"/>
-    <add key="LockboxInfoKey" value="eGLockbox"/>
-    <add key="LockboxInfoValue" value="DARSLockbox"/>
-    <add key="ExclusionList" value="E:\TIS\<%= @env %>\FDC\PRMRP-E1\ExclusionList.txt"/>
+    <add key="ServiceName" value="MellonProcessor"/>
   </appSettings>
-  <connectionStrings>
-    <add connectionString="Data Source=du-gen-sql-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" name="AdminDB"/>
-  </connectionStrings>
+  <system.serviceModel>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="WSHttpBinding_IEventCollection"/>
+      </wsHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="null"
+                binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+                contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
+    </client>
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/>
+  </startup>
 </configuration>
