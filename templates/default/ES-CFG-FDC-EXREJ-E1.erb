@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig" />
+    <sectionGroup name="system.web">
+      <section name="ImageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+      <section name="PDFService" type="eGistics.Output.PDF.Provider.PDFServiceSection, eGistics.Output" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    </sectionGroup>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="eGistics.RemitCO.RejectLetter.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      <section name="eGistics.Archive.Cloud.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
+    </sectionGroup>
+    <section name="UrlSection" type="eGistics.Archive.Cloud.UrlSection, eGistics.Archive.Cloud"/>
+  </configSections>
+  <ContextInfo>
+    <Context>
+      <add name="ES-<%= @env %>-FDC-EXREJ-E1" type="Description" connstring="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    </Context>
+  </ContextInfo>
+
+  <applicationSettings>
+
+    <eGistics.RemitCO.RejectLetter.Properties.Settings>
+      <setting name="RejectLetterService_InternalHelper_InternalHelper"
+        serializeAs="String">
+        <value>https://<%= @env %>fdc.tisa.io/WebService/internalhelper.asmx</value>
+      </setting>
+    </eGistics.RemitCO.RejectLetter.Properties.Settings>
+
+    <eGistics.Archive.Cloud.Properties.Settings>
+      <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
+        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
+      </setting>
+    </eGistics.Archive.Cloud.Properties.Settings>
+  </applicationSettings>
+
+  <UrlSection>
+    <Urls>
+      <add name="URL1" url="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
+      <add name="URL2" url="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
+    </Urls>
+  </UrlSection>
+
+  <system.web>
+    <ImageArchiveService defaultProvider="ATTSynaptic">
+      <providers>
+        <add name="ATTSynaptic" LegacyProviderName="FDCSingleMultipleIPS_Production" TimeOut="30000" type="eGistics.Archive.Cloud.ATTSynaptic, eGistics.Archive.Cloud"/>
+        <add name="FDCIPSImageArchiveProvider_Test" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="XXXXX" IPSUrl="https://test.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCIPSImageArchiveProvider_Production" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="XXXXX" IPSUrl="https://www.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Test" LegacyProviderName="FDCIPSImageArchiveProvider_Test" SeekCatFile="True" type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Production" LegacyProviderName="FDCIPSImageArchiveProvider_Production" SeekCatFile="True" type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+      </providers>
+    </ImageArchiveService>
+    <PDFService defaultProvider="iTextSharpFDCPDFProvider">
+      <providers>
+        <add name="iTextSharpFDCPDFProvider" type="eGistics.FDC.Remitco.PDF.iTextSharp.iTextSharpFDCPDFProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="iTextSharpPDFProvider" type="eGistics.Output.PDF.iTextSharp.iTextSharpPDFProvider"/>
+      </providers>
+    </PDFService>
+  </system.web>
+  <appSettings>
+    <add key="ServiceName" value="ES-<%= @env %>-FDC-EXREJ-E1"/>
+    <add key="ConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="ConnectionString-uat" value="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="SleepTimeInMinutes" value="1"/>
+    <add key="OutputFolder" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CORRO"/>
+    <add key="WorkingFolder" value="E:\TIS\<%= @env %>\FDC\EXREJ-E1\Working"/>
+    <add key="BackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXREJ-E1\BACKUP\"/>
+	  <add key="CDMExportPath_DebugONLY" value="E:\TIS\<%= @env %>\FDC\EXREJ-E1\pdfout"/>
+    <add key="LogPath" value="L:\TIS\<%= @env %>\FDC\EXREJ-E1\"/>
+    <add key="LogLevel" value="4"/>
+    <add key="DebugMode" value="False"/>
+    <add key="ServiceMode" value="True"/>
+    <!--Key moved to GlobalConfig-->
+    <!--<add key="PDFNetLicenseKey" value="eGistics, Inc.(egisticsinc.com):WEBCPU:2::W:AMS(20150425):1A4FA1523C5F96B9E2824007000DB2EC35C524B48ABD6230A06A4135F5C7"/>-->
+    <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
+  </appSettings>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/></startup></configuration>
