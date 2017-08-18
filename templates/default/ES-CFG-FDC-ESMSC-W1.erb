@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="ConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="AuditConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true;Max Pool Size=300;Connect Timeout=30;;Network Library=DBMSSOCN;"/>
+    <add key="QueueName" value=".\Private$\FDC3g"/>
+    <add key="SleepTime" value="5000"/>
+    <add key="QueueWaitTime" value="3000"/>
+    <add key="logFileName" value="L:\TIS\<%= @env %>\FDC\ESMSC-W1"/>
+    <add key="logLevel" value="0"/>
+  </appSettings>
+</configuration>
