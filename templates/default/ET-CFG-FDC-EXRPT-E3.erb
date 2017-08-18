@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key ="LogPath" value="L:\TIS\<%= @env %>\FDC\EXRPT-E3\"/>
+    <add key ="TOTAL" value="2"/>
+
+    <add key="CTL_IN1" value="F:\FTP\REMITCO\LTA\Ctl_In\3g\donotprocess"/>
+    <add key="RPT_OUT1" value="F:\FTP\REMITCO\LTA\Ctl_Out\"/>
+    <add key="CTL_Backup1" value="K:\lta\CTL\3gbackup\"/>
+    <add key="RootPathToLook1" value="F:\FTP\REMITCO\LTA\"/>
+    <add key="RSP_Backup1" value="Yes"/>
+    <add key ="WaitTimeInMinutes1" value="60"/>
+
+    <add key="CTL_IN2" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\CTL_IN_CDM\3g"/>
+    <add key="RPT_OUT2" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\CTL_OUT_CDM\"/>
+    <add key="CTL_Backup2" value="​<%= @efs %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXRPT-E3\"/>
+    <add key="RootPathToLook2" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\"/>
+    <add key="RSP_Backup2" value="Yes"/>
+    <add key ="WaitTimeInMinutes2" value="15"/>
+
+  </appSettings>
+</configuration>
