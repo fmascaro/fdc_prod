@@ -192,13 +192,6 @@ services.each do |service|
 				ignore_failure true
 			end
 		end
-		batch 'Grant Service Control Permissions' do
-			code <<-EOH
-			    cd "C:/Program Files (x86)/Windows Resource Kits/Tools"
-				SUBINACL.exe /service #{svc_db_item[service]['ServiceName']} /grant="SOC 1"=LQSTOP
-				SUBINACL.exe /service #{svc_db_item[service]['ServiceName']} /grant="SS 1"=LQSTOP
-				EOH
-		end
 	end
 
 end
