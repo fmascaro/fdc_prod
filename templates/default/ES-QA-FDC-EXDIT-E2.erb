@@ -11,8 +11,8 @@
   </configSections>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True" providerName="System.Data.SqlClient"/>
-    <add name="AuditConn" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_AuditLog3G_QA;Trusted_Connection=True" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_AuditLog3G_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <appSettings>
     <add key="ServiceName" value="eg_FDC_CustomDITExtract"/>
