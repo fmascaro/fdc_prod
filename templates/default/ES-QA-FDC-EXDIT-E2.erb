@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="dataConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings, Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+    <sectionGroup name="system.web">
+      <section name="ImageArchiveService" type="eGistics.Archive.Provider.ImageArchiveServiceSection, eGistics.Archive" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
+    </sectionGroup>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="ExportSweep.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <dataConfiguration defaultDatabase="AdminConn"/>
+  <connectionStrings>
+    <add name="AdminConn" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_AuditLog3G_QA;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <appSettings>
+    <add key="ServiceName" value="eg_FDC_CustomDITExtract"/>
+    <add key="SleepTimeInMinutes" value="1"/> 
+    <add key="UserID" value="ExportSweep"/>
+    <add key="UserExternalID" value="eGistics FDC ExportSweep"/>
+    <add key="logLevel" value="1"/>
+    <add key ="logPath" value="L:\TIS\<%= @env %>\FDC\EXDIT-E2\Logs\"/>
+    <add key="outputPath" value="E:\TIS\<%= @env %>\FDC\EXDIT-E2\Out\"/>
+    <add key="DITDestination-debug" value="E:\TIS\<%= @env %>\FDC\EXDIT-E2\CustomDITExtract\DITOut\"/>
+    <add key="DITDestination" value="<%= @efs %>\NDM\<%= @env %>\<%= @env %>-FDC-FTX-ALL\Citi\OUT\"/>
+    <add key="FileNameFormat" value="FTP4.DELDITP.EGIS.{MISC}"/>
+    <add key="PDFNetLicenseKey" value="eGistics, Inc.:CPU:1::W:AMC(20120103):4965BCCE260DF3EF1CDDBBB2D5E92ECE4B5A394DDF6E297B7AF0FA"/>
+    <add key="PDFOrientation" value="portrait"/>
+    <add key="SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64="/>
+    <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
+    <add key="ApplicationID" value="egBetaTest"/>
+    <add key="ImageCounterMode" value="auto"/>    
+    <add key="SynapticURLList" value="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx|https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
+    <add key="stagingPath" value="E:\TIS\<%= @env %>\FDC\EXDIT-E2\CustomDITExtract\staging\"/>
+    <add key="backupPath" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CustomDIT\backup"/>
+  </appSettings>
+  <system.web>
+    <ImageArchiveService defaultProvider="FDCSingleMultipleIPS_Production">
+      <providers>
+        <add name="FDCIPSImageArchiveProvider_Test" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://test.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCIPSImageArchiveProvider_Production" UseThreading="False" SeekCatFile="False" IPSDataType="tiff" IPSUserId="egistics" IPSPassword="3g15t1c5" IPSUrl="https://www.fdps.com/FirstWebServiceWeb/services/FirstWebService" type="eGistics.FDC.Remitco.Archive.FDCIPSImageArchiveProvider, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Test" LegacyProviderName="FDCIPSImageArchiveProvider_Test" SeekCatFile="True"  type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+        <add name="FDCSingleMultipleIPS_Production" LegacyProviderName="FDCIPSImageArchiveProvider_Production" SeekCatFile="True"  type="eGistics.FDC.Remitco.Archive.FDCSingleMultipleIPS, eGistics.FDC.Remitco.Provider"/>
+      </providers>
+    </ImageArchiveService>
+  </system.web>
+  <applicationSettings>
+    <ExportSweep.Properties.Settings>
+      <setting name="ExportSweep_SynapticWS_SynapticWebService" serializeAs="String">
+        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
+      </setting>
+    </ExportSweep.Properties.Settings>
+  </applicationSettings>
+</configuration>
