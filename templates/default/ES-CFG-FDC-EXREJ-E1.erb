@@ -14,7 +14,7 @@
   </configSections>
   <ContextInfo>
     <Context>
-      <add name="ES-<%= @env %>-FDC-EXREJ-E1" type="Description" connstring="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="ES-<%= @env %>-FDC-EXREJ-E1" type="Description" connstring="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     </Context>
   </ContextInfo>
 
@@ -29,15 +29,15 @@
 
     <eGistics.Archive.Cloud.Properties.Settings>
       <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
-        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
+        <value><%= @storage_proxy %></value>
       </setting>
     </eGistics.Archive.Cloud.Properties.Settings>
   </applicationSettings>
 
   <UrlSection>
     <Urls>
-      <add name="URL1" url="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
-      <add name="URL2" url="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
+      <add name="URL1" url="<%= @storage_proxy %>"/>
+      <add name="URL2" url="<%= @storage_proxy %>"/>
     </Urls>
   </UrlSection>
 
@@ -60,7 +60,7 @@
   </system.web>
   <appSettings>
     <add key="ServiceName" value="ES-<%= @env %>-FDC-EXREJ-E1"/>
-    <add key="ConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="ConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="ConnectionString-uat" value="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="SleepTimeInMinutes" value="1"/>
     <add key="OutputFolder" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CORRO"/>

@@ -13,9 +13,9 @@
       connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Database.mdb"
       providerName="System.Data.OleDb" />
 
-    <add name="UATAdminDB" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
-    <add name="ConfigAdminDB" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
-    <add name="AdminDB" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add name="UATAdminDB" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add name="ConfigAdminDB" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add name="AdminDB" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
   </connectionStrings>
   <imageArchiveService defaultProvider="MultipleArrayImageArchiveProvider">
     <providers>
@@ -33,12 +33,12 @@
   <applicationSettings>
     <CitiDataExtraction.Properties.Settings>
       <setting name="CitiDataExtraction_SynapticWS_SynapticWebService" serializeAs="String">
-        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
+        <value><%= @storage_proxy %></value>
       </setting>
     </CitiDataExtraction.Properties.Settings>
     <eGistics.Archive.Cloud.Properties.Settings>
       <setting name="eGistics_Archive_Cloud_Synaptic_SynapticWebService" serializeAs="String">
-        <value>https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/<%= @env %>-ESL-WSSPX-E1/SynapticWebservice.asmx</value>
+        <value><%= @storage_proxy %></value>
       </setting>
     </eGistics.Archive.Cloud.Properties.Settings>
   </applicationSettings>
