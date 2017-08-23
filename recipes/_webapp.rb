@@ -84,6 +84,7 @@ webapps.each do |webapp|
         IntegratedPipeline = web_db_item[webapp]['ManagedPipelineMode'] ? :Integrated : :Classic
         cust = web_db_item[webapp]['site_pool'].split("-").first
         appenv = web_db_item[webapp]['app_pool'].split("-").first
+        env = appenv if (appenv.upcase == 'CFG')
 
         #Config variables
         config = {
