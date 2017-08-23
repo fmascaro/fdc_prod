@@ -1257,11 +1257,7 @@
     </providers>
   </subProviders>
 
-  <StrongAuth.CryptoSection DomainIdentifier="1" EndpointUrl="https://<%= @site %><%= @envcode %>-esl-sau-01.egistics.local:8181/strongkeyliteWAR/EncryptionService">
-    <Ping Password-Clear="Abcd1234!"/>
-    <Encrypt Algorithm="AES128" User="all" Password-Clear="Abcd1234!" KeyFlushMinutes="15" TargetDirectory="C:\temp"/>
-    <Decrypt User="all" Password-Clear="Abcd1234!" TargetDirectory="E:\temp"/>
-  </StrongAuth.CryptoSection>
+  <%= @strongauthblock %>
 
   <system.serviceModel>
     <bindings>
