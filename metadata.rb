@@ -4,7 +4,7 @@ maintainer_email ''
 license          'Apache 2.0'
 description      'Installs/Configures fdc_prod'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.2'
+version          '0.3.3'
 
 depends 'egistics_storageproxy'
 depends 'topimagesystems'
