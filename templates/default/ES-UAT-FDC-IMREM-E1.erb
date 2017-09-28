@@ -612,7 +612,7 @@
       />
 
       <add name="MorganStanleyCorroItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
-           indexColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
+           indexColumnMapping="Image_File_Name,ProcessDate,ModuleName,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
            responseFileProvider="MorganStanleyCorroResponseFileProvider"
            disconnectedDatabaseProvider="False"
            databaseProvider="MorganStanleyCorroDatabaseProvider"
@@ -630,7 +630,7 @@
 
       <add name="MorganStanleyCorroAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider,        BaseLTAAdminDBProvider"
            connectionString="SERVER=DU-GEN-SQL-01;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
-           lineDataColumnMapping="Image_File_Name,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
+           lineDataColumnMapping="Image_File_Name,ProcessDate,ModuleName,UserName,TemplateName,PageCount,TablePK,OrgID,SiteID,SubSiteID"
            getClientInfoSP="spGetClientInfoCorro"
            getClientInfoParameters="@OrgIDIn(INT)=OrgID;@SiteID(VARCHAR)=SiteID;@SubSiteID(VARCHAR)=SubSiteID"
            clientConnectionStringInDatabase="True"
@@ -647,7 +647,7 @@
       />
 
       <add name="MorganStanleyCorroDatabaseProvider" type="eGistics.Import.Manager.BaseLTADatabaseProviders.BaseLTADatabaseProvider, BaseLTADatabaseProvider"
-           indexColumnMapping="@Image_File_Name(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
+           indexColumnMapping="@Image_File_Name(VARCHAR),@ProcessDate(VARCHAR),@ModuleName(VARCHAR),@UserName(VARCHAR),@TemplateName(VARCHAR),@PageCount(INT),@TablePK(BIGINT),@OrgID(INT),@SiteID(INT),@SubSiteID(INT),@OrgID(INT),@ObjectID(VARCHAR),@LoadTableID(BIGINT)"
            connectionString="None"
            storedProcedureAdd="spImportCorrespondenceGenerationItem"
            storedProcedureAddParameters="@UserName(VARCHAR),@TemplateName(VARCHAR),@Image_File_Name(VARCHAR),@ObjectID(VARCHAR),@TablePK(BIGINT),@LoadTableID(BIGINT)"
