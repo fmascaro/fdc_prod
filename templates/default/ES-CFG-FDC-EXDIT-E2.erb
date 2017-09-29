@@ -11,12 +11,12 @@
   </configSections>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
-    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <appSettings>
     <add key="ServiceName" value="eg_FDC_CustomDITExtract"/>
-    <add key="SleepTimeInMinutes" value="1"/> 
+    <add key="SleepTimeInMinutes" value="1"/>
     <add key="UserID" value="ExportSweep"/>
     <add key="UserExternalID" value="eGistics FDC ExportSweep"/>
     <add key="logLevel" value="1"/>
@@ -30,7 +30,7 @@
     <add key="SharedSecret" value="HktwDK6TPaVWJ6TT/cmW5Mt3+64="/>
     <add key="SubtenantID" value="6a5c3d578baf402da8283b3d6522e150"/>
     <add key="ApplicationID" value="egBetaTest"/>
-    <add key="ImageCounterMode" value="auto"/>    
+    <add key="ImageCounterMode" value="auto"/>
     <add key="SynapticURLList" value="<%= @storage_proxy %>|<%= @storage_proxy %>"/>
     <add key="stagingPath" value="E:\TIS\<%= @env %>\FDC\EXDIT-E2\CustomDITExtract\staging\"/>
     <add key="backupPath" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CustomDIT\backup"/>
