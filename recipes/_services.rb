@@ -3,7 +3,7 @@ case node.chef_environment
 when 'production'
   env = 'prd'
   domain = 'EGISTICS'
-  efs = '\\\\DP-ESL-EFS-0'
+  efs = '\\\\DP-ESL-EFS-01'
   efb = '\\\\DP-ESL-EFB-01'
   envcode = 'P'
 when 'uat'
