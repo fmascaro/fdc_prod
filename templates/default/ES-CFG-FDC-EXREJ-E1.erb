@@ -14,7 +14,7 @@
   </configSections>
   <ContextInfo>
     <Context>
-      <add name="ES-<%= @env %>-FDC-EXREJ-E1" type="Description" connstring="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="ES-<%= @env %>-FDC-EXREJ-E1" type="Description" connstring="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     </Context>
   </ContextInfo>
 
@@ -60,7 +60,7 @@
   </system.web>
   <appSettings>
     <add key="ServiceName" value="ES-<%= @env %>-FDC-EXREJ-E1"/>
-    <add key="ConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="ConnectionString" value="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="ConnectionString-uat" value="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     <add key="SleepTimeInMinutes" value="1"/>
     <add key="OutputFolder" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CORRO"/>

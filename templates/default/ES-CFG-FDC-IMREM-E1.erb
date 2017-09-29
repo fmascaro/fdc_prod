@@ -18,7 +18,7 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-<%= @env %>-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
       <add name="ES-<%= @env %>-FDC-IMREM-E1_MGN" type="FDC Synaptic Import" connstring="SERVER=DP-FDC-SQL-02;DATABASE=Config_FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     </Context>
   </ContextInfo>
@@ -704,7 +704,7 @@
 
    <add name="BaseLTAReportAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Site,subsiteid,BatchNum,ProcessDate,ReportName,Image_File_Name"
-           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
+           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
 
 	   getClientInfoSP="spGetClientInfoGeneric"
            getClientInfoParameters="@SiteID(VARCHAR)=Site;@ClientID(VARCHAR)=subsiteid"
@@ -722,7 +722,7 @@
       />
 
       <add name="BaseCDM4XAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
+           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNum,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,Other11,Other12,Other13,Other14,Other15,Other16,Other17,Other18,Other19,Other20,LockBox,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=SubSiteID"
@@ -740,7 +740,7 @@
       />
 
       <add name="BaseCDM3XAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
+           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
            lineDataColumnMapping="ItemType,SiteID,SubSiteID,BatchID,TranNumber,SequenceNum,RejectFlag,BatchType,SecApproval,Amount1,Amount2,Amount3,Amount4,Amount5,Amount6,Amount7,Amount8,Amount9,Amount10,Other1,Other2,Other3,Other4,Other5,Other6,Other7,Other8,Other9,Other10,Other11,Other12,Other13,Other14,Other15,Other16,Other17,Other18,Other19,Other20,LockBox,BatchNum,eGisticsTransID,OriginalSequenceNum,Image_File_Name"
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=SubSiteID"
@@ -801,7 +801,7 @@
       />
 
       <add name="FDCLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
+           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
            lineDataColumnMapping="BatchNum,SequenceNum,ProcessDate,SystemDate,AccountNum,Amount,CheckRTNum,CheckAcct,CheckNumPC,CheckNumBUS,RejectFlag,ItemType,TranNumber,BatchType,MSCode,SiteID,WorksourceID,BundleID,BatchType2,BatchMode,Account1,Account2,Account3,Account4,Account5,Account6,Account7,Account8,Account9,Account10,Account11,Account12,Account13,Account14,Account15,Account16,Account17,Account18,Account19,Account20,Amount2,Amount3,Account21,CDMTransID,Amount1,Amount4,Amount5,Image_File_Name,LockBox,TransAmount,BatchAmount,BatchID,MiscAmt1,MiscAmt2,MiscAmt3,MiscAmt4,MiscAmt5,Account22,Account23,Account24,DepositDate,Account25,Account26,Account27,Account28,Account29,Account30,Account31,Account32,Account33,Account34,Account35,Account36,Account37,Account38,Account39,Account40,Account41,Account42,Account43,Account44,Account45"
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=WorksourceID"
@@ -1035,7 +1035,7 @@
        />
 
 	   <add name="WellsWholesaleAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
-           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
+           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
 		   lineDataColumnMapping=",,ProcessDate,BatchNum,TranNumber,,SequenceNum,ItemType,Amount,CheckNumPC,CheckRTNum,CheckAcct,Image_File_Name,AccountNum,Account2,Account3,Account4,Amount1,Amount2,Amount3,SiteID,WorksourceID"
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=WorksourceID"
@@ -1208,7 +1208,7 @@
 
       <add name="RejectLetterAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
            lineDataColumnMapping="Image_File_Name,PageCount,TransID,SiteID,SubSiteID"
-           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=CFG_RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
+           connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"
            callPostProcessURLColumnName=""
            getClientInfoSP="spGetClientInfoSynaptic"
            getClientInfoParameters="@SiteID(VARCHAR)=SiteID;@ClientID(VARCHAR)=SubSiteID"
