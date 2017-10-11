@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="WorkingFolder" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\WORKING"/>
+    <add key="BackupFolder" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXCDM-E2\BACKUP"/>
+    <add key="LogPath" value="L:\TIS\<%= @env %>\FDC\EXCDM-E2"/>
+    <add key="LogFileName" value="ReadONLYSweep.log"/>
+    <add key="LogLevel" value="4"/>
+    <add key="Entries" value="1"/>
+
+    <add key="ConnectionString1" value="Server=FDC-CIT-AG1;DATABASE=CITI_GTS1;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    <add key="InputProc1" value="spReadONLYSweep"/>
+    <add key="InputProcParam1" value="4194,22,7744"/>
+    <add key="Transform1" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\trans.xsl"/>
+    <add key="TargetFolder1" value="<%= @efs %>\FTP\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CDM\2207744\OUT"/>
+    <add key="TargetFileNameTransform1" value="E:\TIS\<%= @env %>\FDC\EXCDM-E2\filename.xsl"/>
+    <add key="CreateTrigger1" value="0"/>
+    <add key="ActiveDays1" value="Monday,Tuesday,Wednesday,Thursday,Friday"/>
+    <add key="ExecuteAt1" value="5:30,8:30,11:45"/>
+
+  </appSettings>
+</configuration>
