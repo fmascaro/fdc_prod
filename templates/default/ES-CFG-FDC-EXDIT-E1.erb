@@ -23,7 +23,7 @@
     <add key ="logPath" value="L:\TIS\CFG\FDC\EXDIT-E1\Logs\"/>
     <add key="outputPath" value="E:\TIS\CFG\FDC\EXDIT-E1\Out\"/>
     <add key="DITDestination-debug" value="E:\TIS\CFG\FDC\EXDIT-E1\CustomDITExtract\DITOut\"/>
-    <add key="DITDestination" value="<%= @efs %>\NDM\CFG\CFG-FDC-FTX-ALL\Citi\OUT\"/>
+    <add key="DITDestination" value="<%= @efs %>\FTP\CFG\CFG-FDC-FTX-ALL\Extracts\Custom DIT\"/>
     <add key="FileNameFormat" value="FTP4.DELDITP.EGIS.{MISC}"/>
     <add key="PDFNetLicenseKey" value="eGistics, Inc.:CPU:1::W:AMC(20120103):4965BCCE260DF3EF1CDDBBB2D5E92ECE4B5A394DDF6E297B7AF0FA"/>
     <add key="PDFOrientation" value="portrait"/>
@@ -33,7 +33,7 @@
     <add key="ImageCounterMode" value="auto"/>
     <add key="SynapticURLList" value="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/PRD-ESL-WSSPX-E1/SynapticWebservice.asmx|https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/PRD-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
     <add key="stagingPath" value="E:\TIS\CFG\FDC\EXDIT-E1\CustomDITExtract\staging\"/>
-    <add key="backupPath" value="<%= @efb %>\CFG\CFG-FDC-FTX-ALL\CustomDIT\backup"/>
+    <add key="backupPath" value="<%= @efb %>\CFG\CFG-FDC-FTX-ALL\EXDIT-E1\backup\CustomDIT"/>
   </appSettings>
   <system.web>
     <ImageArchiveService defaultProvider="FDCSingleMultipleIPS_Production">
