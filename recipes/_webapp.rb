@@ -36,7 +36,7 @@ case node.chef_environment
     efs = '\\\\DP-ESL-EFS-01'
     envcode = 'P'
   when 'config'
-    env = 'cfg'
+    env = 'CFG'
     domain = 'EGISTICS'
     efs = '\\\\DP-ESL-EFS-01'
     envcode = 'C'
