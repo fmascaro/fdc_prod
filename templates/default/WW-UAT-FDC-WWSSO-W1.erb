@@ -49,30 +49,50 @@
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
     <add key="SAMLSigningSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />
     <!--<add key="SAMLEncryptionSerialNumber" value="a2 e3 45 4f 1a 74 16 91 49 51 80 71 84 ec d1 03" />-->
-    <add key="DefaultRecipient" value="https://iremit.tisa.io/web72/SamlSso.ashx" />
-    <add key="DefaultLogoutUrl" value="https://fdcuat.tisa.io/RemitcoLTA" />
+    <add key="DefaultRecipient" value="https://fdcuat.tisa.io/Web/SamlSso.ashx" />
+    <add key="DefaultIssuer" value="tisSAML" />
+    <add key="DefaultDomain" value="egisticsinc.com" />
   </appSettings>
-  <loginProviderService defaultProvider="SamlSsoTokenForUB">
+  <loginProviderService defaultProvider="LFGSSO">
     <providers>
-      <!-- Normally locate by httpreferrer, SAML can be locate by issuer -->
-      <add name="UrlLoginProvider" DefaultLogo="" HomePage="" type="eGistics.Security.LoginProvider.UrlLoginProvider, eGistics.Security" />
-      <add type="eGistics.Security.LoginProvider.SsoToken, eGistics.Security" name="SsoToken" OrganizationCode="eGistics" AllowedRoleCodes="*" UserIdPrefix="C:" ClientX509SerialNumber="45 10 ac 16" LogFolder="" HomePage="" ErrorValidationPage="" DecryptMessage="true" HTTP_REFERER="[http|https]://www\.egisticsinc\.com/[.]*" />
-      <add type="eGistics.Security.LoginProvider.FidelitySsoToken, eGistics.Security" name="FidelitySsoToken" HomePage="http://www.egisticsinc.com" LogFolder="C:\Temp" />
-      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" name="SamlSsoTokenTest222" UserIdPrefix="" ClientX509SerialNumber="" HomePage="Default.aspx" ErrorValidationPage="" DecryptMessage="false" HTTP_REFERER="[http|https]://localhost:51842/[.]*" OrganizationAndRolesManagedOneGisticsSide="true" OrganizationCode="EGISTICS" AllowedRoleCodes="*" FindOnlyValidCertificates="false" VerifyExpiry="false" UseThisLoginProviderInCaseOfNullReferrer="true" />
-      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" name="SamlSsoTokenForUB" UserIdPrefix="" ClientX509SerialNumber="69 78 8f 57 00 01 00 00 09 07" HomePage="https://www.google.com.mx" ErrorValidationPage="" DecryptMessage="true" OrganizationAndRolesManagedOneGisticsSide="true" Issuer="ub_lbd_idp" OrganizationCode="UBDIRECT" AllowedRoleCodes="*" FindOnlyValidCertificates="false" VerifyExpiry="false" UseThisLoginProviderInCaseOfNullReferrer="true" />
-      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" name="tisSamlToken" SupportsChangePassword="Default" UserIdPrefix="" ClientX509SerialNumber="" HomePage="http://localhost:49518/Home" ErrorValidationPage="http://10.100.10.22/ssoerror.html" DecryptMessage="false" OrganizationAndRolesManagedOneGisticsSide="true" Issuer="tisSAML" OrganizationCode="eGistics" AllowedRoleCodes="*" FindOnlyValidCertificates="false" VerifyExpiry="false" UseThisLoginProviderInCaseOfNullReferrer="true" supportschangepassword="Default" />
-      <add type="eGistics.Security.LoginProvider.SamlSsoTokenMorganStanley, eGistics.Security" name="morganTisSamlToken" SupportsChangePassword="Default" UserIdPrefix="" ClientX509SerialNumber="" HomePage="http://localhost:49518/Home" ErrorValidationPage="http://10.100.10.22/ssoerror.html" DecryptMessage="false" OrganizationAndRolesManagedOneGisticsSide="false" Issuer="www.morganstanley.com" OrganizationCode="REMITCOROOT" AllowedRoleCodes="*" FindOnlyValidCertificates="false" VerifyExpiry="false" UseThisLoginProviderInCaseOfNullReferrer="true" supportschangepassword="No" />
+
+<add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" 
+           name="LFGSSO" 
+           UserIdPrefix="" 
+           ClientX509SerialNumber="6d 54 63 7d 9e 02 e1 8b 4c eb 68 41 11 9e cc 78" 
+           HomePage="https://fdcuat.tisa.io/Web/CloseSession.html" 
+           ErrorValidationPage="https://fdcuat.tisa.io/Web/Login.aspx" 
+           DecryptMessage="false" 
+           DecryptX509SerialNumber="" 
+           PayloadOrderProcess="DecryptThenVerifySignature" 
+           OrganizationAndRolesManagedOneGisticsSide="false" 
+           Issuer="lincoln" 
+           OrganizationCode="REMITCOROOT " 
+           AllowedRoleCodes="*" 
+           FindOnlyValidCertificates="false" 
+           VerifyExpiry="false" 
+           UseThisLoginProviderInCaseOfNullReferrer="false" 
+           SupportsChangePassword="No" />
 
 
-      <add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security"
-           name="UBSamlSSO_Delme1" UserIdPrefix="" ClientX509SerialNumber="69 78 8f 57 00 01 00 00 09 07" HomePage="https://iremit.tisa.io/web72/CloseSession.html"
-           ErrorValidationPage="https://iremit.tisa.io/web72/ssoerror.html" DecryptMessage="true" OrganizationAndRolesManagedOneGisticsSide="true" Issuer="ub_lbd_idp"
-           OrganizationCode="UBDIRECT" AllowedRoleCodes="*"  FindOnlyValidCertificates="false" VerifyExpiry="true"
-           UseThisLoginProviderInCaseOfNullReferrer="true"
-           SupportsChangePassword="No"
-      />
-
-
+<add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" 
+           name="LFGSSOTIS" 
+           UserIdPrefix="" 
+           ClientX509SerialNumber="" 
+           HomePage="https://fdcuat.tisa.io/Web/CloseSession.html" 
+           ErrorValidationPage="https://fdcuat.tisa.io/Web/Login.aspx" 
+           DecryptMessage="false" 
+           DecryptX509SerialNumber="" 
+           PayloadOrderProcess="DecryptThenVerifySignature" 
+           OrganizationAndRolesManagedOneGisticsSide="false" 
+           Issuer="LINCOLN" 
+           OrganizationCode="REMITCOROOT" 
+           AllowedRoleCodes="*" 
+           FindOnlyValidCertificates="false" 
+           VerifyExpiry="false" 
+           UseThisLoginProviderInCaseOfNullReferrer="false" 
+           SupportsChangePassword="No" />	   
+	    
     </providers>
   </loginProviderService>
   <saveAuditLogService defaultProvider="SqlSaveAuditLogProvider">
