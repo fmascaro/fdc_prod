@@ -319,7 +319,7 @@
   <applicationSettings>
     <eGistics.FDC.Remitco.Properties.Settings>
       <setting name="eGistics_FDC_Remitco_ValidationEngine_ValidationEngineProxy" serializeAs="String">
-        <value>https://<%= @site %><%= @envcode %>-FDC-WSE-01.tisa.io/ValidationEngine/ValidationEngineProxy.asmx</value>
+        <value>https://<%= @site %><%= @envcode %>-FDC-WSE-02.tisa.io/ValidationEngine/ValidationEngineProxy.asmx</value>
       </setting>
     </eGistics.FDC.Remitco.Properties.Settings>
   </applicationSettings>
@@ -538,7 +538,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="https://<%= @site %><%= @envcode %>-FDC-WSE-01.tisa.io/ValidationEngine/ValidationEngineProxy.asmx"
+      <endpoint address="https://<%= @site %><%= @envcode %>-FDC-WSE-02.tisa.io/ValidationEngine/ValidationEngineProxy.asmx"
       binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap"
       contract="eGistics.Validation.ValidationEngineProxySoap" name="ValidationEngineProxySoap"  />
     </client>
