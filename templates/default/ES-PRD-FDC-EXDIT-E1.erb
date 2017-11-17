@@ -11,8 +11,8 @@
   </configSections>
   <dataConfiguration defaultDatabase="AdminConn"/>
   <connectionStrings>
-    <add name="AdminConn" connectionString="SERVER=FDC-ADM-AG1;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
-    <add name="AuditConn" connectionString="SERVER=FDC-ALG-AG1;DATABASE=RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AdminConn" connectionString="SERVER=DP-FDC-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditConn" connectionString="SERVER=DP-FDC-SQL-01;DATABASE=RTC_AuditLog3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <appSettings>
     <add key="ServiceName" value="eg_FDC_CustomDITExtract"/>
@@ -33,7 +33,7 @@
     <add key="ImageCounterMode" value="auto"/>
     <add key="SynapticURLList" value="https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/PRD-ESL-WSSPX-E1/SynapticWebservice.asmx|https://<%= @site %><%= @envcode %>-ESL-SPX-01.tisa.io/PRD-ESL-WSSPX-E1/SynapticWebservice.asmx"/>
     <add key="stagingPath" value="E:\TIS\<%= @env %>\FDC\EXDIT-E1\CustomDITExtract\staging\"/>
-    <add key="backupPath" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\CustomDIT\backup"/>
+    <add key="backupPath" value="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\EXDIT-E1\backup\CustomDIT"/>
   </appSettings>
   <system.web>
     <ImageArchiveService defaultProvider="FDCSingleMultipleIPS_Production">

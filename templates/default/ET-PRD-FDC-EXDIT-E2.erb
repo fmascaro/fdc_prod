@@ -12,10 +12,9 @@
     <add name="CitiDataExtraction.Properties.Settings.DatabaseConnectionString"
       connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Database.mdb"
       providerName="System.Data.OleDb" />
-
-    <add name="UATAdminDB" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True"/>
-    <add name="ConfigAdminDB" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True"/>
-    <add name="AdminDB" connectionString="SERVER=PD-DEV-SQL-01\MSSQLDAL;DATABASE=RTC_Admin3G_QA;Trusted_Connection=True"/>
+      <add name="UATAdminDB" connectionString="SERVER=DP-FDC-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="ConfigAdminDB" connectionString="SERVER=DP-FDC-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="AdminDB" connectionString="SERVER=DP-FDC-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
   </connectionStrings>
   <imageArchiveService defaultProvider="MultipleArrayImageArchiveProvider">
     <providers>
