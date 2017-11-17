@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<configuration>
+
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"  requirePermission="false"/>
+  </configSections>
+
+  <log4net>
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="L:\WWW\<%= @env %>\FDC\WWVAL-W1\ValEngineUI.log" />
+      <appendToFile value="true" />
+      <maximumFileSize value="3MB"/>
+      <maxSizeRollBackups value="100"/>
+      <rollingStyle value="Composite"/>
+      <datePattern value="yyyyMMdd"/>
+      <staticLogFileName value="true"/>
+      <filter type="log4net.Filter.LevelRangeFilter">
+        <acceptOnMatch value="true" />
+        <levelMin value="DEBUG" />
+        <levelMax value="FATAL" />
+      </filter>
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="HOUR    &#9;LEVEL&#9;HOST    &#9;Application&#9;Thread&#9;Class&#9;Method&#9;NDC&#9;TrackId1&#9;TrackId2&#9;Message&#13;&#10;" />
+        <footer value="&#13;&#10;&#13;&#10;&#13;&#10;" />
+        <conversionPattern value="%date{HH:mm:ss}&#9;%-5level&#9;%property{log4net:HostName}&#9;ValEngine&#9;%thread&#9;%property{Class}&#9;%property{Method}&#9;%property{NDC}&#9;%property{TrackId1}&#9;%property{TrackId2}&#9;%message %newline" />
+      </layout>
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+    </appender>
+
+    <!-- Set the default logging level and add the active appenders Debug,Info,Warn,Error,Fatal-->
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingFileAppender" />
+    </root>
+  </log4net>
+
+
+  <appSettings>
+    <!--Change to force a cache refresh-->
+    <add key="CacheToken" value="2013Abr05_1900"/>
+    <!--SAML SSO Configuration-->
+    <add key="samlPayload_IsEncrypted" value="false"/>
+    <add key="samlPayload_IsSigned" value="false"/>
+    <add key="samlPayload_SigningX509SerialNumber" value=""/>
+  </appSettings>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5" />
+      </system.Web>
+  -->
+  <system.web>
+    <compilation debug="true" targetFramework="4.5"/>
+    <authentication mode="Forms">
+      <forms name=".VALIDATIONENGINE" loginUrl="sso_login.ashx" protection="All" path="/" timeout="30" defaultUrl="~/Default.aspx"/>
+    </authentication>
+    <authorization>
+      <deny users="?"/>
+      <allow users="*"/>
+    </authorization>
+    <httpRuntime requestValidationMode="2.0" executionTimeout="3600"/>
+    <pages validateRequest="false" controlRenderingCompatibilityVersion="4.0"/>
+  </system.web>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="ValidationEngineProxySoap" closeTimeout="00:01:00"
+          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+          allowCookies="false" bypassProxyOnLocal="false" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" useDefaultWebProxy="true" >
+		<security mode="Transport"> 
+			<transport clientCredentialType="None" proxyCredentialType="None" realm=""/> 
+		</security>
+		</binding>
+		</basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://PRD-FDC-WSESL.tisa.io/ValidationEngine/ValidationEngineProxy.asmx" binding="basicHttpBinding" bindingConfiguration="ValidationEngineProxySoap" contract="ValidationEngineProxy.ValidationEngineProxySoap" name="ValidationEngineProxySoap"/>
+    </client>
+  </system.serviceModel>
+  <location path="LoginForDevDeleteThisFolderFromProd">
+    <system.web>
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
+  <system.web.extensions>
+   <scripting>
+	   <webServices>
+		   <jsonSerialization maxJsonLength="2147483644" />
+	   </webServices>
+   </scripting>
+</system.web.extensions>
+</configuration>
