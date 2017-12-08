@@ -93,7 +93,46 @@
            FindOnlyValidCertificates="false" 
            VerifyExpiry="false" 
            UseThisLoginProviderInCaseOfNullReferrer="false" 
-           SupportsChangePassword="No" />	   
+           SupportsChangePassword="No" />
+	    
+<add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" 
+           name="GoldmanSachs" 
+           ExternalId="GoldmanSachs"
+           UserIdPrefix="" 
+           ClientX509SerialNumber="" 
+           HomePage="https://uatfdc.tisa.io/Web/CloseSession.html" 
+           ErrorValidationPage="https://uatfdc.tisa.io/Web/Login.aspx" 
+           DecryptMessage="false" 
+           DecryptX509SerialNumber="" 
+           PayloadOrderProcess="DecryptThenVerifySignature" 
+           OrganizationAndRolesManagedOneGisticsSide="false" 
+           Issuer="https://idfs-qa.web.gs.com" 
+           OrganizationCode="REMITCOROOT" 
+           AllowedRoleCodes="*" 
+           FindOnlyValidCertificates="false" 
+           VerifyExpiry="false" 
+           UseThisLoginProviderInCaseOfNullReferrer="false" 
+           SupportsChangePassword="No" />
+
+
+<add type="eGistics.Security.LoginProvider.SamlSsoToken, eGistics.Security" 
+           name="GoldmanSachsTIS" 
+           ExternalId="GoldmanSachs"
+           UserIdPrefix="" 
+           ClientX509SerialNumber="" 
+           HomePage="https://uatfdc.tisa.io/Web/CloseSession.html" 
+           ErrorValidationPage="https://uatfdc.tisa.io/Web/Login.aspx" 
+           DecryptMessage="false" 
+           DecryptX509SerialNumber="" 
+           PayloadOrderProcess="DecryptThenVerifySignature" 
+           OrganizationAndRolesManagedOneGisticsSide="false" 
+           Issuer="GoldmanSachs" 
+           OrganizationCode="REMITCOROOT" 
+           AllowedRoleCodes="*" 
+           FindOnlyValidCertificates="false" 
+           VerifyExpiry="false" 
+           UseThisLoginProviderInCaseOfNullReferrer="false" 
+           SupportsChangePassword="No" />
 	    
     </providers>
   </loginProviderService>
