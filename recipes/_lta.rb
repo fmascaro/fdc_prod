@@ -193,6 +193,12 @@ powershell_script "CopyManuals" do
   exit $LASTEXITCODE"
 end
 
+powershell_script "CopyRejLetters" do
+  guard_interpreter :powershell_script
+  code "robocopy \\\\DP-ESL-EFS-01\\GOLDREP\\Assets\\PRD\\FDC\\WWREM-W1\\RejLetters #{app_root}\\RejLetters /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\RejLettersCopy.txt
+	exit $LASTEXITCODE"
+end
+
 #Support resources to assign ssl cert to web site, and additional configs for application pools and application
 
 powershell_script "set_sslcert" do
