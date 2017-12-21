@@ -39,8 +39,8 @@
   </log4net>
   <dataConfiguration defaultDatabase="Admin" />
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
-    <add name="AuditLog" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_AuditLog3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_rtc_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="AuditLog" connectionString="SERVER=DP-FDC-SQL-02;DATABASE=Config_rtc_AuditLog3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="3.0.0.0" />
@@ -49,7 +49,7 @@
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
     <add key="SAMLSigningSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />
     <!--<add key="SAMLEncryptionSerialNumber" value="a2 e3 45 4f 1a 74 16 91 49 51 80 71 84 ec d1 03" />-->
-    <add key="DefaultRecipient" value="https://cfgfdc.tisa.io/Web/SamlSso.ashx" />
+    <add key="DefaultRecipient" value="https://config11.remitcoimagearchive.com/Web/SamlSso.ashx" />
     <add key="DefaultIssuer" value="tisSAML" />
     <add key="DefaultDomain" value="egisticsinc.com" />
   </appSettings>
@@ -61,8 +61,8 @@
            ExternalId="LFGSSO"
            UserIdPrefix="" 
            ClientX509SerialNumber="6d 54 63 7d 9e 02 e1 8b 4c eb 68 41 11 9e cc 78" 
-           HomePage="https://cfgfdc.tisa.io/Web/CloseSession.html" 
-           ErrorValidationPage="https://cfgfdc.tisa.io/Web/Login.aspx" 
+           HomePage="https://config11.remitcoimagearchive.com/Web/CloseSession.html" 
+           ErrorValidationPage="https://config11.remitcoimagearchive.com/Web/Login.aspx" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -81,8 +81,8 @@
            ExternalId="LFGSSOTIS"
            UserIdPrefix="" 
            ClientX509SerialNumber="" 
-           HomePage="https://cfgfdc.tisa.io/Web/CloseSession.html" 
-           ErrorValidationPage="https://cfgfdc.tisa.io/Web/Login.aspx" 
+           HomePage="https://config11.remitcoimagearchive.com/Web/CloseSession.html" 
+           ErrorValidationPage="https://config11.remitcoimagearchive.com/Web/Login.aspx" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -100,8 +100,8 @@
            ExternalId="GoldmanSachs"
            UserIdPrefix="" 
            ClientX509SerialNumber="" 
-           HomePage="https://cfgfdc.tisa.io/Web/CloseSession.html" 
-           ErrorValidationPage="https://cfgfdc.tisa.io/Web/Login.aspx" 
+           HomePage="https://config11.remitcoimagearchive.com/Web/CloseSession.html" 
+           ErrorValidationPage="https://config11.remitcoimagearchive.com/Web/Login.aspx" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -113,7 +113,7 @@
            VerifyExpiry="false" 
            UseThisLoginProviderInCaseOfNullReferrer="false" 
            SupportsChangePassword="No" 
-           RelyingPartyRecipient="https://cfgfdc.topimagesystems.com/web/samlsso.ashx"
+           RelyingPartyRecipient="https://config11.remitcoimagearchive.com/Web/samlsso.ashx"
      />
 
 
@@ -122,8 +122,8 @@
            ExternalId="GoldmanSachs"
            UserIdPrefix="" 
            ClientX509SerialNumber="" 
-           HomePage="https://cfgfdc.tisa.io/Web/CloseSession.html" 
-           ErrorValidationPage="https://cfgfdc.tisa.io/Web/Login.aspx" 
+           HomePage="https://config11.remitcoimagearchive.com/Web/CloseSession.html" 
+           ErrorValidationPage="https://config11.remitcoimagearchive.com/Web/Login.aspx" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
