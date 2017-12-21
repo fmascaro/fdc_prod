@@ -132,8 +132,7 @@ end
 		recursive true
 		inherits true
 		rights :modify, "EGISTICS\\SS 1", :applies_to_children => true
-		rights :modify, web_db_item[webapp]['pool_identity'], :applies_to_children => true
-	end
+		rights :modify, node['egistics']['fdc_lms']['pool_identity'], :applies_to_children => true	end
 end
 
 #Step 8. Copy redirect html file to the docroot of web site and hc.aspx to app_root
