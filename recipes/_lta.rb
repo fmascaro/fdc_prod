@@ -131,7 +131,8 @@ end
 	directory dir do
 		recursive true
 		inherits true
-		rights :modify, "EGISTICS\\SS 1", :applies_to_children => true
+		rights :modify, "#{domain}\\SS 1", :applies_to_children => true
+		rights :modify, web_db_item[webapp]['pool_identity'], :applies_to_children => true
 	end
 end
 
