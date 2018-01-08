@@ -68,7 +68,7 @@ services.each do |service|
 	if service.downcase.include?('fdc')
 		#Pull value for the application environment
 		appenv = svc_db_item[service]['ServiceAccount'].split('-')[1]
-		env = appenv if (appenv.upcase == 'CFG')
+		env = appenv
 
 		# Add all of the directories to the list
 		folders = Array.new
