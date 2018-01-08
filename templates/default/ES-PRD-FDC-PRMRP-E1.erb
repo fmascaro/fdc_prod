@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig"/>
+  </configSections>
+  <ContextInfo>
+    <Context>
+      <add name="MellonReverseProcessor" type="FDC Citi Mellon Reverse Processor" connstring="SERVER=FDC-ADM-AG1;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    </Context>
+  </ContextInfo>
+  <appSettings>
+    <add key="ServiceName" value="MellonProcessor"/>
+  </appSettings>
+  <system.serviceModel>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="WSHttpBinding_IEventCollection"/>
+      </wsHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="null"
+                binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+                contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection" />
+    </client>
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/>
+  </startup>
+</configuration>
