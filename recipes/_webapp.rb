@@ -283,8 +283,12 @@ webapps.each do |webapp|
         directory = web_db_item[webapp]['app_directory']
         powershell_script "CopyAsset" do
           guard_interpreter :powershell_script
-          code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt
-          exit $LASTEXITCODE"
+          case web_db_item[webapp]['assets']
+          when 'RejLetters'
+            code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt exit $LASTEXITCODE"
+          else
+            code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt exit $LASTEXITCODE"
+          end
         end
 
   		end
