@@ -277,6 +277,7 @@ webapps.each do |webapp|
         efs.gsub!(/[dD][pP]/, 'AP')
       end
       #Copy Assets from GOLDREP to Local App Directory
+<<<<<<< HEAD
 #      web_db_item[webapp]['assets'].each do |node|
 #        source = node.split("|").first
 #        dest = node.split("|").last
