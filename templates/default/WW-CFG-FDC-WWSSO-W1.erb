@@ -71,7 +71,7 @@
            OrganizationCode="REMITCOROOT" 
            AllowedRoleCodes="*" 
            FindOnlyValidCertificates="false" 
-           VerifyExpiry="false" 
+           VerifyExpiry="true" 
            UseThisLoginProviderInCaseOfNullReferrer="false" 
            SupportsChangePassword="No" />
 
@@ -110,7 +110,7 @@
            OrganizationCode="REMITCOROOT" 
            AllowedRoleCodes="*" 
            FindOnlyValidCertificates="false" 
-           VerifyExpiry="false" 
+           VerifyExpiry="true" 
            UseThisLoginProviderInCaseOfNullReferrer="false" 
            SupportsChangePassword="No" 
            RelyingPartyRecipient="https://config11.remitcoimagearchive.com/Web/samlsso.ashx"
@@ -145,6 +145,7 @@
     </providers>
   </saveAuditLogService>
   <system.web>
+    <httpCookies httpOnlyCookies="true" requireSSL="true" />
     <customErrors mode="Off" />
     <authentication mode="None" />
     <compilation targetFramework="4.5" />
