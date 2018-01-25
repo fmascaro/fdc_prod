@@ -18,15 +18,15 @@
 
   <ContextInfo>
     <Context>
-      <add name="ES-PRD-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG1;DATABASE=RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
-      <add name="ES-PRD-FDC-IMREM-E1_MGN" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E1" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG1;DATABASE=RTC_Admin3G;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="ES-<%= @env %>-FDC-IMREM-E1_MGN" type="FDC Synaptic Import" connstring="SERVER=FDC-ADM-AG2;DATABASE=FDC_Admin;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
     </Context>
   </ContextInfo>
 
   <appSettings>
-    <add key="ServiceName" value="ES-PRD-FDC-IMREM-E1"/>
-    <add key="ImportManagerStatusFile" value="E:\TIS\PRD\FDC\IMREM-E1\ImportStatus.txt"/>
-    <add key="MainLogPath" value="L:\TIS\PRD\FDC\IMREM-E1\MainLogs\"/>
+    <add key="ServiceName" value="ES-<%= @env %>-FDC-IMREM-E1"/>
+    <add key="ImportManagerStatusFile" value="E:\TIS\<%= @env %>\FDC\IMREM-E1\ImportStatus.txt"/>
+    <add key="MainLogPath" value="L:\TIS\<%= @env %>\FDC\IMREM-E1\MainLogs\"/>
     <add key="MainLogLevel" value="Normal"/>
 
     <!-- 0 means unlimited -->
@@ -64,9 +64,9 @@
   <startupCleaners>
     <providers>
       <add name="StartupCleanerProvider" type="eGistics.Import.Manager.StartupCleanerProviders.StartupCleanerProvider, StartupCleanerProvider"
-           unableToDeleteObjectIDsFiles="E:\TIS\PRD\FDC\IMREM-E1\UnableToDelete\"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working_DONOTDELETE\"
-           ftpPath="E:\TIS\PRD\FDC\IMREM-E1\FTP\BLOCK\"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working_DONOTDELETE\"
+           ftpPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\FTP\BLOCK\"
            objectIDSaveFileExtension="objs"
            emailFrom="customerimportstatus@topimagesystems.com"
            emailTo=""
@@ -86,60 +86,60 @@
       <add name="MorganStanleyLTA" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyLTAImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
       />
 
       <add name="MorganStanleyReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyReportImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
       />
 
       <add name="MorganStanleyCDM" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="MorganStanleyCDMImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
       />
 
       <add name="MorganStanleyCorro" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
-           path="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
+           path="<%= @efs %>\STAGED\P<%= @env %>RD\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
            providerName="MorganStanleyCorroImportProvider"
            triggerFileExtensions="trigger"
       />
       <add name="BaseRemittance3x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="BaseRemittance3xImportProvider1"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\"
+           path="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\"
       />
       <add name="BaseRemittance4x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="BaseRemittance4xImportProvider1"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X\"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X\"
       />
       <add name="BaseLTAReports" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="BaseLTAReportImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\Reports"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\Reports"
       />
       <add name="RejectLetter" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="RejectLetterImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CORRO"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CORRO"
       />
        <add name="WellsWholesale" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="WellsWholesaleImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\WHOLESALE\80099\"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\WHOLESALE\80099\"
       />
       <add name="FDCCDMBaseRemittance3x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="CDMBaseRemittance3xImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
       />
       <add name="FDCCDMBaseRemittance4x" type="eGistics.Import.Manager.StandardIncomingFolderProviders.StandardIncomingFolderProvider, StandardIncomingFolderProvider"
            providerName="CDMBaseRemittance4xImportProvider"
            triggerFileExtensions="trigger"
-           path="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
+           path="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
       />
     </providers>
   </incomingFolders>
@@ -147,17 +147,17 @@
   <fileHandlers>
     <providers>
       <add name="MorganStanleyLTAImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            smtpIP="10.100.10.46"
            smtpPort="25"
            emailFrom="noreply@eGisticsInc.com"
            emailTo=""
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\LTA\"
-           logPath="L:\TIS\PRD\FDC\IMREM-E1\MorganStanley\LTA\"
-           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
-           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
-           ftpPath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\LTA\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\LTA\"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\LTA\"
+           ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim"
@@ -168,18 +168,18 @@
       />
 
       <add name="MorganStanleyReportImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
            currentLoggingDebugLevel="Verbose"
            emailFrom="noreply@eGisticsInc.com"
            emailTo=""
            smtpIP=""
            smtpPort="25"
-           ftpPath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\Reports\"
-           logPath="L:\TIS\PRD\FDC\IMREM-E1\MorganStanley\Reports\"
-           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
-           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
+           ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\Reports\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\Reports\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\Reports\"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\Reports\"
            triggerLess="False"
            useCompressionProvider="True"
            compressionProvider="MorganStanleyReportZipCompressionProvider"
@@ -189,17 +189,17 @@
       />
 
       <add name="MorganStanleyCDMImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            smtpIP="10.100.10.46"
            smtpPort="25"
            emailFrom="noreply@eGisticsInc.com"
            emailTo=""
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CDM\"
-           logPath="L:\TIS\PRD\FDC\IMREM-E1\MorganStanley\CDM\"
-           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
-           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
-           ftpPath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\CDM\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CDM\"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CDM\"
+           ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
            useCompressionProvider="True"
            triggerLess="False"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim"
@@ -210,18 +210,18 @@
       />
 
      <add name="MorganStanleyCorroImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
           moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed;deadlock victim;ExecuteNonQuery requires an open and available Connection;operation timed out;replica role is RESOLVING;specified network name is no longer available"
           currentLoggingDebugLevel="Verbose"
           emailFrom="noreply@eGisticsInc.com"
             emailTo=""
           smtpIP=""
           smtpPort="25"
-            ftpPath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
-            logPath="L:\TIS\PRD\FDC\IMREM-E1\MorganStanley\CORRO\"
-            backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
-            exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
+            ftpPath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\MorganStanley\CORRO\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\MorganStanley\CORRO\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\MorganStanley\CORRO\"
           triggerLess="False"
           useCompressionProvider="True"
           compressionProvider="MorganStanleyCorroZipCompressionProvider"
@@ -231,17 +231,17 @@
       />
 
       <add  name="BaseRemittance3xImportProvider1" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
             smtpIP=""
             smtpPort="25"
             emailFrom="noreply@eGisticsInc.com"
             emailTo=""
             currentLoggingDebugLevel="Verbose"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\LTA_3X\"
-            logPath="L:\TIS\PRD\FDC\IMREM-E1\LTA_3X\"
-            backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\"
-            exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\"
-            ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_3X\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_3X\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_3X\"
+            ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X"
             useCompressionProvider="True"
             triggerLess="False"
             moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -252,17 +252,17 @@
       />
 
       <add  name="BaseRemittance4xImportProvider1" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
             smtpIP=""
             smtpPort="25"
             emailFrom="noreply@eGisticsInc.com"
             emailTo=""
             currentLoggingDebugLevel="Verbose"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\LTA_4X\"
-            logPath="L:\TIS\PRD\FDC\IMREM-E1\LTA_4X\"
-            backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_4X\"
-            exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_4X\"
-            ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_4X\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\LTA_4X\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\LTA_4X\"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\LTA_4X\"
+            ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X"
             useCompressionProvider="True"
             triggerLess="False"
             moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -273,17 +273,17 @@
       />
 
 	<add  name="BaseLTAReportImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
             smtpIP=""
             smtpPort="25"
             emailFrom="noreply@eGisticsInc.com"
             emailTo=""
             currentLoggingDebugLevel="Verbose"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\Reports\"
-            logPath="L:\TIS\PRD\FDC\IMREM-E1\Reports\"
-            backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Reports"
-            exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Reports"
-            ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\Reports"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\Reports\"
+            logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\Reports\"
+            backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Reports"
+            exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Reports"
+            ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\Reports"
             useCompressionProvider="True"
             triggerLess="False"
             moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -294,18 +294,18 @@
       />
 <!--
       <add name="BaseLTAFolderImportProvider" type="eGistics.Import.Manager.BaseLTAFolderImportProviders.BaseLTAFolderImportProvider, BaseLTAFolderImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAFolderImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAFolderImportProvider.dll.config"
            moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
            currentLoggingDebugLevel="Verbose"
            emailFrom="noone@eGisticsInc.com"
            emailTo="noone@eGisticsInc.com"
            smtpIP=""
            smtpPort="25"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\LTA_3X\Reports\"
-           logPath="L:\TIS\PRD\FDC\IMREM-E1\Reports\"
-           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Reports"
-           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Reports"
-           ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\Reports"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\LTA_3X\Reports\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\Reports\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Reports"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Reports"
+           ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\Reports"
            triggerLess="False"
            useCompressionProvider="False"
            compressionProvider="none"
@@ -315,17 +315,17 @@
       />
 -->
       <add name="RejectLetterImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
            smtpIP=""
            smtpPort="25"
            emailFrom="noone@eGisticsInc.com"
            emailTo="noone@eGisticsInc.com"
            currentLoggingDebugLevel="Verbose"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\CORRO\"
-           logPath="L:\TIS\PRD\FDC\IMREM-E1\CORRO\"
-           backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\CORRO"
-           exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\CORRO"
-           ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CORRO\"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CORRO\"
+           logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\CORRO\"
+           backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\CORRO"
+           exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\CORRO"
+           ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CORRO\"
            triggerLess="False"
            useCompressionProvider="True"
            compressionFileExtension="zip"
@@ -334,17 +334,17 @@
            cleanUpProvider="GenericCleanupProvider"
       />
       <add name="WellsWholesaleImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-    		  fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+    		  fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
     		  smtpIP="10.100.10.46"
     		  smtpPort="25"
     		  emailFrom="noreply@eGisticsInc.com"
     		  emailTo="noreply@eGisticsInc.com"
     		  currentLoggingDebugLevel="Verbose"
-    		  mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\Wholesale\"
-    		  logPath="L:\TIS\PRD\FDC\IMREM-E1\WELLSWHOLESALE\"
-    		  backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Wholesale\"
-    		  exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Wholesale"
-    		  ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\WHOLESALE\80099"
+    		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\Wholesale\"
+    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\WELLSWHOLESALE\"
+    		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\Wholesale\"
+    		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\Wholesale"
+    		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\WHOLESALE\80099"
     		  useCompressionProvider="True"
     		  triggerLess="False"
     		  moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -354,17 +354,17 @@
     		  compressionFileExtension="zip"
       />
       <add name="CDMBaseRemittance3xImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-    		  fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+    		  fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
     		  smtpIP="10.100.10.46"
     		  smtpPort="25"
     		  emailFrom="noreply@eGisticsInc.com"
     		  emailTo="noreply@eGisticsInc.com"
     		  currentLoggingDebugLevel="Verbose"
-    		  mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\CDM_3X\"
-    		  logPath="L:\TIS\PRD\FDC\IMREM-E1\CDM_3x\"
-    		  backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\CDM_3X"
-    		  exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\CDM_3X"
-    		  ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
+    		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CDM_3X\"
+    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\CDM_3x\"
+    		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\CDM_3X"
+    		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\CDM_3X"
+    		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
     		  useCompressionProvider="True"
     		  triggerLess="False"
     		  moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -374,17 +374,17 @@
     		  compressionFileExtension="zip"
       />
       <add name="CDMBaseRemittance4xImportProvider" type="eGistics.Import.Manager.BaseLTAImportProviders.BaseLTAImportProvider, BaseLTAImportProvider"
-    		  fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
+    		  fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\BaseLTAImportProvider.dll.config"
     		  smtpIP="10.100.10.46"
     		  smtpPort="25"
     		  emailFrom="noreply@eGisticsInc.com"
     		  emailTo="noreply@eGisticsInc.com"
     		  currentLoggingDebugLevel="Verbose"
-    		  mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\CDM_4X\"
-    		  logPath="L:\TIS\PRD\FDC\IMREM-E1\CDM_4x\"
-    		  backupPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\CDM_4X"
-    		  exceptionsPath="<%= @efb %>\PRD\PRD-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\CDM_4X"
-    		  ftpPath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
+    		  mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CDM_4X\"
+    		  logPath="L:\TIS\<%= @env %>\FDC\IMREM-E1\CDM_4x\"
+    		  backupPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\BACKUP\FDC\CDM_4X"
+    		  exceptionsPath="<%= @efb %>\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\EXCEPTION\FDC\CDM_4X"
+    		  ftpPath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
     		  useCompressionProvider="True"
     		  triggerLess="False"
     		  moveToFTPInsteadOfExceptionsKeyWordsPhrases="timeout;forcibly closed"
@@ -399,8 +399,8 @@
   <subProviders>
     <providers>
       <add name="MorganStanleyLTAZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\LTA\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\LTA\"
       />
 
       <add name="MorganStanleyLTAItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -468,14 +468,14 @@
 
       <add name="MorganStanleyLTAResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\LTA\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    />
 
       <add name="MorganStanleyReportZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\Reports\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\Reports\"
       />
 
       <add name="MorganStanleyReportItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
@@ -526,14 +526,14 @@
 
       <add name="MorganStanleyReportResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\Reports\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
    />
 
       <add name="MorganStanleyCDMZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CDM\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CDM\"
       />
 
       <add name="MorganStanleyCDMItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -601,14 +601,14 @@
 
       <add name="MorganStanleyCDMResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CDM\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
 
       <add name="MorganStanleyCorroZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\MorganStanley\CORRO\"
       />
 
       <add name="MorganStanleyCorroItemProvider" type="eGistics.Import.Manager.IndexAndImageFileProviders.IndexAndImagesProvider, IndexAndImageFileProvider"
@@ -658,30 +658,30 @@
 
       <add name="MorganStanleyCorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
+           responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\MorganStanley\CORRO\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
       />
 <!--
       <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\FirstBank\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FirstBank\"
       />
 -->
 
       <add  name="3XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\FDC\LTA_3X\"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_3X\"
       />
 
       <add  name="4XZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\FDC\LTA_4X\"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\LTA_4X\"
       />
 
       <add  name="ReportZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-            fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-            mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\Working\FDC\Reports\"
+            fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+            mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\Working\FDC\Reports\"
       />
 
       <add name="BaseLTAAdminDBProvider" type="eGistics.Import.Manager.Database.BaseLTAAdminDBProviders.BaseLTAAdminDBProvider, BaseLTAAdminDBProvider"
@@ -759,7 +759,7 @@
 
 
       <add name="SynapticArchiveProviderStacked" type="eGistics.Import.Manager.SynapticArchiveProviders.StackerSynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
@@ -771,7 +771,7 @@
       />
 
       <add name="SynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\app.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
@@ -780,8 +780,8 @@
       />
 <!--
       <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\app.config"
-           unableToDeleteObjectIDsFiles="E:\TIS\PRD\FDC\IMREM-E1\UnableToDelete\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\app.config"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
            overrideSynapticWebServiceWebConfigSettings="True"
            objectIDSaveFileExtension="objs"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
@@ -792,7 +792,7 @@
 -->
 
       <add name="SingleSynapticArchiveProvider" type="eGistics.Import.Manager.SynapticArchiveProviders.SynapticArchiveProvider, SynapticArchiveProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\SynapticArchiveProvider.dll.config"
            overrideSynapticWebServiceWebConfigSettings="True"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
            sharedSecret="HktwDK6TPaVWJ6TT/cmW5Mt3+64="
@@ -816,7 +816,7 @@
            delLoadTableElementSPParameters="None"
            organizationIDColumnName="ID"
            useTransaction="False"
-		   ContextName="ES-PRD-FDC-IMREM-E2"
+		   ContextName="ES-<%= @env %>-FDC-IMREM-E2"
       />
 
       <add  name="BaseRemittance3xItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
@@ -862,14 +862,14 @@
 
       <add  name="BaseRemittance3xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
             lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-            responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\"
+            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_3X\"
             responseFileExtension="rsp"
             responseFileDelimiter="|"
       />
 
       <add  name="BaseRemittance4xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
             lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount|#ExDateTime"
-            responseMainFilePath="<%= @efs %>\STAGED\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X\"
+            responseMainFilePath="<%= @efs %>\STAGED\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\LTA_4X\"
             responseFileExtension="rsp"
             responseFileDelimiter="|"
       />
@@ -986,22 +986,22 @@
            useSynapticInfoFromAdminDB="True"
       />
       <add name="ZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\CORRO\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CORRO\"
       />
 
 	   <add name="CDM3xZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\CDM_3X\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CDM_3X\"
       />
 
 	   <add name="CDM4xZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\CDM_4X\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\CDM_4X\"
       />
       <add name="GenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\GenericCleanupProvider.dll.config"
-           unableToDeleteObjectIDsFiles="E:\TIS\PRD\FDC\IMREM-E1\UnableToDelete\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\GenericCleanupProvider.dll.config"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
            overrideSynapticWebServiceWebConfigSettings="True"
            objectIDSaveFileExtension="objs"
            subtenantID="6a5c3d578baf402da8283b3d6522e150"
@@ -1010,8 +1010,8 @@
            baseURI="199.106.136.58|63.240.201.88"
       />
       <add name="WellsWholesaleZipCompressionProvider" type="eGistics.Import.Manager.CompressionProviders.ZipFileProvider, ZipCompressionProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
-           mainWorkingPath="E:\TIS\PRD\FDC\IMREM-E1\WORKING\FDC\wholesale\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\ZipCompressionProvider.dll.config"
+           mainWorkingPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\WORKING\FDC\wholesale\"
       />
       <add name="WellsWholesaleItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
          indexColumnMapping="BankID(INT),BoxID(INT),ProcessDate(INT),BatchNum(INT),TranNumber(INT),,SequenceNum(INT),ItemType(VARCHAR),Amount(NUMERIC),CheckNum(NUMERIC),CheckRTNum(VARCHAR),CheckAcct(VARCHAR),Image_File_Name(NOTYPE),AccountNum(VARCHAR),Account2(VARCHAR),Account3(VARCHAR),Account4(VARCHAR),Amount1(NUMERIC),Amount2(NUMERIC),Amount3(NUMERIC),SiteID(INT),WorksourceID(INT)"
@@ -1085,8 +1085,8 @@
 	     />
 
        <add name="WellsWholesaleGenericCleanupProvider" type="eGistics.Import.Manager.CleanupProviders.GenericCleanupProvider, GenericCleanupProvider"
-           fileConfigurationNameAndPath="E:\TIS\PRD\FDC\IMREM-E1\GenericCleanupProvider.dll.config"
-           unableToDeleteObjectIDsFiles="E:\TIS\PRD\FDC\IMREM-E1\UnableToDelete\"
+           fileConfigurationNameAndPath="E:\TIS\<%= @env %>\FDC\IMREM-E1\GenericCleanupProvider.dll.config"
+           unableToDeleteObjectIDsFiles="E:\TIS\<%= @env %>\FDC\IMREM-E1\UnableToDelete\"
            overrideSynapticWebServiceWebConfigSettings="True"
            objectIDSaveFileExtension="objs"
            baseURI="199.106.136.58"
@@ -1116,28 +1116,28 @@
 
      <add name="CDMBaseRemittance3xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_3X\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
      />
 
      <add name="ReportsResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\Reports\"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\Reports\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
 	   />
 
      <add name="CorroResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CORRO\"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CORRO\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
 	   />
 
      <add name="CDMBaseRemittance4xResponseFileProvider" type="eGistics.Import.Manager.ResponseFileProviders.ResponseFileProvider, ResponseFileProvider"
            lineMessageString="#ErrorCode|#ErrorText|#ItemCount|#PageCount"
-           responseMainFilePath="<%= @efs %>\staged\PRD\PRD-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
+           responseMainFilePath="<%= @efs %>\staged\<%= @env %>\<%= @env %>-FDC-FTX-ALL\IMREM-E1\FDC\CDM_4X\"
            responseFileExtension="rsp"
            responseFileDelimiter="|"
 	   />
