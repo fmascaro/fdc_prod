@@ -14,7 +14,7 @@
     <section name="fileHandlers" type="eGistics.Import.Manager.Base.FileHandlerProviderSection, BaseProvider" allowDefinition="MachineToApplication" restartOnExternalChanges="false" />
     <section name="subProviders" type="eGistics.Import.Manager.Base.SubHandlerProviderSection, BaseProvider" allowDefinition="MachineToApplication" restartOnExternalChanges="false"/>
     <section name="StrongAuth.CryptoSection" type="StrongAuth.StrongKeyCryptoEngine.CryptoSection, StrongAuth.StrongKeyCryptoEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ac236b7e59e7bec0"/>
-	<section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+	  <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
 
   <ContextInfo>
@@ -817,7 +817,7 @@
            delLoadTableElementSPParameters="None"
            organizationIDColumnName="ID"
            useTransaction="False"
-		   ContextName="ES-<%= @env %>-FDC-IMREM-E2"
+		       ContextName="ES-<%= @env %>-FDC-IMREM-E1"
       />
 
       <add  name="BaseRemittance3xItemProvider" type="eGistics.Import.Manager.BaseRemittanceItemProviders.BaseRemittanceItemProvider, BaseRemittanceItemProvider"
