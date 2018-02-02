@@ -277,40 +277,22 @@ webapps.each do |webapp|
         efs.gsub!(/[dD][pP]/, 'AP')
       end
       #Copy Assets from GOLDREP to Local App Directory
-#      web_db_item[webapp]['assets'].each do |node|
-#        source = node.split("|").first
-#        dest = node.split("|").last
-#        directory = web_db_item[webapp]['app_directory']
-#        powershell_script "CopyAsset" do
-#          guard_interpreter :powershell_script
-#          code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt
-#          exit $LASTEXITCODE"
-#        end
-#      end
-      # Individual copies to account for the change in RejLetters path (part of cutover from legacy environment)
-      powershell_script "CopyImages" do
-        guard_interpreter :powershell_script
-        code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{source} #{app_root}#{dest} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
-        exit $LASTEXITCODE"
+      web_db_item[webapp]['assets'].each do |node|
+        source = node.split("|").first
+        dest = node.split("|").last
+        directory = web_db_item[webapp]['app_directory']
+        powershell_script "CopyAsset" do
+          guard_interpreter :powershell_script
+          code "If('#{source}' -eq 'RejLetters') {
+            robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt
+          } else {
+            robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{web_db_item[webapp]['app_directory']}\\#{source} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:L:\\WWW\\#{appenv}\\#{cust}\\#{directory}\\#{source}Copy.txt
+          }
+          If($LASTEXITCODE -lt 2){
+            exit 0
+          }"
+        end
       end
-
-      powershell_script "CopyManuals" do
-        guard_interpreter :powershell_script
-        code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{source} #{app_root}#{dest} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ManualsCopy.txt
-        exit $LASTEXITCODE"
-      end
-
-      powershell_script "CopyCSS" do
-        guard_interpreter :powershell_script
-        code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{source} #{app_root}#{dest} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
-        exit $LASTEXITCODE"
-      end      
-
-      powershell_script "CopyRejLetters" do
-        guard_interpreter :powershell_script
-        code "robocopy #{efs}\\GOLDREP\\Assets\\#{appenv}\\#{cust}\\#{dest} #{app_root}#{dest} /MIR /W:1 /R:1 /LOG:#{config[:log][:path]}\\ImagesCopy.txt
-        exit $LASTEXITCODE"
-      end      
       
       #Support resources to assign ssl cert to web site, and additional configs for application pools and application
 
