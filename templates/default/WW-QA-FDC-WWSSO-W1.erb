@@ -39,8 +39,8 @@
   </log4net>
   <dataConfiguration defaultDatabase="Admin" />
   <connectionStrings>
-    <add name="Admin" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
-    <add name="AuditLog" connectionString="SERVER=DU-GEN-SQL-01;DATABASE=RTC_AuditLog3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
+    <add name="Admin" connectionString="SERVER=PD-DEV-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient"/>
+    <add name="AuditLog" connectionString="SERVER=PD-DEV-SQL-01;DATABASE=RTC_AuditLog3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="3.0.0.0" />
@@ -49,7 +49,7 @@
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
     <add key="SAMLSigningSerialNumber" value="00 c1 13 c3 d5 66 f3 0f e6" />
     <!--<add key="SAMLEncryptionSerialNumber" value="a2 e3 45 4f 1a 74 16 91 49 51 80 71 84 ec d1 03" />-->
-    <add key="DefaultRecipient" value="https://fdcuat.tisa.io/Web/SamlSso.ashx" />
+    <add key="DefaultRecipient" value="https://qafdc.tisa.io/Web/SamlSso.ashx" />
     <add key="DefaultIssuer" value="tisSAML" />
     <add key="DefaultDomain" value="egisticsinc.com" />
   </appSettings>
@@ -61,8 +61,8 @@
            ExternalId="LFGSSO"
            UserIdPrefix="" 
            ClientX509SerialNumber="6d 54 63 7d 9e 02 e1 8b 4c eb 68 41 11 9e cc 78" 
-           HomePage="https://fdcuat.tisa.io/Web/CloseSession.html" 
-           ErrorValidationPage="https://fdcuat.tisa.io/Managesso/Error" 
+           HomePage="https://qafdc.tisa.io/Web/CloseSession.html" 
+           ErrorValidationPage="https://qafdc.tisa.io/Managesso/Error" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -71,7 +71,7 @@
            OrganizationCode="REMITCOROOT" 
            AllowedRoleCodes="*" 
            FindOnlyValidCertificates="false" 
-           VerifyExpiry="true" 
+           VerifyExpiry="false" 
            UseThisLoginProviderInCaseOfNullReferrer="false" 
            SupportsChangePassword="No" />
 
@@ -81,8 +81,8 @@
            ExternalId="LFGSSOTIS"
            UserIdPrefix="" 
            ClientX509SerialNumber="" 
-           HomePage="https://fdcuat.tisa.io/Web/CloseSession.html" 
-           ErrorValidationPage="https://fdcuat.tisa.io/Managesso/Error" 
+           HomePage="https://qafdc.tisa.io/Web/CloseSession.html" 
+           ErrorValidationPage="https://qafdc.tisa.io/Managesso/Error" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -100,8 +100,8 @@
            ExternalId="GoldmanSachs"
            UserIdPrefix="" 
            ClientX509SerialNumber="" 
-           HomePage="https://uatfdc.topimagesystems.com/Web/CloseSession.html" 
-           ErrorValidationPage="https://uatfdc.topimagesystems.com/Managesso/Error" 
+           HomePage="https://qafdc.topimagesystems.com/Web/CloseSession.html" 
+           ErrorValidationPage="https://qafdc.topimagesystems.com/Managesso/Error" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -110,10 +110,10 @@
            OrganizationCode="REMITCOROOT" 
            AllowedRoleCodes="*" 
            FindOnlyValidCertificates="false" 
-           VerifyExpiry="true" 
+           VerifyExpiry="false" 
            UseThisLoginProviderInCaseOfNullReferrer="false" 
            SupportsChangePassword="No" 
-           RelyingPartyRecipient="https://uatfdc.topimagesystems.com/web/samlsso.ashx"
+           RelyingPartyRecipient="https://qafdc.topimagesystems.com/web/samlsso.ashx"
      />
 
 
@@ -122,8 +122,8 @@
            ExternalId="GoldmanSachs"
            UserIdPrefix="" 
            ClientX509SerialNumber="" 
-           HomePage="https://uatfdc.topimagesystems.com/Web/CloseSession.html" 
-           ErrorValidationPage="https://uatfdc.topimagesystems.com/Managesso/Error" 
+           HomePage="https://qafdc.topimagesystems.com/Web/CloseSession.html" 
+           ErrorValidationPage="https://qafdc.topimagesystems.com/Managesso/Error" 
            DecryptMessage="false" 
            DecryptX509SerialNumber="" 
            PayloadOrderProcess="DecryptThenVerifySignature" 
@@ -145,7 +145,6 @@
     </providers>
   </saveAuditLogService>
   <system.web>
-    <httpCookies httpOnlyCookies="true" requireSSL="true" />
     <customErrors mode="On" />
     <authentication mode="None" />
     <compilation targetFramework="4.5" />
