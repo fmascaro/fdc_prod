@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="ContextInfo" type="eGistics.Utilities.ContextInfoSection, eGistics.GlobalConfig"/>
+  </configSections>
+  <appSettings>
+    <add key="ServiceName" value="ES-UAT-FDC-BGGFM-E2"/>
+    <add key="Entries" value="1"/>
+  </appSettings>
+  <ContextInfo>
+    <Context>
+      <add name="FDCCDMMover3x"    type="FDCCDMMover3x"          connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="FDCCDMMover4x"    type="FDCCDMMover4x"          connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="FDCLTAMover3x"     type="FDCLTAMover3x"         connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="FDCLTAMover4x"     type="FDCLTAMover4x"         connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="FDCCorroMover"     type="FDCCorro-RejLetter"    connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="FDCMellonMover"    type="FDCMellonMover"        connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="FDCReportMover"    type="FDCReportMover"        connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+      <add name="PNC_Returns_Mover" type="PNC_Returns"           connstring="SERVER=DU-GEN-SQL-01;DATABASE=RTC_Admin3g;MultiSubnetFailover=Yes;Integrated Security=SSPI;Connect Timeout=36;encrypt=true"/>
+    </Context>
+  </ContextInfo>
+  <system.serviceModel>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="WSHttpBinding_IEventCollection">
+          <security mode="Transport">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+          </security>
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+
+    <!-- <client>
+      <endpoint address="https://DP-IRM-WSESL.tisa.io/EventCollection/eGistics.Notification.Event.EventCollection.svc"
+        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IEventCollection"
+        contract="EventCollectionService.IEventCollection" name="WSHttpBinding_IEventCollection">
+        <identity>
+          <servicePrincipalName value="&#xD;&#xA;          " />
+        </identity>
+      </endpoint>
+    </client> -->
+
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+</configuration>
